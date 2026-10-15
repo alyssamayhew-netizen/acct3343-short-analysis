@@ -351,3 +351,32 @@ if st.button("Calculate BM for all five companies"):
         f"BM calculated successfully for "
         f"{calculated_count} of {len(tickers)} companies."
     )
+
+# --- Gross Profitability calculation test ---
+
+from financial_analysis import calculate_gross_profitability
+
+st.divider()
+st.header("Gross Profitability (GP) Calculation Test")
+
+if st.button("Calculate GP for all five companies"):
+    gp_results = []
+
+    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+
+    with st.spinner("Calculating Gross Profitability..."):
+        for ticker in tickers:
+            gp_results.append(calculate_gross_profitability(ticker))
+
+    gp_df = pd.DataFrame(gp_results)
+
+    st.dataframe(gp_df, use_container_width=True)
+
+    calculated_count = (
+        gp_df["status"] == "Calculated"
+    ).sum()
+
+    st.write(
+        f"GP calculated successfully for "
+        f"{calculated_count} of {len(tickers)} companies."
+    )
