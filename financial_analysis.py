@@ -77,3 +77,35 @@ def test_company_universe():
         results.append(result)
 
     return pd.DataFrame(results)
+
+def inspect_company_fields(ticker_symbol):
+    """
+    List the financial fields available from Yahoo Finance
+    for one company.
+    """
+    data = get_company_data(ticker_symbol)
+
+    if "error" in data:
+        return {
+            "ticker": ticker_symbol,
+            "statement": "Download error",
+            "field": data["error"],
+        }
+
+    results = []
+
+    for statement_name in [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+    ]:
+        statement = data[statement_name]
+
+        for field in statement.index:
+            results.append({
+                "ticker": ticker_symbol,
+                "statement": statement_name,
+                "field": field,
+            })
+
+    return results
