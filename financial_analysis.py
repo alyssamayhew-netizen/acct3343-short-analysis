@@ -157,15 +157,15 @@ def check_metric_field_coverage(ticker_symbol):
         "CFOA": [
             ("cash_flow", "Free Cash Flow"),
             ("balance_sheet", "Total Assets"),
-        ],
+        ],       
         "SNOA": [
             ("balance_sheet", "Total Assets"),
             ("balance_sheet", "Cash And Cash Equivalents"),
-            ("balance_sheet", "Current Debt"),
-            ("balance_sheet", "Long Term Debt"),
+            ("balance_sheet", "Current Debt And Capital Lease Obligation"),
+            ("balance_sheet", "Long Term Debt And Capital Lease Obligation"),
             ("balance_sheet", "Minority Interest"),
-            ("balance_sheet", "Preferred Stock"),
-            ("balance_sheet", "Stockholders Equity"),
+            ("balance_sheet", "Preferred Stock Equity"),
+            ("balance_sheet", "Common Stock Equity"),
         ],
         "Altman Z-Score": [
             ("balance_sheet", "Working Capital"),
