@@ -293,3 +293,32 @@ if st.button("Inspect equity reconciliation"):
             pd.DataFrame(reconciliation),
             use_container_width=True,
         )
+
+# --- SNOA calculation test ---
+
+from financial_analysis import calculate_snoa
+
+st.divider()
+st.header("SNOA Calculation Test")
+
+if st.button("Calculate SNOA for all five companies"):
+    snoa_results = []
+
+    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+
+    with st.spinner("Calculating SNOA..."):
+        for ticker in tickers:
+            snoa_results.append(calculate_snoa(ticker))
+
+    snoa_df = pd.DataFrame(snoa_results)
+
+    st.dataframe(snoa_df, use_container_width=True)
+
+    calculated_count = (
+        snoa_df["status"] == "Calculated"
+    ).sum()
+
+    st.write(
+        f"SNOA calculated successfully for "
+        f"{calculated_count} of {len(tickers)} companies."
+    )
