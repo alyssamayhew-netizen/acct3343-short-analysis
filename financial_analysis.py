@@ -317,3 +317,63 @@ def get_snoa_equity_inputs(ticker_symbol):
         "minority_interest_source": minority_source,
         "preferred_stock_source": preferred_source,
     }
+
+def inspect_equity_reconciliation(ticker_symbol):
+    """
+    Compare Yahoo Finance equity fields to investigate
+    whether minority interest can be derived reliably.
+    """
+    data = get_company_data(ticker_symbol)
+
+    if "error" in data:
+        return {"ticker": ticker_symbol, "error": data["error"]}
+
+    balance = data["balance_sheet"]
+
+    fields = [
+        "Total Equity Gross Minority Interest",
+        "Common Stock Equity",
+        "Preferred Stock Equity",
+        "Minority Interest",
+        "Stockholders Equity",
+    ]
+
+    results = []
+
+    for field in fields:
+        if field in balance.index:
+            values = balance.loc[field].dropna()
+            value = values.iloc[0] if not values.empty else None
+        else:
+            value = None
+
+        results.append({
+            "ticker": ticker_symbol,
+            "field": field,
+            "latest_value": value,
+            "field_found": field in balance.index,
+        })
+
+    gross = next(
+        (r["latest_value"] for r in results
+         if r["field"] == "Total Equity Gross Minority Interest"),
+        None,
+    )
+    common = next(
+        (r["latest_value"] for r in results
+         if r["field"] == "Common Stock Equity"),
+        None,
+    )
+
+    results.append({
+        "ticker": ticker_symbol,
+        "field": "Gross equity minus common equity",
+        "latest_value": (
+            gross - common
+            if gross is not None and common is not None
+            else None
+        ),
+        "field_found": gross is not None and common is not None,
+    })
+
+    return results
