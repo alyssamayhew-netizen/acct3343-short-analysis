@@ -234,3 +234,74 @@ def inspect_snoa_inputs(ticker_symbol):
             })
 
     return results
+
+def get_snoa_equity_inputs(ticker_symbol):
+    """
+    Retrieve preferred stock and minority interest for SNOA.
+    Uses zero for absent preferred stock, as instructed by the professor.
+    Derives minority interest only when the available equity data
+    supports that calculation.
+    """
+    data = get_company_data(ticker_symbol)
+
+    if "error" in data:
+        return {
+            "ticker": ticker_symbol,
+            "minority_interest": None,
+            "preferred_stock": None,
+            "minority_interest_source": "Data retrieval failed",
+            "preferred_stock_source": "Data retrieval failed",
+        }
+
+    balance = data["balance_sheet"]
+
+    def latest_value(field):
+        if field not in balance.index:
+            return None
+
+        values = balance.loc[field].dropna()
+
+        if values.empty:
+            return None
+
+        return float(values.iloc[0])
+
+    minority = latest_value("Minority Interest")
+    preferred = latest_value("Preferred Stock Equity")
+
+    minority_source = "Yahoo Finance: Minority Interest"
+    preferred_source = "Yahoo Finance: Preferred Stock Equity"
+
+    # If preferred stock is genuinely absent, use zero.
+    if preferred is None:
+        preferred = 0.0
+        preferred_source = "Assumed zero: preferred stock field absent"
+
+    # Derive minority interest only if equity components reconcile.
+    if minority is None:
+        gross_equity = latest_value("Total Equity Gross Minority Interest")
+        common_equity = latest_value("Common Stock Equity")
+
+        if gross_equity is not None and common_equity is not None:
+            difference = gross_equity - common_equity
+
+            # Only accept a non-negative difference.
+            # Other equity components must be checked before relying on it.
+            if difference >= 0 and preferred == 0:
+                minority = difference
+                minority_source = (
+                    "Derived: Total Equity Gross Minority Interest "
+                    "minus Common Stock Equity; verify reconciliation"
+                )
+            else:
+                minority_source = "Could not safely derive minority interest"
+        else:
+            minority_source = "Minority interest unavailable"
+
+    return {
+        "ticker": ticker_symbol,
+        "minority_interest": minority,
+        "preferred_stock": preferred,
+        "minority_interest_source": minority_source,
+        "preferred_stock_source": preferred_source,
+    }
