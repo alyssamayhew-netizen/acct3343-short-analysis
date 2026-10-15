@@ -219,3 +219,28 @@ if st.button("Check fields for all five companies"):
 
     st.subheader("Coverage Summary")
     st.dataframe(summary, use_container_width=True)
+
+# --- SNOA input inspector ---
+
+from financial_analysis import inspect_snoa_inputs
+
+st.divider()
+st.header("SNOA Input Inspector")
+
+snoa_ticker = st.selectbox(
+    "Choose a company to inspect for SNOA",
+    options=["CTC-A.TO", "SHOP.TO", "CNR.TO"],
+    key="snoa_ticker",
+)
+
+if st.button("Inspect SNOA inputs"):
+    with st.spinner("Checking the latest balance sheet..."):
+        snoa_results = inspect_snoa_inputs(snoa_ticker)
+
+    if isinstance(snoa_results, dict):
+        st.error(snoa_results.get("error", "Unable to retrieve data."))
+    else:
+        st.dataframe(
+            pd.DataFrame(snoa_results),
+            use_container_width=True,
+        )
