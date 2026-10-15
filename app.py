@@ -244,3 +244,25 @@ if st.button("Inspect SNOA inputs"):
             pd.DataFrame(snoa_results),
             use_container_width=True,
         )
+
+# --- SNOA equity input test ---
+
+from financial_analysis import get_snoa_equity_inputs
+
+st.divider()
+st.header("SNOA Equity Input Test")
+
+equity_ticker = st.selectbox(
+    "Choose a company",
+    options=["CTC-A.TO", "SHOP.TO", "CNR.TO"],
+    key="equity_ticker",
+)
+
+if st.button("Check equity inputs"):
+    with st.spinner("Retrieving equity data..."):
+        equity_data = get_snoa_equity_inputs(equity_ticker)
+
+    st.dataframe(
+        pd.DataFrame([equity_data]),
+        use_container_width=True,
+    )
