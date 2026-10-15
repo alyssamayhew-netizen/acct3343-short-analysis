@@ -483,3 +483,76 @@ def calculate_snoa(ticker_symbol):
         "status": "Calculated",
         "details": "Calculated using available reported inputs.",
     }
+
+def calculate_book_to_market(ticker_symbol):
+    """Calculate book-to-market using common equity / market cap."""
+
+    try:
+        company = yf.Ticker(ticker_symbol)
+        info = company.get_info()
+        balance_sheet = company.balance_sheet
+
+        # Get the latest reported common stock equity.
+        if (
+            balance_sheet.empty
+            or "Common Stock Equity" not in balance_sheet.index
+        ):
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing book value",
+                "details": "Common Stock Equity is unavailable.",
+            }
+
+        equity_values = (
+            balance_sheet.loc["Common Stock Equity"].dropna()
+        )
+
+        if equity_values.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing book value",
+                "details": "No reported Common Stock Equity value.",
+            }
+
+        book_value = float(equity_values.iloc[0])
+
+        # Get the company's market capitalization.
+        market_cap = info.get("marketCap")
+
+        if market_cap is None:
+            return {
+                "ticker": ticker_symbol,
+                "book_value": book_value,
+                "status": "Missing market cap",
+                "details": "Yahoo Finance did not provide market cap.",
+            }
+
+        market_cap = float(market_cap)
+
+        if market_cap <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "book_value": book_value,
+                "market_cap": market_cap,
+                "status": "Invalid market cap",
+                "details": "Market cap must be greater than zero.",
+            }
+
+        # Professor's formula: Book Value / Market Capitalization.
+        bm = book_value / market_cap
+
+        return {
+            "ticker": ticker_symbol,
+            "book_value": book_value,
+            "market_cap": market_cap,
+            "book_to_market": bm,
+            "status": "Calculated",
+            "details": "Book value divided by market capitalization.",
+        }
+
+    except Exception as e:
+        return {
+            "ticker": ticker_symbol,
+            "status": "Error",
+            "details": str(e),
+        }
