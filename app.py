@@ -266,3 +266,30 @@ if st.button("Check equity inputs"):
         pd.DataFrame([equity_data]),
         use_container_width=True,
     )
+
+# --- Equity reconciliation diagnostic ---
+
+from financial_analysis import inspect_equity_reconciliation
+
+st.divider()
+st.header("Minority Interest Reconciliation")
+
+reconciliation_ticker = st.selectbox(
+    "Choose a company for equity reconciliation",
+    options=["SHOP.TO", "CNR.TO"],
+    key="reconciliation_ticker",
+)
+
+if st.button("Inspect equity reconciliation"):
+    with st.spinner("Comparing equity fields..."):
+        reconciliation = inspect_equity_reconciliation(
+            reconciliation_ticker
+        )
+
+    if isinstance(reconciliation, dict):
+        st.error(reconciliation.get("error", "Unable to retrieve data."))
+    else:
+        st.dataframe(
+            pd.DataFrame(reconciliation),
+            use_container_width=True,
+        )
