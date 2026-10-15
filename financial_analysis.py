@@ -194,3 +194,43 @@ def check_metric_field_coverage(ticker_symbol):
             })
 
     return results
+
+def inspect_snoa_inputs(ticker_symbol):
+    """Inspect the balance-sheet values needed for SNOA."""
+    data = get_company_data(ticker_symbol)
+
+    if "error" in data:
+        return {"ticker": ticker_symbol, "error": data["error"]}
+
+    balance = data["balance_sheet"]
+
+    fields = [
+        "Total Assets",
+        "Cash And Cash Equivalents",
+        "Current Debt And Capital Lease Obligation",
+        "Long Term Debt And Capital Lease Obligation",
+        "Minority Interest",
+        "Preferred Stock Equity",
+        "Common Stock Equity",
+    ]
+
+    results = []
+
+    for field in fields:
+        if field in balance.index:
+            value = balance.loc[field].iloc[0]
+            results.append({
+                "ticker": ticker_symbol,
+                "field": field,
+                "latest_value": value,
+                "field_found": True,
+            })
+        else:
+            results.append({
+                "ticker": ticker_symbol,
+                "field": field,
+                "latest_value": None,
+                "field_found": False,
+            })
+
+    return results
