@@ -217,21 +217,33 @@ def inspect_snoa_inputs(ticker_symbol):
     results = []
 
     for field in fields:
+       
         if field in balance.index:
-            value = balance.loc[field].iloc[0]
+            values = balance.loc[field].dropna()
+            value = values.iloc[0] if not values.empty else None
+            found = value is not None
+        else:
+            value = None
+            found = False
+
+        if field == "Preferred Stock Equity" and value is None:
+            value = 0.0
             results.append({
                 "ticker": ticker_symbol,
                 "field": field,
                 "latest_value": value,
-                "field_found": True,
+                "field_found": False,
+                "note": "Treated as zero per professor's instructions",
             })
         else:
             results.append({
                 "ticker": ticker_symbol,
                 "field": field,
-                "latest_value": None,
-                "field_found": False,
+                "latest_value": value,
+                "field_found": found,
+                "note": "",
             })
+
 
     return results
 
