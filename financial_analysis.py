@@ -556,3 +556,95 @@ def calculate_book_to_market(ticker_symbol):
             "status": "Error",
             "details": str(e),
         }
+
+def calculate_gross_profitability(ticker_symbol):
+    """Calculate gross profitability using gross profit / total assets."""
+
+    try:
+        company = yf.Ticker(ticker_symbol)
+        income_statement = company.income_stmt
+        balance_sheet = company.balance_sheet
+
+        # Get revenue.
+        if income_statement.empty or "Total Revenue" not in income_statement.index:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing revenue",
+                "details": "Total Revenue is unavailable.",
+            }
+
+        revenue_values = income_statement.loc["Total Revenue"].dropna()
+
+        if revenue_values.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing revenue",
+                "details": "No reported Total Revenue value.",
+            }
+
+        revenue = float(revenue_values.iloc[0])
+
+        # Get cost of revenue (COGS).
+        if "Cost Of Revenue" not in income_statement.index:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing COGS",
+                "details": "Cost Of Revenue is unavailable.",
+            }
+
+        cogs_values = income_statement.loc["Cost Of Revenue"].dropna()
+
+        if cogs_values.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing COGS",
+                "details": "No reported Cost Of Revenue value.",
+            }
+
+        cogs = float(cogs_values.iloc[0])
+
+        # Get total assets.
+        if balance_sheet.empty or "Total Assets" not in balance_sheet.index:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing total assets",
+                "details": "Total Assets is unavailable.",
+            }
+
+        asset_values = balance_sheet.loc["Total Assets"].dropna()
+
+        if asset_values.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing total assets",
+                "details": "No reported Total Assets value.",
+            }
+
+        total_assets = float(asset_values.iloc[0])
+
+        if total_assets <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Invalid total assets",
+                "details": "Total Assets must be greater than zero.",
+            }
+
+        # Professor's formula: (Revenue - COGS) / Total Assets.
+        gross_profitability = (revenue - cogs) / total_assets
+
+        return {
+            "ticker": ticker_symbol,
+            "revenue": revenue,
+            "cogs": cogs,
+            "total_assets": total_assets,
+            "gross_profitability": gross_profitability,
+            "status": "Calculated",
+            "details": "Gross profit divided by total assets.",
+        }
+
+    except Exception as e:
+        return {
+            "ticker": ticker_symbol,
+            "status": "Error",
+            "details": str(e),
+        }
