@@ -377,3 +377,109 @@ def inspect_equity_reconciliation(ticker_symbol):
     })
 
     return results
+
+def calculate_snoa(ticker_symbol):
+    """
+    Calculate SNOA using the professor's formula.
+
+    SNOA = (Operating Assets - Operating Liabilities) / Total Assets
+
+    Missing minority interest is not automatically treated as zero.
+    Preferred stock is zero when absent, per the professor's instructions.
+    """
+    data = get_company_data(ticker_symbol)
+
+    if "error" in data:
+        return {
+            "ticker": ticker_symbol,
+            "snoa": None,
+            "status": "Data retrieval failed",
+            "details": data["error"],
+        }
+
+    balance = data["balance_sheet"]
+
+    def latest_value(field):
+        if field not in balance.index:
+            return None
+
+        values = balance.loc[field].dropna()
+
+        if values.empty:
+            return None
+
+        return float(values.iloc[0])
+
+    total_assets = latest_value("Total Assets")
+    cash = latest_value("Cash And Cash Equivalents")
+    short_term_debt = latest_value(
+        "Current Debt And Capital Lease Obligation"
+    )
+    long_term_debt = latest_value(
+        "Long Term Debt And Capital Lease Obligation"
+    )
+    minority_interest = latest_value("Minority Interest")
+    preferred_stock = latest_value("Preferred Stock Equity")
+    common_equity = latest_value("Common Stock Equity")
+
+    # The professor says to use zero if preferred stock is absent.
+    if preferred_stock is None:
+        preferred_stock = 0.0
+
+    # Stop if any required inputs are unavailable.
+    required_inputs = {
+        "Total Assets": total_assets,
+        "Cash And Cash Equivalents": cash,
+        "Current Debt And Capital Lease Obligation": short_term_debt,
+        "Long Term Debt And Capital Lease Obligation": long_term_debt,
+        "Minority Interest": minority_interest,
+        "Common Stock Equity": common_equity,
+    }
+
+    missing = [
+        name for name, value in required_inputs.items()
+        if value is None
+    ]
+
+    if missing:
+        return {
+            "ticker": ticker_symbol,
+            "snoa": None,
+            "status": "Missing required data",
+            "details": "Missing: " + ", ".join(missing),
+        }
+
+    if total_assets == 0:
+        return {
+            "ticker": ticker_symbol,
+            "snoa": None,
+            "status": "Invalid denominator",
+            "details": "Total Assets is zero.",
+        }
+
+    operating_assets = total_assets - cash
+
+    operating_liabilities = (
+        total_assets
+        - short_term_debt
+        - long_term_debt
+        - minority_interest
+        - preferred_stock
+        - common_equity
+    )
+
+    snoa = (
+        operating_assets - operating_liabilities
+    ) / total_assets
+
+    return {
+        "ticker": ticker_symbol,
+        "total_assets": total_assets,
+        "operating_assets": operating_assets,
+        "operating_liabilities": operating_liabilities,
+        "minority_interest": minority_interest,
+        "preferred_stock": preferred_stock,
+        "snoa": snoa,
+        "status": "Calculated",
+        "details": "Calculated using available reported inputs.",
+    }
