@@ -322,3 +322,32 @@ if st.button("Calculate SNOA for all five companies"):
         f"SNOA calculated successfully for "
         f"{calculated_count} of {len(tickers)} companies."
     )
+
+# --- Book-to-Market calculation test ---
+
+from financial_analysis import calculate_book_to_market
+
+st.divider()
+st.header("Book-to-Market (BM) Calculation Test")
+
+if st.button("Calculate BM for all five companies"):
+    bm_results = []
+
+    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+
+    with st.spinner("Calculating Book-to-Market..."):
+        for ticker in tickers:
+            bm_results.append(calculate_book_to_market(ticker))
+
+    bm_df = pd.DataFrame(bm_results)
+
+    st.dataframe(bm_df, use_container_width=True)
+
+    calculated_count = (
+        bm_df["status"] == "Calculated"
+    ).sum()
+
+    st.write(
+        f"BM calculated successfully for "
+        f"{calculated_count} of {len(tickers)} companies."
+    )
