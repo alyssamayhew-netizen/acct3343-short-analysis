@@ -159,3 +159,27 @@ if st.button("Check financial data"):
             "Some companies could not be retrieved. "
             "We'll investigate the results before calculating ratios."
         )
+
+# --- Financial field inspection ---
+
+from financial_analysis import inspect_company_fields
+
+st.divider()
+st.header("Financial Field Inspection")
+
+selected_ticker = st.selectbox(
+    "Choose a company to inspect",
+    options=["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"],
+)
+
+if st.button("Inspect available fields"):
+    with st.spinner("Inspecting financial data..."):
+        fields = inspect_company_fields(selected_ticker)
+
+    if isinstance(fields, dict):
+        st.error(fields.get("field", "Unable to retrieve fields."))
+    elif fields:
+        st.success(f"Found {len(fields)} financial fields!")
+        st.dataframe(fields, use_container_width=True)
+    else:
+        st.warning("No financial fields were returned.")
