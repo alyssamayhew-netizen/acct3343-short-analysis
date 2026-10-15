@@ -183,3 +183,38 @@ if st.button("Inspect available fields"):
         st.dataframe(fields, use_container_width=True)
     else:
         st.warning("No financial fields were returned.")
+
+# --- Metric field coverage report ---
+
+from financial_analysis import check_metric_field_coverage
+
+st.divider()
+st.header("Seven-Metric Field Coverage")
+
+if st.button("Check fields for all five companies"):
+    coverage_results = []
+
+    with st.spinner("Checking all five companies..."):
+        for ticker in ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]:
+            coverage_results.extend(
+                check_metric_field_coverage(ticker)
+            )
+
+    coverage_df = pd.DataFrame(coverage_results)
+
+    st.dataframe(coverage_df, use_container_width=True)
+
+    summary = (
+        coverage_df.groupby("metric")["available"]
+        .agg(["sum", "count"])
+        .reset_index()
+    )
+    summary["coverage"] = (
+        summary["sum"].astype(str)
+        + " of "
+        + summary["count"].astype(str)
+        + " required fields"
+    )
+
+    st.subheader("Coverage Summary")
+    st.dataframe(summary, use_container_width=True)
