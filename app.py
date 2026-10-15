@@ -133,3 +133,29 @@ st.info(
     "Financial ratios, company comparisons, and stock "
     "screening features are coming soon!"
 )
+
+# --- Financial data coverage test ---
+
+from financial_analysis import test_company_universe
+
+st.divider()
+st.header("Financial Data Coverage Test")
+
+st.write(
+    "Checking which financial statements Yahoo Finance provides "
+    "for our initial five Canadian companies."
+)
+
+if st.button("Check financial data"):
+    with st.spinner("Checking Yahoo Finance..."):
+        results = test_company_universe()
+
+    st.dataframe(results, use_container_width=True)
+
+    if results["status"].eq("Retrieved").all():
+        st.success("The data retrieval process completed for all five companies.")
+    else:
+        st.warning(
+            "Some companies could not be retrieved. "
+            "We'll investigate the results before calculating ratios."
+        )
