@@ -463,3 +463,30 @@ if st.button("Calculate EY for all five companies"):
         f"EY calculated successfully for "
         f"{calculated_count} of {len(tickers)} companies."
     )
+
+# --- Altman Z-score calculation test ---
+
+from financial_analysis import calculate_altman_z
+
+st.divider()
+st.header("Altman Z-Score Calculation Test")
+
+if st.button("Calculate Altman Z-score for all five companies"):
+    z_results = []
+
+    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+
+    with st.spinner("Calculating Altman Z-scores..."):
+        for ticker in tickers:
+            z_results.append(calculate_altman_z(ticker))
+
+    z_df = pd.DataFrame(z_results)
+
+    st.dataframe(z_df, use_container_width=True)
+
+    calculated_count = (z_df["status"] == "Calculated").sum()
+
+    st.write(
+        f"Altman Z-score calculated successfully for "
+        f"{calculated_count} of {len(tickers)} companies."
+    )
