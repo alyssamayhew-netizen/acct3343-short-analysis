@@ -841,3 +841,158 @@ def calculate_roc(ticker_symbol):
             "status": "Error",
             "details": str(e),
         }
+
+def calculate_ey(ticker_symbol):
+    """Calculate Earnings Yield using EBIT / Total Enterprise Value."""
+
+    try:
+        company = yf.Ticker(ticker_symbol)
+        info = company.get_info()
+        income_statement = company.income_stmt
+        balance_sheet = company.balance_sheet
+
+        # Get the latest annual EBIT.
+        if income_statement.empty or "EBIT" not in income_statement.index:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing EBIT",
+                "details": "EBIT is unavailable.",
+            }
+
+        ebit_values = income_statement.loc["EBIT"].dropna()
+
+        if ebit_values.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing EBIT",
+                "details": "No reported EBIT value.",
+            }
+
+        ebit = float(ebit_values.iloc[0])
+
+        # Get market capitalization.
+        market_cap = info.get("marketCap")
+
+        if market_cap is None or market_cap <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing market cap",
+                "details": "Market capitalization is unavailable or invalid.",
+            }
+
+        # Check required balance sheet fields.
+        required_rows = [
+            "Cash Cash Equivalents And Short Term Investments",
+            "Current Assets",
+            "Current Liabilities",
+            "Total Debt",
+        ]
+
+        if balance_sheet.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet",
+                "details": "Yahoo Finance returned no balance sheet.",
+            }
+
+        missing_rows = [
+            row for row in required_rows
+            if row not in balance_sheet.index
+        ]
+
+        if missing_rows:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet data",
+                "details": f"Missing fields: {', '.join(missing_rows)}",
+            }
+
+        # Use the latest reported annual values.
+        cash_values = (
+            balance_sheet.loc[
+                "Cash Cash Equivalents And Short Term Investments"
+            ].dropna()
+        )
+        current_assets_values = balance_sheet.loc["Current Assets"].dropna()
+        current_liabilities_values = (
+            balance_sheet.loc["Current Liabilities"].dropna()
+        )
+        debt_values = balance_sheet.loc["Total Debt"].dropna()
+
+        if any(
+            values.empty
+            for values in [
+                cash_values,
+                current_assets_values,
+                current_liabilities_values,
+                debt_values,
+            ]
+        ):
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet data",
+                "details": "One or more required values are unavailable.",
+            }
+
+        cash = float(cash_values.iloc[0])
+        current_assets = float(current_assets_values.iloc[0])
+        current_liabilities = float(current_liabilities_values.iloc[0])
+        total_debt = float(debt_values.iloc[0])
+
+        # Preferred stock and minority interest default to zero only
+        # when the corresponding balance sheet row is absent.
+        preferred_stock = (
+            float(balance_sheet.loc["Preferred Stock"].dropna().iloc[0])
+            if "Preferred Stock" in balance_sheet.index
+            and not balance_sheet.loc["Preferred Stock"].dropna().empty
+            else 0.0
+        )
+
+        minority_interest = (
+            float(
+                balance_sheet.loc["Minority Interest"].dropna().iloc[0]
+            )
+            if "Minority Interest" in balance_sheet.index
+            and not balance_sheet.loc["Minority Interest"].dropna().empty
+            else 0.0
+        )
+
+        excess_cash = cash + current_assets - current_liabilities
+
+        enterprise_value = (
+            float(market_cap)
+            + total_debt
+            - excess_cash
+            + preferred_stock
+            + minority_interest
+        )
+
+        if enterprise_value <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Invalid enterprise value",
+                "details": "Total Enterprise Value must be positive.",
+            }
+
+        ey = ebit / enterprise_value
+
+        return {
+            "ticker": ticker_symbol,
+            "ebit": ebit,
+            "market_cap": float(market_cap),
+            "total_debt": total_debt,
+            "excess_cash": excess_cash,
+            "preferred_stock": preferred_stock,
+            "minority_interest": minority_interest,
+            "enterprise_value": enterprise_value,
+            "ey": ey,
+            "status": "Calculated",
+            "details": "EBIT / Total Enterprise Value.",
+        }
+
+    except Exception as e:
+        return {
+            "ticker": ticker_symbol,
+            "status": "Error",
+            "details": str(e),
+        }
