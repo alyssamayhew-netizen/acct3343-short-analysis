@@ -436,3 +436,30 @@ if st.button("Calculate ROC for all five companies"):
         f"ROC calculated successfully for "
         f"{calculated_count} of {len(tickers)} companies."
     )
+
+# --- Earnings Yield (EY) calculation test ---
+
+from financial_analysis import calculate_ey
+
+st.divider()
+st.header("Earnings Yield (EY) Calculation Test")
+
+if st.button("Calculate EY for all five companies"):
+    ey_results = []
+
+    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+
+    with st.spinner("Calculating Earnings Yield..."):
+        for ticker in tickers:
+            ey_results.append(calculate_ey(ticker))
+
+    ey_df = pd.DataFrame(ey_results)
+
+    st.dataframe(ey_df, use_container_width=True)
+
+    calculated_count = (ey_df["status"] == "Calculated").sum()
+
+    st.write(
+        f"EY calculated successfully for "
+        f"{calculated_count} of {len(tickers)} companies."
+    )
