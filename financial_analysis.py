@@ -1006,3 +1006,165 @@ def calculate_ey(ticker_symbol):
             "status": "Error",
             "details": str(e),
         }
+
+def calculate_altman_z(ticker_symbol):
+    """Calculate Altman Z-score using the professor's specified formula."""
+
+    try:
+        company = yf.Ticker(ticker_symbol)
+        info = company.get_info()
+        income_statement = company.income_stmt
+        balance_sheet = company.balance_sheet
+
+        # Required annual income statement and balance sheet fields.
+        required_balance_rows = [
+            "Current Assets",
+            "Current Liabilities",
+            "Total Assets",
+            "Retained Earnings",
+            "Total Liabilities Net Minority Interest",
+        ]
+
+        if balance_sheet.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet",
+                "details": "Yahoo Finance returned no balance sheet.",
+            }
+
+        missing_rows = [
+            row for row in required_balance_rows
+            if row not in balance_sheet.index
+        ]
+
+        if missing_rows:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet data",
+                "details": f"Missing fields: {', '.join(missing_rows)}",
+            }
+
+        if income_statement.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing income statement",
+                "details": "Yahoo Finance returned no income statement.",
+            }
+
+        required_income_rows = ["EBIT", "Total Revenue"]
+
+        missing_income_rows = [
+            row for row in required_income_rows
+            if row not in income_statement.index
+        ]
+
+        if missing_income_rows:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing income statement data",
+                "details": (
+                    f"Missing fields: {', '.join(missing_income_rows)}"
+                ),
+            }
+
+        # Retrieve the latest reported annual values.
+        def latest_value(statement, row):
+            values = statement.loc[row].dropna()
+            if values.empty:
+                return None
+            return float(values.iloc[0])
+
+        current_assets = latest_value(balance_sheet, "Current Assets")
+        current_liabilities = latest_value(
+            balance_sheet, "Current Liabilities"
+        )
+        total_assets = latest_value(balance_sheet, "Total Assets")
+        retained_earnings = latest_value(balance_sheet, "Retained Earnings")
+        total_liabilities = latest_value(
+            balance_sheet, "Total Liabilities Net Minority Interest"
+        )
+        ebit = latest_value(income_statement, "EBIT")
+        sales = latest_value(income_statement, "Total Revenue")
+
+        required_values = {
+            "Current Assets": current_assets,
+            "Current Liabilities": current_liabilities,
+            "Total Assets": total_assets,
+            "Retained Earnings": retained_earnings,
+            "Total Liabilities": total_liabilities,
+            "EBIT": ebit,
+            "Sales": sales,
+        }
+
+        missing_values = [
+            name for name, value in required_values.items()
+            if value is None
+        ]
+
+        if missing_values:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing financial values",
+                "details": (
+                    f"No reported value for: {', '.join(missing_values)}"
+                ),
+            }
+
+        # Market value of equity is represented by market capitalization.
+        market_cap = info.get("marketCap")
+
+        if market_cap is None or market_cap <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing market cap",
+                "details": "Market capitalization is unavailable or invalid.",
+            }
+
+        if total_assets <= 0 or total_liabilities <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Invalid denominator",
+                "details": "Total assets and liabilities must be positive.",
+            }
+
+        working_capital = current_assets - current_liabilities
+
+        x1 = working_capital / total_assets
+        x2 = retained_earnings / total_assets
+        x3 = ebit / total_assets
+        x4 = float(market_cap) / total_liabilities
+        x5 = sales / total_assets
+
+        z_score = (
+            0.012 * x1
+            + 0.014 * x2
+            + 0.033 * x3
+            + 0.006 * x4
+            + 0.999 * x5
+        )
+
+        return {
+            "ticker": ticker_symbol,
+            "working_capital": working_capital,
+            "total_assets": total_assets,
+            "retained_earnings": retained_earnings,
+            "ebit": ebit,
+            "market_cap": float(market_cap),
+            "total_liabilities": total_liabilities,
+            "sales": sales,
+            "x1": x1,
+            "x2": x2,
+            "x3": x3,
+            "x4": x4,
+            "x5": x5,
+            "altman_z": z_score,
+            "status": "Calculated",
+            "details": "Calculated using the professor's specified formula.",
+        }
+
+    except Exception as e:
+        return {
+            "ticker": ticker_symbol,
+            "status": "Error",
+            "details": str(e),
+        }
