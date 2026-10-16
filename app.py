@@ -409,3 +409,30 @@ if st.button("Calculate CFOA for all five companies"):
         f"CFOA calculated successfully for "
         f"{calculated_count} of {len(tickers)} companies."
     )
+
+# --- Return on Capital (ROC) calculation test ---
+
+from financial_analysis import calculate_roc
+
+st.divider()
+st.header("Return on Capital (ROC) Calculation Test")
+
+if st.button("Calculate ROC for all five companies"):
+    roc_results = []
+
+    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+
+    with st.spinner("Calculating Return on Capital..."):
+        for ticker in tickers:
+            roc_results.append(calculate_roc(ticker))
+
+    roc_df = pd.DataFrame(roc_results)
+
+    st.dataframe(roc_df, use_container_width=True)
+
+    calculated_count = (roc_df["status"] == "Calculated").sum()
+
+    st.write(
+        f"ROC calculated successfully for "
+        f"{calculated_count} of {len(tickers)} companies."
+    )
