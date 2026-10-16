@@ -648,3 +648,91 @@ def calculate_gross_profitability(ticker_symbol):
             "status": "Error",
             "details": str(e),
         }
+
+def calculate_cfoa(ticker_symbol):
+    """Calculate CFOA using four years of FCF / latest total assets."""
+
+    try:
+        company = yf.Ticker(ticker_symbol)
+        cash_flow = company.cashflow
+        balance_sheet = company.balance_sheet
+
+        # Get annual free cash flow for four years.
+        if cash_flow.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing cash flow",
+                "details": "Yahoo Finance returned no cash flow statement.",
+            }
+
+        if "Free Cash Flow" not in cash_flow.index:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing FCF",
+                "details": "Free Cash Flow is unavailable.",
+            }
+
+        fcf_values = cash_flow.loc["Free Cash Flow"].dropna()
+
+        if len(fcf_values) < 4:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Insufficient FCF history",
+                "details": (
+                    f"Found {len(fcf_values)} annual FCF values; "
+                    "four are required."
+                ),
+            }
+
+        # Use the four most recent annual FCF values.
+        four_year_fcf = fcf_values.iloc[:4].astype(float)
+        total_fcf = float(four_year_fcf.sum())
+
+        # Get the latest reported total assets.
+        if (
+            balance_sheet.empty
+            or "Total Assets" not in balance_sheet.index
+        ):
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing total assets",
+                "details": "Total Assets is unavailable.",
+            }
+
+        asset_values = balance_sheet.loc["Total Assets"].dropna()
+
+        if asset_values.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing total assets",
+                "details": "No reported Total Assets value.",
+            }
+
+        total_assets = float(asset_values.iloc[0])
+
+        if total_assets <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Invalid total assets",
+                "details": "Total Assets must be greater than zero.",
+            }
+
+        # Professor's formula: sum of four years of FCF / total assets.
+        cfoa = total_fcf / total_assets
+
+        return {
+            "ticker": ticker_symbol,
+            "fcf_years_used": len(four_year_fcf),
+            "four_year_fcf_sum": total_fcf,
+            "total_assets": total_assets,
+            "cfoa": cfoa,
+            "status": "Calculated",
+            "details": "Four years of FCF divided by latest total assets.",
+        }
+
+    except Exception as e:
+        return {
+            "ticker": ticker_symbol,
+            "status": "Error",
+            "details": str(e),
+        }
