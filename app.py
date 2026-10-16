@@ -380,3 +380,32 @@ if st.button("Calculate GP for all five companies"):
         f"GP calculated successfully for "
         f"{calculated_count} of {len(tickers)} companies."
     )
+
+# --- Cash Flow from Assets (CFOA) calculation test ---
+
+from financial_analysis import calculate_cfoa
+
+st.divider()
+st.header("Cash Flow from Assets (CFOA) Calculation Test")
+
+if st.button("Calculate CFOA for all five companies"):
+    cfoa_results = []
+
+    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+
+    with st.spinner("Calculating CFOA..."):
+        for ticker in tickers:
+            cfoa_results.append(calculate_cfoa(ticker))
+
+    cfoa_df = pd.DataFrame(cfoa_results)
+
+    st.dataframe(cfoa_df, use_container_width=True)
+
+    calculated_count = (
+        cfoa_df["status"] == "Calculated"
+    ).sum()
+
+    st.write(
+        f"CFOA calculated successfully for "
+        f"{calculated_count} of {len(tickers)} companies."
+    )
