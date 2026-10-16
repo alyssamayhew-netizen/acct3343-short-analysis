@@ -736,3 +736,108 @@ def calculate_cfoa(ticker_symbol):
             "status": "Error",
             "details": str(e),
         }
+
+def calculate_roc(ticker_symbol):
+    """Calculate ROC using EBIT / (Net PPE + Net Working Capital)."""
+
+    try:
+        company = yf.Ticker(ticker_symbol)
+        income_statement = company.income_stmt
+        balance_sheet = company.balance_sheet
+
+        # Get the latest annual EBIT.
+        if income_statement.empty or "EBIT" not in income_statement.index:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing EBIT",
+                "details": "EBIT is unavailable.",
+            }
+
+        ebit_values = income_statement.loc["EBIT"].dropna()
+
+        if ebit_values.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing EBIT",
+                "details": "No reported EBIT value.",
+            }
+
+        ebit = float(ebit_values.iloc[0])
+
+        # Check for required balance sheet data.
+        required_rows = [
+            "Net PPE",
+            "Current Assets",
+            "Current Liabilities",
+        ]
+
+        if balance_sheet.empty:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet",
+                "details": "Yahoo Finance returned no balance sheet.",
+            }
+
+        missing_rows = [
+            row for row in required_rows
+            if row not in balance_sheet.index
+        ]
+
+        if missing_rows:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet data",
+                "details": f"Missing fields: {', '.join(missing_rows)}",
+            }
+
+        # Use the latest reported annual balance sheet values.
+        net_ppe_values = balance_sheet.loc["Net PPE"].dropna()
+        current_assets_values = balance_sheet.loc["Current Assets"].dropna()
+        current_liabilities_values = (
+            balance_sheet.loc["Current Liabilities"].dropna()
+        )
+
+        if (
+            net_ppe_values.empty
+            or current_assets_values.empty
+            or current_liabilities_values.empty
+        ):
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing balance sheet data",
+                "details": "One or more required values are unavailable.",
+            }
+
+        net_ppe = float(net_ppe_values.iloc[0])
+        current_assets = float(current_assets_values.iloc[0])
+        current_liabilities = float(current_liabilities_values.iloc[0])
+
+        working_capital = current_assets - current_liabilities
+        capital = net_ppe + working_capital
+
+        if capital == 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Invalid denominator",
+                "details": "Net PPE + Net Working Capital equals zero.",
+            }
+
+        roc = ebit / capital
+
+        return {
+            "ticker": ticker_symbol,
+            "ebit": ebit,
+            "net_ppe": net_ppe,
+            "net_working_capital": working_capital,
+            "capital": capital,
+            "roc": roc,
+            "status": "Calculated",
+            "details": "EBIT / (Net PPE + Net Working Capital).",
+        }
+
+    except Exception as e:
+        return {
+            "ticker": ticker_symbol,
+            "status": "Error",
+            "details": str(e),
+        }
