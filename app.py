@@ -571,20 +571,21 @@ results = {}
 with st.spinner("Calculating rankings..."):
     for ticker in tickers:
         results[ticker] = {}
-            for name, function, key, lower_is_better in ranking_metrics:
-                try:
-                    result = function(ticker)
-                    value = result.get(key)
 
-                    if (
-                        result.get("status") == "Calculated"
-                        and isinstance(value, (int, float))
-                        and value == value
-                    ):
-                        results[ticker][name] = float(value)
-                except Exception:
-                    pass
+        for name, function, key, lower_is_better in ranking_metrics:
+            try:
+                result = function(ticker)
+                value = result.get(key)
 
+                if (
+                    result.get("status") == "Calculated"
+                    and isinstance(value, (int, float))
+                    and value == value
+                ):
+                    results[ticker][name] = float(value)
+
+            except Exception:
+                pass
     metric_scores = {ticker: [] for ticker in tickers}
 
     for name, function, key, lower_is_better in ranking_metrics:
