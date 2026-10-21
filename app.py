@@ -537,3 +537,118 @@ try:
     st.write("Balance sheet rows:", list(balance_sheet.index[:5]))
 except Exception as e:
     st.write("Balance sheet error:", str(e))
+
+# --- BUY / SELL Rankings ---
+
+st.divider()
+st.header("📊 Stock Rankings")
+st.write(
+    "Companies are ranked using the seven financial metrics. "
+    "Missing values are excluded rather than treated as zero."
+)
+
+if st.button("Calculate Stock Rankings"):
+    tickers = ["SHOP.TO", "CTC-A.TO", "CNR.TO", "ENB.TO", "FTS.TO"]
+
+    ranking_metrics = [
+        ("ROC", calculate_roc, "roc", False),
+        ("EY", calculate_ey, "ey", False),
+        ("BM", calculate_book_to_market, "book_to_market", False),
+        (
+            "Gross Profitability",
+            calculate_gross_profitability,
+            "gross_profitability",
+            False,
+        ),
+        ("CFOA", calculate_cfoa, "cfoa", False),
+        ("SNOA", calculate_snoa, "snoa", True),
+        ("Altman Z", calculate_altman_z, "altman_z", False),
+    ]
+
+    results = {}
+
+    with st.spinner("Calculating rankings..."):
+        for ticker in tickers:
+            results[ticker] = {}
+
+            for name, function, key, lower_is_better in ranking_metrics:
+                try:
+                    result = function(ticker)
+                    value = result.get(key)
+
+                    if (
+                        result.get("status") == "Calculated"
+                        and isinstance(value, (int, float))
+                        and value == value
+                    ):
+                        results[ticker][name] = float(value)
+                except Exception:
+                    pass
+
+    metric_scores = {ticker: [] for ticker in tickers}
+
+    for name, function, key, lower_is_better in ranking_metrics:
+        available = [
+            (ticker, results[ticker][name])
+            for ticker in tickers
+            if name in results[ticker]
+        ]
+
+        available.sort(
+            key=lambda item: item[1],
+            reverse=not lower_is_better,
+        )
+
+        for position, (ticker, value) in enumerate(available):
+            score = (
+                1.0
+                if len(available) == 1
+                else 1 - position / (len(available) - 1)
+            )
+            metric_scores[ticker].append(score)
+
+    rows = []
+
+    for ticker in tickers:
+        values = results[ticker]
+        scores = metric_scores[ticker]
+
+        rows.append({
+            "Ticker": ticker,
+            "Metrics Available": len(values),
+            "Ranking Score": (
+                round(sum(scores) / len(scores), 3)
+                if len(values) >= 4 and scores
+                else None
+            ),
+        })
+
+    ranked_rows = [
+        row for row in rows
+        if row["Ranking Score"] is not None
+    ]
+    ranked_rows.sort(
+        key=lambda row: row["Ranking Score"],
+        reverse=True,
+    )
+
+    for index, row in enumerate(ranked_rows):
+        if index < 2 and len(ranked_rows) >= 4:
+            row["Signal"] = "Potential BUY"
+        elif index >= len(ranked_rows) - 2 and len(ranked_rows) >= 4:
+            row["Signal"] = "Potential SELL"
+        else:
+            row["Signal"] = "Middle-ranked"
+
+    for row in rows:
+        if row["Ranking Score"] is None:
+            row["Signal"] = "Insufficient data"
+
+    st.dataframe(rows, use_container_width=True, hide_index=True)
+
+    st.caption(
+        "Higher ROC, EY, BM, gross profitability, CFOA and Altman Z "
+        "scores rank favourably; lower SNOA ranks favourably. "
+        "Scores are relative to this sample of companies, not "
+        "personalized investment advice."
+    )
