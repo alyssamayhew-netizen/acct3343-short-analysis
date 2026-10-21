@@ -507,3 +507,19 @@ try:
     st.write("Fast info market_cap:", fast_info.get("market_cap"))
 except Exception as e:
     st.write("Fast info error:", str(e))
+st.subheader("Yahoo Finance Connection Check")
+
+ticker = yf.Ticker("SHOP.TO")
+
+try:
+    history = ticker.history(period="5d")
+    st.write("Price history rows:", len(history))
+    st.write(history.tail(2))
+except Exception as e:
+    st.write("Price history error:", str(e))
+
+try:
+    balance_sheet = ticker.balance_sheet
+    st.write("Balance sheet rows:", list(balance_sheet.index[:5]))
+except Exception as e:
+    st.write("Balance sheet error:", str(e))
