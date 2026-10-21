@@ -546,10 +546,7 @@ st.write(
     "Companies are ranked using the seven financial metrics. "
     "Missing values are excluded rather than treated as zero."
 )
-
-if st.button("Calculate Stock Rankings"):
-    tickers = ["SHOP.TO", "CTC-A.TO", "CNR.TO", "ENB.TO", "FTS.TO"]
-
+tickers = ["SHOP.TO", "CTC-A.TO", "CNR.TO", "ENB.TO", "FTS.TO"]
     ranking_metrics = [
         ("ROC", calculate_roc, "roc", False),
         ("EY", calculate_ey, "ey", False),
