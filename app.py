@@ -31,13 +31,13 @@ and SELL candidates.
 
 st.divider()
 
-st.header("🔎 Company Lookup")
+st.header("Company Financial Analysis")
 
 st.write(
-    
-# --- Company Financial Analysis ---
+    "Enter a stock ticker to view its seven financial formula results."
+)
 
-st.header("Company Financial Analysis")
+# --- Company Financial Analysis ---
 
 ticker_symbol = st.text_input(
     "Stock ticker",
