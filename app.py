@@ -112,10 +112,6 @@ if st.button("Analyze Company"):
             st.caption(f"Technical details: {e}")
 
 
-
-    "Enter a stock ticker to view its seven financial formula results."
-)
-
 st.divider()
 
 st.info(
