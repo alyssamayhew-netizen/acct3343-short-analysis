@@ -1110,21 +1110,22 @@ def calculate_altman_z(ticker_symbol):
                 ),
             }
 
-      # Market value of equity is represented by market capitalization.
-market_cap = info.get("marketCap")
 
-if market_cap is None or market_cap <= 0:
-    try:
-        market_cap = company.fast_info.get("market_cap")
-    except Exception:
-        market_cap = None
+        # Market value of equity is represented by market capitalization.
+        market_cap = info.get("marketCap")
 
-if market_cap is None or market_cap <= 0:
-    return {
-        "ticker": ticker_symbol,
-        "status": "Missing market cap",
-        "details": "Market capitalization is unavailable or invalid.",
-    }
+        if market_cap is None or market_cap <= 0:
+            try:
+                market_cap = company.fast_info.get("market_cap")
+            except Exception:
+                market_cap = None
+
+        if market_cap is None or market_cap <= 0:
+            return {
+                "ticker": ticker_symbol,
+                "status": "Missing market cap",
+                "details": "Market capitalization is unavailable or invalid.",
+            }
 
         if total_assets <= 0 or total_liabilities <= 0:
             return {
