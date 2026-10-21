@@ -1,7 +1,16 @@
-
 import streamlit as st
 import yfinance as yf
 import pandas as pd
+
+from financial_analysis import (
+    calculate_roc,
+    calculate_ey,
+    calculate_book_to_market,
+    calculate_gross_profitability,
+    calculate_cfoa,
+    calculate_snoa,
+    calculate_altman_z,
+)
 
 st.set_page_config(
     page_title="Short-Term Stock Analysis",
@@ -25,9 +34,10 @@ st.divider()
 st.header("🔎 Company Lookup")
 
 st.write(
-    "Enter a stock ticker to explore its financial "
-    "information and historical share price."
-)
+    
+# --- Company Financial Analysis ---
+
+st.header("Company Financial Analysis")
 
 ticker_symbol = st.text_input(
     "Stock ticker",
@@ -35,12 +45,12 @@ ticker_symbol = st.text_input(
     help="Examples: RY.TO, TD.TO, ENB.TO, CNR.TO, SHOP.TO"
 ).strip().upper()
 
-if st.button("Retrieve Financial Data"):
+if st.button("Analyze Company"):
     if not ticker_symbol:
         st.warning("Please enter a stock ticker.")
     else:
         try:
-            with st.spinner("Retrieving data from Yahoo Finance..."):
+            with st.spinner("Calculating financial metrics..."):
                 company = yf.Ticker(ticker_symbol)
                 info = company.get_info()
 
@@ -57,48 +67,50 @@ if st.button("Retrieve Financial Data"):
                     st.stop()
 
                 st.subheader(company_name)
+                st.caption(f"Ticker: {ticker_symbol}")
 
-                col1, col2, col3 = st.columns(3)
+                metrics = [
+                    ("Return on Capital (ROC)", calculate_roc),
+                    ("Earnings Yield (EY)", calculate_ey),
+                    ("Book-to-Market (BM)", calculate_book_to_market),
+                    ("Gross Profitability", calculate_gross_profitability),
+                    ("Cash Flow from Operations (CFOA)", calculate_cfoa),
+                    ("Spread in Net Operating Assets (SNOA)", calculate_snoa),
+                    ("Altman Z-Score", calculate_altman_z),
+                ]
 
-                price = (
-                    info.get("currentPrice")
-                    or info.get("regularMarketPrice")
-                )
+                for metric_name, calculate_function in metrics:
+                    result = calculate_function(ticker_symbol)
 
-                with col1:
-                    st.metric(
-                        "Latest Available Price",
-                        f"{price:,.2f}" if price is not None
-                        else "Unavailable",
-                        help="Price may be delayed and is not guaranteed to be real-time."
-                    )
+                    with st.container(border=True):
+                        st.markdown(f"**{metric_name}**")
 
-                with col2:
-                    market_cap = info.get("marketCap")
-                    st.metric(
-                        "Market Capitalization",
-                        f"{market_cap:,.0f}"
-                        if market_cap is not None
-                        else "Unavailable"
-                    )
+                        if result.get("status") == "Calculated":
+                            # Display the metric's calculated value.
+                            value_keys = [
+                                key for key in result
+                                if key in [
+                                    "roc", "ey", "book_to_market",
+                                    "gross_profitability", "cfoa",
+                                    "snoa", "altman_z"
+                                ]
+                            ]
 
-                with col3:
-                    pe_ratio = info.get("trailingPE")
-                    st.metric(
-                        "Trailing P/E Ratio",
-                        f"{pe_ratio:.2f}"
-                        if pe_ratio is not None
-                        else "Unavailable"
-                    )
-
-                st.subheader("Historical Share Price")
-
-                prices = company.history(period="1y")
-
-                if not prices.empty:
-                    st.line_chart(prices["Close"])
-                else:
-                    st.info("No historical price data was returned.")
+                            if value_keys:
+                                st.metric(
+                                    metric_name,
+                                    f"{result[value_keys[0]]:,.4f}"
+                                )
+                            else:
+                                st.success("Calculation completed.")
+                                st.json(result)
+                        else:
+                            st.warning(
+                                result.get(
+                                    "details",
+                                    result.get("status", "Result unavailable")
+                                )
+                            )
 
                 st.subheader("Financial Statements")
 
@@ -126,6 +138,10 @@ if st.button("Retrieve Financial Data"):
                 "Please check the ticker or try again later."
             )
             st.caption(f"Technical details: {e}")
+Enter a stock ticker to explore its financial "
+    "information and historical share price."
+)
+
 
 st.divider()
 
