@@ -29,11 +29,15 @@ using financial metrics to identify potential BUY
 and SELL candidates.
 """)
 
+
 st.divider()
 
 st.header("Company Financial Analysis")
 
-st.write
+st.write(
+    "Enter a stock ticker to view its seven financial formula results."
+)
+
 # --- Company Financial Analysis ---
 
 ticker_symbol = st.text_input(
