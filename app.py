@@ -652,9 +652,9 @@ st.dataframe(
     height=400,
 )
 
-    st.caption(
-        "Higher ROC, EY, BM, gross profitability, CFOA and Altman Z "
-        "scores rank favourably; lower SNOA ranks favourably. "
-        "Scores are relative to this sample of companies, not "
-        "personalized investment advice."
-    )
+st.caption(
+    "Higher ROC, EY, BM, gross profitability, CFOA and Altman Z "
+    "scores rank favourably; lower SNOA ranks favourably. "
+    "Scores are relative to this sample of companies, not "
+    "personalized investment advice."
+)
