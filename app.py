@@ -80,14 +80,39 @@ if st.button("Analyze Company"):
                     ("Altman Z-Score", calculate_altman_z),
                 ]
 
-                for metric_name, calculate_function in metrics:
-                    result = calculate_function(ticker_symbol)
 
-                    with st.container(border=True):
-                        st.markdown(f"**{metric_name}**")
-                        st.write("Returned result:")
-                        st.json(result)
+for metric_name, calculate_function in metrics:
+    result = calculate_function(ticker_symbol)
 
+    with st.container(border=True):
+        st.markdown(f"**{metric_name}**")
+
+        if result.get("status") == "Calculated":
+            value_keys = [
+                key for key in [
+                    "roc",
+                    "ey",
+                    "book_to_market",
+                    "gross_profitability",
+                    "cfoa",
+                    "snoa",
+                    "altman_z",
+                ]
+                if key in result and result[key] is not None
+            ]
+
+            if value_keys:
+                value = result[value_keys[0]]
+                st.metric("Calculated Value", f"{value:,.4f}")
+            else:
+                st.warning("The calculation returned no displayable value.")
+        else:
+            st.warning(
+                result.get(
+                    "details",
+                    result.get("status", "Result unavailable")
+                )
+            )
                 st.subheader("Financial Statements")
 
                 statements = [
