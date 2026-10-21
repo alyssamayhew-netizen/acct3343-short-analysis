@@ -114,8 +114,7 @@ if st.button("Analyze Company"):
 
 
     "Enter a stock ticker to view its seven financial formula results."
-
-
+)
 
 st.divider()
 
