@@ -548,9 +548,10 @@ st.write(
 )
 
 st.subheader("🏆 Stock Rankings")
+
 tickers = ["SHOP.TO", "CTC-A.TO", "CNR.TO", "ENB.TO", "FTS.TO"]
 
-   ranking_metrics = [
+ranking_metrics = [
         ("ROC", calculate_roc, "roc", False),
         ("EY", calculate_ey, "ey", False),
         ("BM", calculate_book_to_market, "book_to_market", False),
