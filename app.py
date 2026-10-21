@@ -490,3 +490,20 @@ if st.button("Calculate Altman Z-score for all five companies"):
         f"Altman Z-score calculated successfully for "
         f"{calculated_count} of {len(tickers)} companies."
     )
+st.subheader("Temporary Market Cap Diagnostic")
+
+import yfinance as yf
+
+ticker = yf.Ticker("SHOP.TO")
+
+try:
+    info = ticker.get_info()
+    st.write("Summary marketCap:", info.get("marketCap"))
+except Exception as e:
+    st.write("Summary error:", str(e))
+
+try:
+    fast_info = ticker.fast_info
+    st.write("Fast info market_cap:", fast_info.get("market_cap"))
+except Exception as e:
+    st.write("Fast info error:", str(e))
