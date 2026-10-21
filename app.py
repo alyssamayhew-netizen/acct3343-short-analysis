@@ -138,9 +138,6 @@ if st.button("Analyze Company"):
                 "Please check the ticker or try again later."
             )
             st.caption(f"Technical details: {e}")
-Enter a stock ticker to explore its financial "
-    "information and historical share price."
-)
 
 
 st.divider()
