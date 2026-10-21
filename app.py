@@ -552,26 +552,25 @@ st.subheader("🏆 Stock Rankings")
 tickers = ["SHOP.TO", "CTC-A.TO", "CNR.TO", "ENB.TO", "FTS.TO"]
 
 ranking_metrics = [
-        ("ROC", calculate_roc, "roc", False),
-        ("EY", calculate_ey, "ey", False),
-        ("BM", calculate_book_to_market, "book_to_market", False),
-        (
-            "Gross Profitability",
-            calculate_gross_profitability,
-            "gross_profitability",
-            False,
-        ),
-        ("CFOA", calculate_cfoa, "cfoa", False),
-        ("SNOA", calculate_snoa, "snoa", True),
-        ("Altman Z", calculate_altman_z, "altman_z", False),
-    ]
+    ("ROC", calculate_roc, "roc", False),
+    ("EY", calculate_ey, "ey", False),
+    ("BM", calculate_book_to_market, "book_to_market", False),
+    (
+        "Gross Profitability",
+        calculate_gross_profitability,
+        "gross_profitability",
+        False,
+    ),
+    ("CFOA", calculate_cfoa, "cfoa", False),
+    ("SNOA", calculate_snoa, "snoa", True),
+    ("Altman Z", calculate_altman_z, "altman_z", False),
+]
 
-    results = {}
+results = {}
 
-    with st.spinner("Calculating rankings..."):
-        for ticker in tickers:
-            results[ticker] = {}
-
+with st.spinner("Calculating rankings..."):
+    for ticker in tickers:
+        results[ticker] = {}
             for name, function, key, lower_is_better in ranking_metrics:
                 try:
                     result = function(ticker)
