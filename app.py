@@ -547,7 +547,7 @@ st.write(
     "and explore seven financial metrics."
 )
 
-st.subheader("🏆 Stock Rankings")
+st.title("🏆 Stock Rankings")
 
 tickers = ["SHOP.TO", "CTC-A.TO", "CNR.TO", "ENB.TO", "FTS.TO"]
 
@@ -645,7 +645,12 @@ with st.spinner("Calculating rankings..."):
         if row["Ranking Score"] is None:
             row["Signal"] = "Insufficient data"
 
-    st.dataframe(rows, use_container_width=True, hide_index=True)
+st.dataframe(
+    rows,
+    use_container_width=True,
+    hide_index=True,
+    height=400,
+)
 
     st.caption(
         "Higher ROC, EY, BM, gross profitability, CFOA and Altman Z "
