@@ -33,10 +33,7 @@ st.divider()
 
 st.header("Company Financial Analysis")
 
-st.write(
-    "Enter a stock ticker to view its seven financial formula results."
-)
-
+st.write
 # --- Company Financial Analysis ---
 
 ticker_symbol = st.text_input(
@@ -79,14 +76,14 @@ if st.button("Analyze Company"):
                     ("Altman Z-Score", calculate_altman_z),
                 ]
 
-              
-for metric_name, calculate_function in metrics:
-    result = calculate_function(ticker_symbol)
+                for metric_name, calculate_function in metrics:
+                    result = calculate_function(ticker_symbol)
 
-    with st.container(border=True):
-        st.markdown(f"**{metric_name}**")
-        st.write("Returned result:")
-        st.json(result)
+                    with st.container(border=True):
+                        st.markdown(f"**{metric_name}**")
+                        st.write("Returned result:")
+                        st.json(result)
+
                 st.subheader("Financial Statements")
 
                 statements = [
@@ -113,6 +110,12 @@ for metric_name, calculate_function in metrics:
                 "Please check the ticker or try again later."
             )
             st.caption(f"Technical details: {e}")
+
+
+
+    "Enter a stock ticker to view its seven financial formula results."
+)
+
 
 
 st.divider()
