@@ -275,42 +275,89 @@ if st.button("Analyze Company"):
                 st.subheader(company_name)
                 st.caption(f"Ticker: {ticker_symbol}")
 
+
                 metrics = [
-                    ("Return on Capital (ROC)", calculate_roc),
-                    ("Earnings Yield (EY)", calculate_ey),
-                    ("Book-to-Market (BM)", calculate_book_to_market),
-                    ("Gross Profitability", calculate_gross_profitability),
-                    ("Cash Flow from Operations (CFOA)", calculate_cfoa),
-                    ("Spread in Net Operating Assets (SNOA)", calculate_snoa),
-                    ("Altman Z-Score", calculate_altman_z),
+                    (
+                        "Return on Capital (ROC)",
+                        calculate_roc,
+                        "roc",
+                        "Formula: EBIT / (Net PPE + Net Working Capital). "
+                        "Higher is generally better because it indicates "
+                        "more operating profit per dollar of capital."
+                    ),
+                    (
+                        "Earnings Yield (EY)",
+                        calculate_ey,
+                        "ey",
+                        "Formula: EBIT / Enterprise Value. "
+                        "Higher generally indicates more operating earnings "
+                        "relative to the company's total business value."
+                    ),
+                    (
+                        "Book-to-Market (BM)",
+                        calculate_book_to_market,
+                        "book_to_market",
+                        "Formula: Book Value / Market Capitalization. "
+                        "A higher value may suggest a value opportunity, "
+                        "but can also indicate financial trouble."
+                    ),
+                    (
+                        "Gross Profitability",
+                        calculate_gross_profitability,
+                        "gross_profitability",
+                        "Formula: (Revenue - Cost of Goods Sold) / Total Assets. "
+                        "Higher generally indicates more gross profit "
+                        "generated relative to the company's assets."
+                    ),
+                    (
+                        "Cash Flow from Operations (CFOA)",
+                        calculate_cfoa,
+                        "cfoa",
+                        "Formula: Sum of the four most recent annual free "
+                        "cash flow values / Total Assets. Higher generally "
+                        "indicates stronger cash generation relative to assets."
+                    ),
+                    (
+                        "Spread in Net Operating Assets (SNOA)",
+                        calculate_snoa,
+                        "snoa",
+                        "Formula: (Operating Assets - Operating Liabilities) "
+                        "/ Total Assets. Lower can be favourable, but "
+                        "interpret the result in the context of the industry."
+                    ),
+                    (
+                        "Altman Z-Score",
+                        calculate_altman_z,
+                        "altman_z",
+                        "A financial-distress screening measure combining "
+                        "working capital, retained earnings, EBIT, market "
+                        "equity value, liabilities, sales, and total assets. "
+                        "Higher generally indicates lower estimated distress "
+                        "risk. Interpretation depends on the company and "
+                        "the version of the model used."
+                    ),
                 ]
 
-                for metric_name, calculate_function in metrics:
+                for metric_name, calculate_function, value_key, explanation in metrics:
                     result = calculate_function(ticker_symbol)
 
                     with st.container(border=True):
-                        st.markdown(f"**{metric_name}**")
-
                         if result.get("status") == "Calculated":
-                            value_keys = [
-                                key for key in [
-                                    "roc",
-                                    "ey",
-                                    "book_to_market",
-                                    "gross_profitability",
-                                    "cfoa",
-                                    "snoa",
-                                    "altman_z",
-                                ]
-                                if key in result and result[key] is not None
-                            ]
+                            value = result.get(value_key)
 
-                            if value_keys:
-                                value = result[value_keys[0]]
-                                st.metric("Calculated Value", f"{value:,.4f}")
+                            if value is not None and pd.notna(value):
+                                st.metric(
+                                    label=metric_name,
+                                    value=f"{value:,.4f}",
+                                    help=explanation,
+                                )
                             else:
-                                st.warning("The calculation returned no displayable value.")
+                                st.markdown(f"**{metric_name}**")
+                                st.warning(
+                                    "The calculation returned no displayable value."
+                                )
                         else:
+                            st.markdown(f"**{metric_name}**")
                             st.warning(
                                 result.get(
                                     "details",
