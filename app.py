@@ -67,12 +67,8 @@ if app_mode == "Stock Comparison":
         "metrics. Unavailable results are shown clearly."
     )
 
-    tickers = [
-        "SHOP.TO",
-        "CTC-A.TO",
-        "CNR.TO",
-        "ENB.TO",
-        "FTS.TO",
+    tickers = COMPANY_TICKERS
+
     ]
 
     col_a, col_b = st.columns(2)
@@ -459,7 +455,8 @@ st.header("Financial Field Inspection")
 
 selected_ticker = st.selectbox(
     "Choose a company to inspect",
-    options=["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"],
+    tickers = COMPANY_TICKERS
+
 )
 
 if st.button("Inspect available fields"):
@@ -518,7 +515,7 @@ st.header("SNOA Input Inspector")
 
 snoa_ticker = st.selectbox(
     "Choose a company to inspect for SNOA",
-    options=["CTC-A.TO", "SHOP.TO", "CNR.TO"],
+    tickers = COMPANY_TICKERS
     key="snoa_ticker",
 )
 
@@ -543,7 +540,7 @@ st.header("SNOA Equity Input Test")
 
 equity_ticker = st.selectbox(
     "Choose a company",
-    options=["CTC-A.TO", "SHOP.TO", "CNR.TO"],
+    tickers = COMPANY_TICKERS
     key="equity_ticker",
 )
 
@@ -593,7 +590,7 @@ st.header("SNOA Calculation Test")
 if st.button("Calculate SNOA for all five companies"):
     snoa_results = []
 
-    tickers = ["ENB.TO", "CNR.TO", "SHOP.TO", "CTC-A.TO", "FTS.TO"]
+    tickers = COMPANY_TICKERS
 
     with st.spinner("Calculating SNOA..."):
         for ticker in tickers:
