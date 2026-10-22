@@ -645,6 +645,45 @@ with st.spinner("Calculating rankings..."):
         if row["Ranking Score"] is None:
             row["Signal"] = "Insufficient data"
 
+# --- BUY / SELL Highlights ---
+
+st.subheader("🟢 Top BUY Candidates")
+buy_candidates = [
+    row for row in ranked_rows
+    if row["Signal"] == "Potential BUY"
+]
+
+if buy_candidates:
+    buy_columns = st.columns(len(buy_candidates))
+
+    for column, row in zip(buy_columns, buy_candidates):
+        with column:
+            st.success(
+                f"**{row['Ticker']}**\n\n"
+                f"Ranking Score: {row['Ranking Score']:.3f}\n\n"
+                f"Metrics Available: {row['Metrics Available']}/7"
+            )
+else:
+    st.info("No BUY candidates with sufficient data.")
+
+st.subheader("🔴 Top SELL Candidates")
+sell_candidates = [
+    row for row in ranked_rows
+    if row["Signal"] == "Potential SELL"
+]
+
+if sell_candidates:
+    sell_columns = st.columns(len(sell_candidates))
+
+    for column, row in zip(sell_columns, sell_candidates):
+        with column:
+            st.error(
+                f"**{row['Ticker']}**\n\n"
+                f"Ranking Score: {row['Ranking Score']:.3f}\n\n"
+                f"Metrics Available: {row['Metrics Available']}/7"
+            )
+else:
+    st.info("No SELL candidates with sufficient data.")
 st.dataframe(
     rows,
     use_container_width=True,
