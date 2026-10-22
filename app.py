@@ -330,77 +330,44 @@ if st.button("Analyze Company"):
                     ),
                 ]
 
-                all_value_keys = [
-                    "roc",
-                    "ey",
-                    "book_to_market",
-                    "gross_profitability",
-                    "cfoa",
-                    "snoa",
-                    "altman_z",
-                ]
-
-                for metric_name, calculate_function, expected_key, explanation in metrics:
-                    result = calculate_function(ticker_symbol)
-
-                    with st.container(border=True):
-                        if result.get("status") == "Calculated":
-                            value = result.get(expected_key)
-
-                            # Preserve the original fallback behaviour.
-                            if value is None or pd.isna(value):
-                                for key in all_value_keys:
-                                    candidate = result.get(key)
-                                    if candidate is not None and pd.notna(candidate):
-                                        value = candidate
-                                        break
-
-                            if value is not None and pd.notna(value):
-                                st.metric(
-                                    label=metric_name,
-                                    value=f"{value:,.4f}",
-                                    help=explanation,
-                                )
-                            else:
-                                st.markdown(f"**{metric_name}**")
-                                st.warning(
-                                    "The calculation returned no displayable value."
-                                )
-                        else:
-                            st.markdown(f"**{metric_name}**")
-                            st.warning(
-                                result.get(
-                                    "details",
-                                    result.get("status", "Result unavailable")
-                                )
-                            )
-
                 for metric_name, calculate_function, value_key, explanation in metrics:
-                    result = calculate_function(ticker_symbol)
+                    try:
+                        result = calculate_function(ticker_symbol)
 
-                    with st.container(border=True):
-                        if result.get("status") == "Calculated":
-                            value = result.get(value_key)
+                        with st.container(border=True):
+                            if result.get("status") == "Calculated":
+                                value = result.get(value_key)
 
-                            if value is not None and pd.notna(value):
-                                st.metric(
-                                    label=metric_name,
-                                    value=f"{value:,.4f}",
-                                    help=explanation,
-                                )
+                                if value is not None and pd.notna(value):
+                                    st.metric(
+                                        label=metric_name,
+                                        value=f"{value:,.4f}",
+                                        help=explanation,
+                                    )
+                                else:
+                                    st.markdown(f"**{metric_name}**")
+                                    st.warning(
+                                        "This formula returned no usable value "
+                                        "for this company."
+                                    )
                             else:
                                 st.markdown(f"**{metric_name}**")
                                 st.warning(
-                                    "The calculation returned no displayable value."
+                                    result.get(
+                                        "details",
+                                        result.get(
+                                            "status",
+                                            "Result unavailable"
+                                        )
+                                    )
                                 )
-                        else:
-                            st.markdown(f"**{metric_name}**")
-                            st.warning(
-                                result.get(
-                                    "details",
-                                    result.get("status", "Result unavailable")
-                                )
-                            )
+
+                    except Exception as e:
+                        st.markdown(f"**{metric_name}**")
+                        st.warning(
+                            "This formula could not be calculated for this company."
+                        )
+                        st.caption(f"Technical details: {e}")
 
                 st.subheader("Financial Statements")
 
