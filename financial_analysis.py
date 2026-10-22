@@ -948,24 +948,17 @@ def calculate_ey(ticker_symbol):
             else 0.0
         )
 
-        # Minority interest must be available or verified as zero.
-        if (
-            "Minority Interest" not in balance_sheet.index
-            or balance_sheet.loc["Minority Interest"].dropna().empty
-        ):
+        # Use the existing helper to retrieve or cautiously derive
+        # minority interest.
+        equity_inputs = get_snoa_equity_inputs(ticker_symbol)
+        minority_interest = equity_inputs["minority_interest"]
+
+        if minority_interest is None:
             return {
                 "ticker": ticker_symbol,
                 "status": "Missing minority interest",
-                "details": (
-                    "Yahoo Finance does not provide a standalone "
-                    "Minority Interest value. Verify it before calculating EY."
-                ),
+                "details": equity_inputs["minority_interest_source"],
             }
-
-        minority_interest = float(
-            balance_sheet.loc["Minority Interest"].dropna().iloc[0]
-        )
-
 
         excess_cash = cash + current_assets - current_liabilities
 
