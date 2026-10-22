@@ -774,8 +774,29 @@ if sell_candidates:
             )
 else:
     st.info("No SELL candidates with sufficient data.")
+
+def colour_ranking_score(value):
+    if not isinstance(value, (int, float)):
+        return ""
+
+    if value >= 0.75:
+        return "background-color: #C6EFCE; color: #006100"
+    elif value >= 0.40:
+        return "background-color: #FFEB9C; color: #9C6500"
+    else:
+        return "background-color: #FFC7CE; color: #9C0006"
+
+
+styled_rows = (
+    __import__("pandas")
+    .DataFrame(rows)
+    .style
+    .map(colour_ranking_score, subset=["Ranking Score"])
+    .format({"Ranking Score": "{:.3f}"}, na_rep="—")
+)
+
 st.dataframe(
-    rows,
+    styled_rows,
     use_container_width=True,
     hide_index=True,
     height=400,
