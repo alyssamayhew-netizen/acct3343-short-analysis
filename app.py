@@ -566,9 +566,10 @@ ranking_metrics = [
     ("Altman Z", calculate_altman_z, "altman_z", False),
 ]
 
+
 results = {}
 
-with st.spinner("Calculating rankings..."):
+with st.spinner("Calculating company metrics..."):
     for ticker in tickers:
         results[ticker] = {}
 
@@ -586,63 +587,152 @@ with st.spinner("Calculating rankings..."):
 
             except Exception:
                 pass
-    metric_scores = {ticker: [] for ticker in tickers}
 
-    for name, function, key, lower_is_better in ranking_metrics:
-        available = [
-            (ticker, results[ticker][name])
-            for ticker in tickers
-            if name in results[ticker]
-        ]
+# --- Financial Metric Filters ---
 
-        available.sort(
-            key=lambda item: item[1],
-            reverse=not lower_is_better,
-        )
+st.divider()
+st.subheader("🎚️ Financial Metric Filters")
+st.caption(
+    "Adjust the acceptable range for each metric. "
+    "Companies outside a selected range are excluded from the rankings."
+)
 
-        for position, (ticker, value) in enumerate(available):
-            score = (
-                1.0
-                if len(available) == 1
-                else 1 - position / (len(available) - 1)
-            )
-            metric_scores[ticker].append(score)
+metric_ranges = {}
+filter_columns = st.columns(2)
 
-    rows = []
-
-    for ticker in tickers:
-        values = results[ticker]
-        scores = metric_scores[ticker]
-
-        rows.append({
-            "Ticker": ticker,
-            "Metrics Available": len(values),
-            "Ranking Score": (
-                round(sum(scores) / len(scores), 3)
-                if len(values) >= 4 and scores
-                else None
-            ),
-        })
-
-    ranked_rows = [
-        row for row in rows
-        if row["Ranking Score"] is not None
+for i, (name, function, key, lower_is_better) in enumerate(ranking_metrics):
+    available_values = [
+        results[ticker][name]
+        for ticker in tickers
+        if name in results[ticker]
     ]
-    ranked_rows.sort(
-        key=lambda row: row["Ranking Score"],
-        reverse=True,
+
+    with filter_columns[i % 2]:
+        if available_values:
+            observed_min = min(available_values)
+            observed_max = max(available_values)
+
+            if observed_min == observed_max:
+                padding = max(abs(observed_min) * 0.05, 0.01)
+                slider_min = observed_min - padding
+                slider_max = observed_max + padding
+            else:
+                slider_min = observed_min
+                slider_max = observed_max
+
+            step = (slider_max - slider_min) / 100
+
+            selected_range = st.slider(
+                f"{name} acceptable range",
+                min_value=float(slider_min),
+                max_value=float(slider_max),
+                value=(float(slider_min), float(slider_max)),
+                step=float(step),
+                key=f"filter_{key}",
+            )
+
+            metric_ranges[name] = selected_range
+
+        else:
+            st.slider(
+                f"{name} acceptable range",
+                min_value=0.0,
+                max_value=1.0,
+                value=(0.0, 1.0),
+                disabled=True,
+                key=f"filter_{key}",
+            )
+            st.caption("No values available for this metric.")
+            metric_ranges[name] = (float("-inf"), float("inf"))
+
+# --- Apply Filters ---
+
+eligible_tickers = []
+
+for ticker in tickers:
+    matches_filters = True
+
+    for name, selected_range in metric_ranges.items():
+        if name in results[ticker]:
+            value = results[ticker][name]
+
+            if value < selected_range[0] or value > selected_range[1]:
+                matches_filters = False
+                break
+
+    if matches_filters:
+        eligible_tickers.append(ticker)
+
+st.caption(
+    f"{len(eligible_tickers)} of {len(tickers)} companies "
+    "currently meet the selected metric ranges."
+)
+
+# --- Recalculate Rankings Using Eligible Companies ---
+
+metric_scores = {ticker: [] for ticker in eligible_tickers}
+
+for name, function, key, lower_is_better in ranking_metrics:
+    available = [
+        (ticker, results[ticker][name])
+        for ticker in eligible_tickers
+        if name in results[ticker]
+    ]
+
+    available.sort(
+        key=lambda item: item[1],
+        reverse=not lower_is_better,
     )
 
-    for index, row in enumerate(ranked_rows):
-        if index < 2 and len(ranked_rows) >= 4:
-            row["Signal"] = "Potential BUY"
-        elif index >= len(ranked_rows) - 2 and len(ranked_rows) >= 4:
-            row["Signal"] = "Potential SELL"
-        else:
-            row["Signal"] = "Middle-ranked"
+    for position, (ticker, value) in enumerate(available):
+        score = (
+            1.0
+            if len(available) == 1
+            else 1 - position / (len(available) - 1)
+        )
+        metric_scores[ticker].append(score)
 
-    for row in rows:
-        if row["Ranking Score"] is None:
+rows = []
+
+for ticker in tickers:
+    values = results[ticker]
+    scores = metric_scores.get(ticker, [])
+
+    ranking_score = (
+        round(sum(scores) / len(scores), 3)
+        if ticker in eligible_tickers and len(values) >= 4 and scores
+        else None
+    )
+
+    rows.append({
+        "Ticker": ticker,
+        "Metrics Available": len(values),
+        "Ranking Score": ranking_score,
+    })
+
+ranked_rows = [
+    row for row in rows
+    if row["Ranking Score"] is not None
+]
+
+ranked_rows.sort(
+    key=lambda row: row["Ranking Score"],
+    reverse=True,
+)
+
+for index, row in enumerate(ranked_rows):
+    if index < 2 and len(ranked_rows) >= 4:
+        row["Signal"] = "Potential BUY"
+    elif index >= len(ranked_rows) - 2 and len(ranked_rows) >= 4:
+        row["Signal"] = "Potential SELL"
+    else:
+        row["Signal"] = "Middle-ranked"
+
+for row in rows:
+    if row["Ranking Score"] is None:
+        if row["Ticker"] not in eligible_tickers:
+            row["Signal"] = "Filtered out"
+        else:
             row["Signal"] = "Insufficient data"
 
 # --- BUY / SELL Highlights ---
