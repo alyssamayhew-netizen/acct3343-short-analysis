@@ -514,7 +514,7 @@ st.header("SNOA Input Inspector")
 
 snoa_ticker = st.selectbox(
     "Choose a company to inspect for SNOA",
-    tickers = COMPANY_TICKERS
+    tickers = COMPANY_TICKERS,
     key="snoa_ticker",
 )
 
