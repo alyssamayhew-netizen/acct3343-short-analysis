@@ -538,7 +538,7 @@ st.header("SNOA Equity Input Test")
 
 equity_ticker = st.selectbox(
     "Choose a company",
-    tickers = COMPANY_TICKERS,
+    options=COMPANY_TICKERS,
     key="equity_ticker",
 )
 
