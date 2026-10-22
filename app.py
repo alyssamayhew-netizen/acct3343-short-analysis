@@ -454,8 +454,7 @@ st.header("Financial Field Inspection")
 
 selected_ticker = st.selectbox(
     "Choose a company to inspect",
-    tickers = COMPANY_TICKERS
-
+    options=COMPANY_TICKERS
 )
 
 if st.button("Inspect available fields"):
