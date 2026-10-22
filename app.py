@@ -138,107 +138,94 @@ if app_mode == "Stock Comparison":
 
         return "Unavailable"
 
-   
-comparison_results = []
 
-with st.spinner("Calculating both companies' financial metrics..."):
-    for metric_name, calculate_function, value_key, explanation in comparison_metrics:
-        value_a = get_comparison_value(
-            calculate_function, ticker_a, value_key
-        )
-        value_b = get_comparison_value(
-            calculate_function, ticker_b, value_key
-        )
+    comparison_results = []
 
-        comparison_results.append(
-            (metric_name, value_a, value_b, explanation)
-        )
+    with st.spinner("Calculating both companies' financial metrics..."):
+        for metric_name, calculate_function, value_key, explanation in comparison_metrics:
+            value_a = get_comparison_value(
+                calculate_function, ticker_a, value_key
+            )
+            value_b = get_comparison_value(
+                calculate_function, ticker_b, value_key
+            )
+            comparison_results.append(
+                (metric_name, value_a, value_b, explanation)
+            )
 
-# Count favourable indicators, excluding Book-to-Market.
-favourable_a = 0
-favourable_b = 0
-ties = 0
-metrics_compared = 0
+    favourable_a = 0
+    favourable_b = 0
+    ties = 0
+    metrics_compared = 0
 
-for metric_name, value_a, value_b, explanation in comparison_results:
-    if metric_name == "Book-to-Market (BM)":
-        continue
+    for metric_name, value_a, value_b, explanation in comparison_results:
+        if metric_name == "Book-to-Market (BM)":
+            continue
 
-    if value_a == "Unavailable" or value_b == "Unavailable":
-        continue
+        if value_a == "Unavailable" or value_b == "Unavailable":
+            continue
 
-    try:
-        number_a = float(str(value_a).replace(",", ""))
-        number_b = float(str(value_b).replace(",", ""))
-    except (ValueError, TypeError):
-        continue
+        try:
+            number_a = float(str(value_a).replace(",", ""))
+            number_b = float(str(value_b).replace(",", ""))
+        except (ValueError, TypeError):
+            continue
 
-    metrics_compared += 1
+        metrics_compared += 1
 
-    if abs(number_a - number_b) < 0.0001:
-        ties += 1
-    elif metric_name == "Spread in Net Operating Assets (SNOA)":
-        if number_a < number_b:
+        if abs(number_a - number_b) < 0.0001:
+            ties += 1
+        elif metric_name == "Spread in Net Operating Assets (SNOA)":
+            if number_a < number_b:
+                favourable_a += 1
+            else:
+                favourable_b += 1
+        elif number_a > number_b:
             favourable_a += 1
         else:
             favourable_b += 1
+
+    st.subheader("📊 Overall Comparison Summary")
+
+    left, right = st.columns(2)
+
+    with left:
+        st.metric(f"{ticker_a} — Favourable Indicators", favourable_a)
+
+    with right:
+        st.metric(f"{ticker_b} — Favourable Indicators", favourable_b)
+
+    st.caption(
+        f"Compared {metrics_compared} of the six directional metrics. "
+        f"Tied metrics: {ties}. Book-to-Market is excluded because a higher "
+        "value is not always better. Unavailable metrics are excluded. "
+        "This is a screening aid, not an investment recommendation."
+    )
+
+    if metrics_compared == 0:
+        st.info("Not enough comparable metrics to summarize these companies.")
+    elif favourable_a > favourable_b:
+        st.write(f"**{ticker_a} has more favourable indicators.**")
+    elif favourable_b > favourable_a:
+        st.write(f"**{ticker_b} has more favourable indicators.**")
     else:
-        if number_a > number_b:
-            favourable_a += 1
-        else:
-            favourable_b += 1
+        st.write("**Mixed results:** neither company has more favourable indicators.")
 
-st.subheader("📊 Overall Comparison Summary")
+    st.divider()
 
-left, right = st.columns(2)
+    for metric_name, value_a, value_b, explanation in comparison_results:
+        with st.container(border=True):
+            st.markdown(f"**{metric_name}**")
 
-with left:
-    st.metric(f"{ticker_a} — Favourable Indicators", favourable_a)
+            left, right = st.columns(2)
 
-with right:
-    st.metric(f"{ticker_b} — Favourable Indicators", favourable_b)
+            with left:
+                st.metric(ticker_a, value_a)
 
-st.caption(
-    f"Compared {metrics_compared} of the six directional metrics. "
-    f"Tied metrics: {ties}. Book-to-Market is excluded because a higher "
-    "value is not always better. Unavailable metrics are excluded. "
-    "This summary is a screening aid, not an investment recommendation."
-)
+            with right:
+                st.metric(ticker_b, value_b)
 
-if metrics_compared == 0:
-    st.info("Not enough comparable metrics to summarize these companies.")
-elif favourable_a > favourable_b:
-    st.write(
-        f"**{ticker_a} has more favourable indicators.** "
-        "Review the individual metrics before drawing a conclusion."
-    )
-elif favourable_b > favourable_a:
-    st.write(
-        f"**{ticker_b} has more favourable indicators.** "
-        "Review the individual metrics before drawing a conclusion."
-    )
-else:
-    st.write(
-        "**Mixed results:** neither company has more favourable indicators. "
-        "Review the individual metrics below."
-    )
-
-st.divider()
-
-# Show all seven metrics for users to compare themselves.
-for metric_name, value_a, value_b, explanation in comparison_results:
-    with st.container(border=True):
-        st.markdown(f"**{metric_name}**")
-
-        left, right = st.columns(2)
-
-        with left:
-            st.metric(ticker_a, value_a)
-
-        with right:
-            st.metric(ticker_b, value_b)
-
-        st.caption(explanation)
+            st.caption(explanation)
 
     st.caption(
         "These metrics are screening indicators, not guarantees. "
