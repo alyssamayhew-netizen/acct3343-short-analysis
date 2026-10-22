@@ -12,6 +12,25 @@ from financial_analysis import (
     calculate_altman_z,
 )
 
+# --- Companies used throughout the app ---
+
+COMPANY_TICKERS = [
+    "SHOP.TO",
+    "CTC-A.TO",
+    "CNR.TO",
+    "ENB.TO",
+    "FTS.TO",
+    "CP.TO",
+    "CNQ.TO",
+    "SU.TO",
+    "ATD.TO",
+    "DOL.TO",
+    "MG.TO",
+    "TRI.TO",
+    "WCN.TO",
+    "BCE.TO",
+    "CU.TO",
+]
 st.set_page_config(
     page_title="Short-Term Stock Analysis",
     page_icon="📈",
@@ -57,7 +76,7 @@ if app_mode == "Stock Comparison":
     ]
 
     col_a, col_b = st.columns(2)
-
+    
     with col_a:
         ticker_a = st.selectbox(
             "First company",
@@ -805,7 +824,7 @@ st.write(
 
 st.title("🏆 Stock Rankings")
 
-tickers = ["SHOP.TO", "CTC-A.TO", "CNR.TO", "ENB.TO", "FTS.TO"]
+tickers = COMPANY_TICKERS
 
 ranking_metrics = [
     ("ROC", calculate_roc, "roc", False),
