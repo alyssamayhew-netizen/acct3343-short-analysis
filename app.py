@@ -29,6 +29,144 @@ using financial metrics to identify potential BUY
 and SELL candidates.
 """)
 
+# --- App View Selector ---
+
+app_mode = st.radio(
+    "Choose a view",
+    ["Dashboard", "Stock Comparison"],
+    horizontal=True,
+    key="app_mode",
+)
+
+# --- Stock Comparison View ---
+
+if app_mode == "Stock Comparison":
+    st.divider()
+    st.header("⚖️ Stock Comparison")
+    st.write(
+        "Compare two companies using the same seven financial "
+        "metrics. Unavailable results are shown clearly."
+    )
+
+    tickers = [
+        "SHOP.TO",
+        "CTC-A.TO",
+        "CNR.TO",
+        "ENB.TO",
+        "FTS.TO",
+    ]
+
+    col_a, col_b = st.columns(2)
+
+    with col_a:
+        ticker_a = st.selectbox(
+            "First company",
+            options=tickers,
+            index=0,
+            key="comparison_ticker_a",
+        )
+
+    with col_b:
+        ticker_b = st.selectbox(
+            "Second company",
+            options=tickers,
+            index=1,
+            key="comparison_ticker_b",
+        )
+
+    if ticker_a == ticker_b:
+        st.warning("Please select two different companies.")
+        st.stop()
+
+    comparison_metrics = [
+        (
+            "Return on Capital (ROC)",
+            calculate_roc,
+            "roc",
+            "Higher is generally better: more operating profit per dollar of capital.",
+        ),
+        (
+            "Earnings Yield (EY)",
+            calculate_ey,
+            "ey",
+            "Higher generally means more operating earnings relative to enterprise value.",
+        ),
+        (
+            "Book-to-Market (BM)",
+            calculate_book_to_market,
+            "book_to_market",
+            "Higher can suggest a value opportunity, but may also reflect financial trouble.",
+        ),
+        (
+            "Gross Profitability",
+            calculate_gross_profitability,
+            "gross_profitability",
+            "Higher generally means more gross profit relative to total assets.",
+        ),
+        (
+            "Cash Flow from Operations (CFOA)",
+            calculate_cfoa,
+            "cfoa",
+            "Higher generally indicates stronger cash generation relative to assets.",
+        ),
+        (
+            "Spread in Net Operating Assets (SNOA)",
+            calculate_snoa,
+            "snoa",
+            "Lower can be favourable, as it indicates less net operating assets relative to total assets.",
+        ),
+        (
+            "Altman Z-Score",
+            calculate_altman_z,
+            "altman_z",
+            "Higher generally indicates lower estimated financial-distress risk.",
+        ),
+    ]
+
+    def get_comparison_value(calculate_function, ticker, value_key):
+        try:
+            result = calculate_function(ticker)
+
+            if result.get("status") == "Calculated":
+                value = result.get(value_key)
+
+                if value is not None and pd.notna(value):
+                    return f"{value:,.4f}"
+
+        except Exception:
+            pass
+
+        return "Unavailable"
+
+    with st.spinner("Calculating both companies' financial metrics..."):
+        for metric_name, calculate_function, value_key, explanation in comparison_metrics:
+            value_a = get_comparison_value(
+                calculate_function, ticker_a, value_key
+            )
+            value_b = get_comparison_value(
+                calculate_function, ticker_b, value_key
+            )
+
+            with st.container(border=True):
+                st.markdown(f"**{metric_name}**")
+
+                left, right = st.columns(2)
+
+                with left:
+                    st.metric(ticker_a, value_a)
+
+                with right:
+                    st.metric(ticker_b, value_b)
+
+                st.caption(explanation)
+
+    st.caption(
+        "These metrics are screening indicators, not guarantees. "
+        "Compare companies in context, and remember that some "
+        "formulas may be less suitable for certain industries."
+    )
+
+    st.stop()
 
 st.divider()
 
