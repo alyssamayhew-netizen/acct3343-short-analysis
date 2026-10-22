@@ -278,7 +278,8 @@ def get_snoa_equity_inputs(ticker_symbol):
 
         return float(values.iloc[0])
 
-    minority = latest_value("Minority Interest")
+        equity_inputs = get_snoa_equity_inputs(ticker_symbol)
+        minority_interest = equity_inputs["minority_interest"]
     preferred = latest_value("Preferred Stock Equity")
 
     minority_source = "Yahoo Finance: Minority Interest"
