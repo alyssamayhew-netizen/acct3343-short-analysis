@@ -69,7 +69,6 @@ if app_mode == "Stock Comparison":
 
     tickers = COMPANY_TICKERS
 
-    ]
 
     col_a, col_b = st.columns(2)
     
