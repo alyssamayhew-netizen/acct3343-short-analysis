@@ -428,10 +428,10 @@ st.title("🏆 Stock Rankings")
 
 # Keep Company Lookup and Stock Comparison available across the full universe,
 # but calculate rankings on a smaller initial universe to reduce Yahoo requests.
-# Start with a small set while Yahoo Finance access is unreliable.
-# This makes the app usable for demonstrations without waiting on hundreds
-# of companies; expand the list after data retrieval is stable.
-RANKING_COMPANY_LIMIT = 10
+# Assignment requirement: ranking universe must include at least 500 companies.
+# Keep rankings at 500 while reducing unnecessary profile lookups and using
+# cached financial data where available.
+RANKING_COMPANY_LIMIT = 500
 tickers = COMPANY_TICKERS[:RANKING_COMPANY_LIMIT]
 
 ranking_metrics = [
@@ -455,11 +455,11 @@ if "rankings_requested" not in st.session_state:
 
 if not st.session_state["rankings_requested"]:
     st.info(
-        "The rankings cover the first 10 companies in the universe and can take several minutes "
+        "The rankings cover the first 500 companies in the universe and can take several minutes "
         "to calculate the first time. Company Lookup and Stock Comparison are "
         "available above while you decide when to start."
     )
-    if st.button("Calculate rankings for 10 companies", type="primary"):
+    if st.button("Calculate rankings for 500 companies", type="primary"):
         st.session_state["rankings_requested"] = True
         st.rerun()
     st.stop()
@@ -495,7 +495,7 @@ def calculate_ranking_results(ticker_list, cache_version):
     return calculated_results
 
 
-results = calculate_ranking_results(tuple(tickers), "small-sample-v2")
+results = calculate_ranking_results(tuple(tickers), "required-500-universe-v3")
 
 # Make calculation coverage visible instead of silently hiding failed metrics.
 companies_with_metrics = sum(bool(results.get(ticker)) for ticker in tickers)
