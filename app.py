@@ -495,30 +495,6 @@ def calculate_ranking_results(ticker_list, cache_version):
 
 results = calculate_ranking_results(tuple(tickers), "required-500-universe-v3")
 
-# Make calculation coverage visible instead of silently hiding failed metrics.
-companies_with_metrics = sum(bool(results.get(ticker)) for ticker in tickers)
-st.subheader("📊 Calculation Coverage")
-st.write(
-    f"At least one metric calculated for **{companies_with_metrics} of "
-    f"{len(tickers)} companies**."
-)
-coverage_columns = st.columns(4)
-for i, (metric_name, _, _, _) in enumerate(ranking_metrics):
-    count = sum(metric_name in results.get(ticker, {}) for ticker in tickers)
-    with coverage_columns[i % 4]:
-        st.metric(metric_name, f"{count} / {len(tickers)}")
-if companies_with_metrics == 0:
-    st.error(
-        "Yahoo Finance did not return usable metric values. Do not use these "
-        "rankings for your assignment yet; check the data connection and retry."
-    )
-elif companies_with_metrics < len(tickers) * 0.5:
-    st.warning(
-        "Data coverage is low. Companies with missing metrics are not being "
-        "treated as poor performers, but the rankings are incomplete."
-    )
-
-
 # --- Financial Metric Filters ---
 
 st.divider()
