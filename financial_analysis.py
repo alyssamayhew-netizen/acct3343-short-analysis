@@ -14,6 +14,136 @@ TEST_COMPANIES = {
 
 _COMPANY_DATA_CACHE = {}
 
+# Public SEC EDGAR fallback for US-listed companies. This does not require
+# an API key. SEC requests are deliberately cached and kept well below its
+# published request-rate limit.
+_SEC_TICKER_MAP = None
+_SEC_FACTS_CACHE = {}
+
+def _sec_get_json(url):
+    import requests
+    response = requests.get(
+        url,
+        headers={"User-Agent": "ACCT3343 Short-Term Stock Analysis (GitHub: alyssamayhew-netizen)"},
+        timeout=20,
+    )
+    response.raise_for_status()
+    return response.json()
+
+def _sec_fallback_data(ticker_symbol):
+    """Return Yahoo-shaped annual statements from SEC company facts for US tickers."""
+    global _SEC_TICKER_MAP
+    ticker = str(ticker_symbol).strip().upper()
+    if ticker.endswith(".TO") or "-" in ticker or "." in ticker:
+        return None
+    try:
+        if _SEC_TICKER_MAP is None:
+            raw = _sec_get_json("https://www.sec.gov/files/company_tickers.json")
+            _SEC_TICKER_MAP = {
+                str(item.get("ticker", "")).upper(): str(item.get("cik_str", "")).zfill(10)
+                for item in raw.values()
+                if item.get("ticker") and item.get("cik_str")
+            }
+        cik = _SEC_TICKER_MAP.get(ticker)
+        if not cik:
+            return None
+        if ticker not in _SEC_FACTS_CACHE:
+            _SEC_FACTS_CACHE[ticker] = _sec_get_json(
+                f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json"
+            )
+        facts = _SEC_FACTS_CACHE[ticker].get("facts", {}).get("us-gaap", {})
+
+        # Candidate SEC tags for each field used by the app.
+        candidates = {
+            "income_statement": {
+                "EBIT": ["OperatingIncomeLoss", "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"],
+                "Total Revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet"],
+                "Cost Of Revenue": ["CostOfRevenue", "CostOfGoodsAndServicesSold"],
+            },
+            "balance_sheet": {
+                "Total Assets": ["Assets"],
+                "Current Assets": ["AssetsCurrent"],
+                "Current Liabilities": ["LiabilitiesCurrent"],
+                "Net PPE": ["PropertyPlantAndEquipmentNet"],
+                "Cash And Cash Equivalents": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"],
+                "Current Debt And Capital Lease Obligation": ["ShortTermBorrowings", "ShortTermDebtCurrent", "LongTermDebtCurrent"],
+                "Long Term Debt And Capital Lease Obligation": ["LongTermDebtNoncurrent", "LongTermDebt"],
+                "Common Stock Equity": ["StockholdersEquity"],
+                "Stockholders Equity": ["StockholdersEquity"],
+                "Retained Earnings": ["RetainedEarningsAccumulatedDeficit"],
+                "Total Liabilities Net Minority Interest": ["Liabilities"],
+                "Total Liabilities": ["Liabilities"],
+                "Minority Interest": ["MinorityInterest"],
+                "Preferred Stock Equity": ["PreferredStocksIncludingAdditionalPaidInCapital"],
+                "Total Equity Gross Minority Interest": ["StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"],
+            },
+            "cash_flow": {
+                "Operating Cash Flow": ["NetCashProvidedByUsedInOperatingActivities"],
+                "Capital Expenditure": ["PaymentsToAcquirePropertyPlantAndEquipment"],
+            },
+        }
+
+        def annual_series(tags, statement_name):
+            for tag in tags:
+                item = facts.get(tag)
+                if not item:
+                    continue
+                units = item.get("units", {})
+                values = units.get("USD") or next(iter(units.values()), [])
+                annual = {}
+                for row in values:
+                    # Keep annual 10-K values; ignore quarterly and YTD records.
+                    if row.get("form") not in ("10-K", "20-F", "40-F") or not row.get("fy"):
+                        continue
+                    start, end = row.get("start"), row.get("end")
+                    if start and end:
+                        try:
+                            from datetime import date
+                            duration = (date.fromisoformat(end) - date.fromisoformat(start)).days
+                        except Exception:
+                            continue
+                        if duration < 330 or duration > 380:
+                            continue
+                    period = end or row.get("filed")
+                    if not period:
+                        continue
+                    # Latest filing wins when the same fiscal period is restated.
+                    if period not in annual or row.get("filed", "") > annual[period][0]:
+                        annual[period] = (row.get("filed", ""), float(row["val"]))
+                if annual:
+                    return {period: val for period, (_, val) in annual.items()}
+            return {}
+
+        statements = {}
+        for statement_name, fields in candidates.items():
+            rows = {}
+            for label, tags in fields.items():
+                series = annual_series(tags, statement_name)
+                if series:
+                    rows[label] = series
+            statements[statement_name] = pd.DataFrame(rows).T.sort_index(axis=1, ascending=False)
+
+        cash = statements["cash_flow"]
+        if not cash.empty and "Operating Cash Flow" in cash.index and "Capital Expenditure" in cash.index:
+            # SEC capital expenditure is usually reported as a negative cash flow.
+            cash.loc["Free Cash Flow"] = cash.loc["Operating Cash Flow"] + cash.loc["Capital Expenditure"]
+
+        return {
+            "ticker": ticker_symbol,
+            "info": {},
+            "income_statement": statements["income_statement"],
+            "balance_sheet": statements["balance_sheet"],
+            "cash_flow": statements["cash_flow"],
+            "fast_info": {},
+            "data_source": "SEC EDGAR (annual filings)",
+        }
+    except Exception as error:
+        return {"ticker": ticker_symbol, "info": {}, "income_statement": pd.DataFrame(),
+                "balance_sheet": pd.DataFrame(), "cash_flow": pd.DataFrame(),
+                "fast_info": {}, "error": f"Yahoo and SEC data retrieval failed: {error}"}
+
+
+
 
 def get_company_data(ticker_symbol):
     """
@@ -77,8 +207,23 @@ def get_company_data(ticker_symbol):
     ):
         data["error"] = "; ".join(errors) or "Yahoo Finance returned no data"
 
+    # If Yahoo returned no financial statements, try the SEC's free public
+    # filings API for US-listed tickers. Canadian listings stay on Yahoo.
+    if (
+        data["income_statement"].empty
+        and data["balance_sheet"].empty
+        and data["cash_flow"].empty
+    ):
+        fallback = _sec_fallback_data(ticker_symbol)
+        if fallback and (
+            not fallback["income_statement"].empty
+            or not fallback["balance_sheet"].empty
+            or not fallback["cash_flow"].empty
+        ):
+            data = fallback
+
     # Cache only responses containing usable data. Do not permanently cache
-    # total Yahoo failures (401/429, network errors, etc.).
+    # total provider failures.
     has_usable_data = (
         bool(data["info"])
         or not data["income_statement"].empty
