@@ -10,6 +10,7 @@ from financial_analysis import (
     calculate_cfoa,
     calculate_snoa,
     calculate_altman_z,
+    get_company_data,
 )
 
 
@@ -264,13 +265,10 @@ if st.button("Analyze Company"):
     else:
         try:
             with st.spinner("Calculating financial metrics..."):
-                company = yf.Ticker(ticker_symbol)
-                try:
-                    info = company.get_info() or {}
-                except Exception:
-                    # Yahoo's profile endpoint may fail while statement
-                    # endpoints still work; do not block the whole lookup.
-                    info = {}
+                # Reuse the same cached data snapshot as the formula
+                # functions instead of issuing duplicate Yahoo requests.
+                company_data = get_company_data(ticker_symbol)
+                info = company_data.get("info", {}) or {}
 
                 company_name = (
                     info.get("longName")
@@ -390,9 +388,9 @@ if st.button("Analyze Company"):
                 st.subheader("Financial Statements")
 
                 statements = [
-                    ("Income Statement", company.income_stmt),
-                    ("Balance Sheet", company.balance_sheet),
-                    ("Cash Flow Statement", company.cashflow),
+                    ("Income Statement", company_data.get("income_statement", pd.DataFrame())),
+                    ("Balance Sheet", company_data.get("balance_sheet", pd.DataFrame())),
+                    ("Cash Flow Statement", company_data.get("cash_flow", pd.DataFrame())),
                 ]
 
                 for title, statement in statements:
