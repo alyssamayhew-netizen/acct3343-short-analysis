@@ -265,7 +265,12 @@ if st.button("Analyze Company"):
         try:
             with st.spinner("Calculating financial metrics..."):
                 company = yf.Ticker(ticker_symbol)
-                info = company.get_info()
+                try:
+                    info = company.get_info() or {}
+                except Exception:
+                    # Yahoo's profile endpoint may fail while statement
+                    # endpoints still work; do not block the whole lookup.
+                    info = {}
 
                 company_name = (
                     info.get("longName")
