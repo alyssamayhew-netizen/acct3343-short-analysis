@@ -16,12 +16,12 @@ from financial_analysis import (
 # --- Companies used throughout the app ---
 
 @st.cache_data(ttl=86400)
-def load_company_universe():
+def load_company_universe(cache_version):
     companies = pd.read_csv("company_universe.csv")
     companies = companies.dropna(subset=["ticker"])
     return companies
 
-company_universe = load_company_universe()
+company_universe = load_company_universe("universe-v2-restore-ry")
 COMPANY_TICKERS = company_universe["ticker"].astype(str).tolist()
 st.set_page_config(
     page_title="Short-Term Stock Analysis",
