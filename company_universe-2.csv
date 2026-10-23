@@ -1,0 +1,1001 @@
+ticker,company_name,exchange,country
+SHOP.TO,Shopify Inc.,TSX,Canada
+CTC-A.TO,Canadian Tire Corporation Limited,TSX,Canada
+CNR.TO,Canadian National Railway Company,TSX,Canada
+ENB.TO,Enbridge Inc.,TSX,Canada
+FTS.TO,Fortis Inc.,TSX,Canada
+CP.TO,Canadian Pacific Kansas City Limited,TSX,Canada
+CNQ.TO,Canadian Natural Resources Limited,TSX,Canada
+SU.TO,Suncor Energy Inc.,TSX,Canada
+ATD.TO,Alimentation Couche-Tard Inc.,TSX,Canada
+DOL.TO,Dollarama Inc.,TSX,Canada
+MG.TO,Magna International Inc.,TSX,Canada
+TRI.TO,Thomson Reuters Corporation,TSX,Canada
+WCN.TO,Waste Connections Inc.,TSX,Canada
+BCE.TO,BCE Inc.,TSX,Canada
+CU.TO,Canadian Utilities Limited,TSX,Canada
+CBOE,"Cboe Global Markets, Inc. Common Stock",Cboe,United States
+AACI,Armada Acquisition Corp. III - Class A Ordinary Share,NASDAQ,United States
+AACO,Abony Acquisition Corp. I - Class A Ordinary Share,NASDAQ,United States
+AACP,Apogee Acquisition Corp - Class A Ordinary Shares,NASDAQ,United States
+AAL,"American Airlines Group, Inc. - Common Stock",NASDAQ,United States
+AAME,Atlantic American Corporation - Common Stock,NASDAQ,United States
+AAOI,"Applied Optoelectronics, Inc. - Common Stock",NASDAQ,United States
+AAON,"AAON, Inc. - Common Stock",NASDAQ,United States
+AAPG,Ascentage Pharma Group International - American Depository Shares,NASDAQ,United States
+AAPL,Apple Inc. - Common Stock,NASDAQ,United States
+AARD,"Aardvark Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ABAT,American Battery Technology Company - Common Stock,NASDAQ,United States
+ABCL,AbCellera Biologics Inc. - Common Shares,NASDAQ,United States
+ABEO,Abeona Therapeutics Inc. - Common Stock,NASDAQ,United States
+ABLV,Able View Global Inc. - Class B Ordinary Shares,NASDAQ,United States
+ABNB,"Airbnb, Inc. - Class A Common Stock",NASDAQ,United States
+ABOS,"Acumen Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+ABSI,Absci Corporation - Common Stock,NASDAQ,United States
+ABTC,American Bitcoin Corp. - Class A Common Stock,NASDAQ,United States
+ABTS,Abits Group Inc - Ordinary Shares,NASDAQ,United States
+ABUS,Arbutus Biopharma Corporation - Common Stock,NASDAQ,United States
+ABVC,"ABVC BioPharma, Inc. - Common Stock",NASDAQ,United States
+ACAA,Averin Capital Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+ACAD,ACADIA Pharmaceuticals Inc. - Common Stock,NASDAQ,United States
+ACB,Aurora Cannabis Inc. - Common Shares,NASDAQ,United States
+ACCL,Acco Group Holdings Limited - Class A Ordinary Shares,NASDAQ,United States
+ACCV,Accelevation Holdings Corp. - Class A ordinary shares,NASDAQ,United States
+ACDC,ProFrac Holding Corp. - Class A Common Stock,NASDAQ,United States
+ACET,"Adicet Bio, Inc. - Common Stock",NASDAQ,United States
+ACFN,"Acorn Energy, Inc. - Common Stock",NASDAQ,United States
+ACGC,ACP Holdings Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+ACGL,Arch Capital Group Ltd. - Common Stock,NASDAQ,United States
+ACHC,"Acadia Healthcare Company, Inc. - Common Stock",NASDAQ,United States
+ACHV,"Achieve Life Sciences, Inc.  - Common Shares",NASDAQ,United States
+ACIC,American Coastal Insurance Corporation - Common Stock,NASDAQ,United States
+ACIU,AC Immune SA - Common Stock,NASDAQ,United States
+ACIW,"ACI Worldwide, Inc. - Common Stock",NASDAQ,United States
+ACLS,"Axcelis Technologies, Inc. - Common Stock",NASDAQ,United States
+ACMR,"ACM Research, Inc. - Class A Common Stock",NASDAQ,United States
+ACNB,ACNB Corporation - Common Stock,NASDAQ,United States
+ACNT,Ascent Industries Co. - Common Stock,NASDAQ,United States
+ACOG,Alpha Cognition Inc. - Common Stock,NASDAQ,United States
+ACON,"Aclarion, Inc. - Common Stock",NASDAQ,United States
+ACRS,"Aclaris Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ACRV,"Acrivon Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ACT,"Enact Holdings, Inc. - Common Stock",NASDAQ,United States
+ACTG,Acacia Research Corporation - Common Stock,NASDAQ,United States
+ACTU,"Actuate Therapeutics, Inc. - Common stock",NASDAQ,United States
+ACXP,"Acurx Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+ADAC,American Drive Acquisition Company - Class A Ordinary Shares,NASDAQ,United States
+ADAG,"Adagene Inc. - ADS, each representing 1.25 ordinary shares",NASDAQ,United States
+ADAM,"Adamas Trust, Inc. - Common Stock",NASDAQ,United States
+ADBE,Adobe Inc. - Common Stock,NASDAQ,United States
+ADBT,"Advasa Holdings, Inc. - Common stock",NASDAQ,United States
+ADEA,Adeia Inc.  - Common Stock,NASDAQ,United States
+ADGM,"Adagio Medical Holdings, Inc - Common Stock",NASDAQ,United States
+ADI,"Analog Devices, Inc. - Common Stock",NASDAQ,United States
+ADIL,"Adial Pharmaceuticals, Inc - Common Stock",NASDAQ,United States
+ADMA,ADMA Biologics Inc - Common Stock,NASDAQ,United States
+ADP,"Automatic Data Processing, Inc. - Common Stock",NASDAQ,United States
+ADPT,Adaptive Biotechnologies Corporation - Common Stock,NASDAQ,United States
+ADRX,"ADARx Pharmaceuticals, Inc. - Common stock",NASDAQ,United States
+ADSE,ADS-TEC ENERGY PLC - Ordinary Shares,NASDAQ,United States
+ADSK,"Autodesk, Inc. - Common Stock",NASDAQ,United States
+ADTN,"ADTRAN Holdings, Inc. - Common Stock",NASDAQ,United States
+ADUR,Aduro Clean Technologies Inc. - Common Stock,NASDAQ,United States
+ADUS,Addus HomeCare Corporation - Common Stock,NASDAQ,United States
+ADV,Advantage Solutions Inc.  - Class A Common Stock,NASDAQ,United States
+ADVB,Advanced Biomed Inc. - Common Stock,NASDAQ,United States
+AEAQ,Activate Energy Acquisition Corp. - Class A Ordinary Share,NASDAQ,United States
+AEAQU,Activate Energy Acquisition Corp. - Unit,NASDAQ,United States
+AEBI,Aebi Schmidt Holding AG - Common Stock,NASDAQ,United States
+AEC,Anfield Energy Inc. - Common Shares,NASDAQ,United States
+AEHL,Antelope Enterprise Holdings Limited - Class A Ordinary Shares,NASDAQ,United States
+AEHR,Aehr Test Systems - Common Stock,NASDAQ,United States
+AEI,Alset Inc. - Common Stock,NASDAQ,United States
+AEIS,"Advanced Energy Industries, Inc. - Common Stock",NASDAQ,United States
+AEMD,"Aethlon Medical, Inc. - Common Stock",NASDAQ,United States
+AENT,Alliance Entertainment Holding Corporation - common stock,NASDAQ,United States
+AEP,"American Electric Power Company, Inc. - Common Stock",NASDAQ,United States
+AERT,"Aeries Technology, Inc. - Class A Ordinary Share",NASDAQ,United States
+AESP,Aeon Acquisition I Corp. - Class A Ordinary Shares,NASDAQ,United States
+AEVA,"Aeva Technologies, Inc. - Common Stock",NASDAQ,United States
+AEYE,"AudioEye, Inc. - Common Stock",NASDAQ,United States
+AFCG,Advanced Flower Capital Inc. - Common Stock,NASDAQ,United States
+AFJK,"Aimei Health Technology Co., Ltd - Ordinary Share",NASDAQ,United States
+AFJKU,"Aimei Health Technology Co., Ltd - Unit",NASDAQ,United States
+AFRI,Forafric Global PLC - Ordinary Shares,NASDAQ,United States
+AFRM,"Affirm Holdings, Inc. - Class A Common Stock",NASDAQ,United States
+AFYA,Afya Limited - Class A Common Shares,NASDAQ,United States
+AGCC,Agencia Comercial Spirits Ltd - Class A Ordinary Share,NASDAQ,United States
+AGEN,Agenus Inc. - Common Stock,NASDAQ,United States
+AGIO,"Agios Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+AGMB,AgomAb Therapeutics NV - ADRs representing one common share.,NASDAQ,United States
+AGMH,AGM Group Holdings Inc. - Class A Ordinary Shares,NASDAQ,United States
+AGNC,AGNC Investment Corp. - Common Stock,NASDAQ,United States
+AGNT,"AGNT, Inc. - Common Stock",NASDAQ,United States
+AGPU,Axe Compute Inc. - Common Stock,NASDAQ,United States
+AGRZ,Agroz Inc. - Class A Ordinary Shares,NASDAQ,United States
+AGYS,"Agilysys, Inc. - Common Stock",NASDAQ,United States
+AHCO,AdaptHealth Corp.  - Common Stock,NASDAQ,United States
+AHMA,Ambitions Enterprise Management Co. L.L.C - Class A Ordinary Shares,NASDAQ,United States
+AIAI,AIAI Holdings Corporation - Class A common stock,NASDAQ,United States
+AIBZ,Bitzero Holdings Inc. - Common Shares,NASDAQ,United States
+AIDX,"20/20 Biolabs, Inc. - Common Stock",NASDAQ,United States
+AIFA,"All In FutureTech Alliance, Inc. - Common Stock",NASDAQ,United States
+AIFC,AI Financial Corporation - Common Stock,NASDAQ,United States
+AIFF,"Firefly Neuroscience, Inc.  - Common Stock",NASDAQ,United States
+AIFU,AIFU Inc. - Class A Ordinary Share,NASDAQ,United States
+AIIO,Robo.ai Inc. - Class B Ordinary Shares,NASDAQ,United States
+AIIR,Air Global PLC - Ordinary shares,NASDAQ,United States
+AIMD,"Ainos, Inc. - Common Stock",NASDAQ,United States
+AIOK,AI OKTO CORP. - Common Stock,NASDAQ,United States
+AIOS,AIOS Tech Inc. - Class A Common Shares,NASDAQ,United States
+AIOT,"PowerFleet, Inc. - Common Stock",NASDAQ,United States
+AIP,"Arteris, Inc.  - Common Stock",NASDAQ,United States
+AIRE,reAlpha Tech Corp. - Common Stock,NASDAQ,United States
+AIRG,"Airgain, Inc. - Common Stock",NASDAQ,United States
+AIRJ,AirJoule Technologies Corporation - Class A Common Stock,NASDAQ,United States
+AIRO,"AIRO Group Holdings, Inc. - Common Stock",NASDAQ,United States
+AIRS,"AirSculpt Technologies, Inc. - Common Stock",NASDAQ,United States
+AIRT,"Air T, Inc. - Common Stock",NASDAQ,United States
+AISP,"Airship AI Holdings, Inc - Class A Common Stock",NASDAQ,United States
+AKAM,"Akamai Technologies, Inc. - Common Stock",NASDAQ,United States
+AKAN,Akanda Corp. - Common Shares,NASDAQ,United States
+AKBA,"Akebia Therapeutics, Inc. - Common Stock",NASDAQ,United States
+AKTS,"Aktis Oncology, Inc. - Common stock",NASDAQ,United States
+ALAB,"Astera Labs, Inc. - Common Stock",NASDAQ,United States
+ALCO,"Alico, Inc. - Common Stock",NASDAQ,United States
+ALDF,Aldel Financial II Inc. - Class A Ordinary Shares,NASDAQ,United States
+ALDX,"Aldeyra Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ALEC,"Alector, Inc. - Common Stock",NASDAQ,United States
+ALF,Centurion Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+ALFUU,Centurion Acquisition Corp. - Unit,NASDAQ,United States
+ALGM,"Allegro MicroSystems, Inc. - Common Stock",NASDAQ,United States
+ALGN,"Align Technology, Inc. - Common Stock",NASDAQ,United States
+ALGS,"Aligos Therapeutics, Inc. - Common stock",NASDAQ,United States
+ALGT,Allegiant Travel Company - Common Stock,NASDAQ,United States
+ALHC,"Alignment Healthcare, Inc. - Common Stock",NASDAQ,United States
+ALIS,Calisa Acquisition Corp - Ordinary shares,NASDAQ,United States
+ALKS,Alkermes plc - Ordinary Shares,NASDAQ,United States
+ALKT,"Alkami Technology, Inc. - Common Stock",NASDAQ,United States
+ALLO,"Allogene Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ALLR,"Allarity Therapeutics, Inc. - Common stock",NASDAQ,United States
+ALLT,Allot Ltd. - Ordinary Shares,NASDAQ,United States
+ALM,Almonty Industries Inc. - Common Shares,NASDAQ,United States
+ALMR,"Alamar Biosciences, Inc. - Class A common stock",NASDAQ,United States
+ALMS,Alumis Inc. - Common Stock,NASDAQ,United States
+ALMU,"Aeluma, Inc. - Common Stock",NASDAQ,United States
+ALNT,Allient Inc. - Common Stock,NASDAQ,United States
+ALNY,"Alnylam Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+ALOV,"Aldabra 4 Liquidity Opportunity Vehicle, Inc. - Class A Ordinary Shares",NASDAQ,United States
+ALOY,REalloys Inc. - Common Stock,NASDAQ,United States
+ALP,Alpha Compute Corp  - Ordinary Shares,NASDAQ,United States
+ALPS,ALPS Group Inc - Ordinary Share,NASDAQ,United States
+ALPX,Alpex Acquisition Corporation - Class A Ordinary Shares,NASDAQ,United States
+ALRM,"Alarm.com Holdings, Inc. - Common Stock",NASDAQ,United States
+ALRS,Alerus Financial Corporation - Common Stock,NASDAQ,United States
+ALT,"Altimmune, Inc. - Common Stock",NASDAQ,United States
+ALTI,"AlTi Global, Inc. - Class A Common Stock",NASDAQ,United States
+ALTO,"Alto Ingredients, Inc. - Common Stock",NASDAQ,United States
+ALVO,Alvotech - Ordinary Shares,NASDAQ,United States
+ALXO,ALX Oncology Holdings Inc. - Common Stock,NASDAQ,United States
+ALZN,"Alzamend Neuro, Inc. - Common Stock",NASDAQ,United States
+AMAC,AMR Resources Acquisition Corp - Class A Ordinary Shares,NASDAQ,United States
+AMAL,Amalgamated Financial Corp. - Common Stock,NASDAQ,United States
+AMAN,Amanat Acquisition Corp - Class A Ordinary Shares,NASDAQ,United States
+AMAT,"Applied Materials, Inc. - Common Stock",NASDAQ,United States
+AMBA,"Ambarella, Inc. - Ordinary Shares",NASDAQ,United States
+AMCI,AMC Robotics Corporation - Common Stock,NASDAQ,United States
+AMCX,AMC Global Media Inc. - Class A Common Stock,NASDAQ,United States
+AMD,"Advanced Micro Devices, Inc. - Common Stock",NASDAQ,United States
+AMGN,Amgen Inc. - Common Stock,NASDAQ,United States
+AMIX,"Autonomix Medical, Inc. - Common Stock",NASDAQ,United States
+AMKR,"Amkor Technology, Inc. - Common Stock",NASDAQ,United States
+AMLX,"Amylyx Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+AMOD,"Alpha Modus Holdings, Inc. - Class A Common Stock",NASDAQ,United States
+AMPG,"Amplitech Group, Inc. - Common Stock",NASDAQ,United States
+AMPH,"Amphastar Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+AMPL,"Amplitude, Inc. - Class A Common Stock",NASDAQ,United States
+AMRO,Amaero Inc. - Common Stock,NASDAQ,United States
+AMRX,"Amneal Pharmaceuticals, Inc. - Class A Common Stock",NASDAQ,United States
+AMSC,American Superconductor Corporation - Common Stock,NASDAQ,United States
+AMSF,"AMERISAFE, Inc. - Common Stock",NASDAQ,United States
+AMSS,AMASS Brands Inc. - Common Stock,NASDAQ,United States
+AMST,Amesite Inc. - Common Stock,NASDAQ,United States
+AMTX,"Aemetis, Inc - Common Stock",NASDAQ,United States
+AMZN,"Amazon.com, Inc. - Common Stock",NASDAQ,United States
+ANAB,"AnaptysBio, Inc. - Common Stock",NASDAQ,United States
+ANDE,"The Andersons, Inc. - Common Stock",NASDAQ,United States
+ANGH,Anghami Inc. - Ordinary Shares,NASDAQ,United States
+ANGI,Angi Inc. - Class A Common Stock,NASDAQ,United States
+ANGO,"AngioDynamics, Inc. - Common Stock",NASDAQ,United States
+ANIK,Anika Therapeutics Inc. - Common Stock,NASDAQ,United States
+ANIP,"ANI Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+ANIX,"Anixa Biosciences, Inc. - Common Stock",NASDAQ,United States
+ANNA,"AleAnna, Inc. - Class A Common Stock",NASDAQ,United States
+ANNX,"Annexon, Inc. - common stock",NASDAQ,United States
+ANPA,Rich Sparkle Holdings Limited - Ordinary Shares,NASDAQ,United States
+ANTA,Antalpha Platform Holding Company - Class A Ordinary Shares,NASDAQ,United States
+ANTX,"AN2 Therapeutics, Inc. - Common Stock",NASDAQ,United States
+AOSL,Alpha and Omega Semiconductor Limited - Common Shares,NASDAQ,United States
+AOUT,"American Outdoor Brands, Inc. - Common Stock",NASDAQ,United States
+APA,APA Corporation - Common Stock,NASDAQ,United States
+APAC,StoneBridge Acquisition II Corporation - Class A Ordinary Shares,NASDAQ,United States
+APC,ARKO Petroleum Corp. - Class A Common Stock,NASDAQ,United States
+APEI,"American Public Education, Inc. - Common Stock",NASDAQ,United States
+API,"Agora, Inc. - ADS",NASDAQ,United States
+APLD,Applied Digital Corporation - Common Stock,NASDAQ,United States
+APLM,Apollomics Inc. - Class A Ordinary Shares,NASDAQ,United States
+APMC,AmperCap Acquisition Company - Ordinary Shares,NASDAQ,United States
+APMCU,AmperCap Acquisition Company - Unit,NASDAQ,United States
+APMD,"Apnimed, Inc. - Common Stock",NASDAQ,United States
+APOG,"Apogee Enterprises, Inc. - Common Stock",NASDAQ,United States
+APP,Applovin Corporation - Class A Common Stock,NASDAQ,United States
+APPF,"AppFolio, Inc. - Class A Common Stock",NASDAQ,United States
+APPN,Appian Corporation - Class A Common Stock,NASDAQ,United States
+APPS,"Digital Turbine, Inc. - Common Stock",NASDAQ,United States
+APRE,"Aprea Therapeutics, Inc. - Common Stock",NASDAQ,United States
+APUR,Aperture AC - Class A Ordinary Shares,NASDAQ,United States
+APVO,Aptevo Therapeutics Inc. - Common Stock,NASDAQ,United States
+APWC,"Asia Pacific Wire & Cable Corporation Limited  - Common shares, Par value .01 per share",NASDAQ,United States
+APXT,Apex Treasury Corporation - Class A Ordinary Share,NASDAQ,United States
+APYX,Apyx Medical Corporation - Common Stock,NASDAQ,United States
+AQB,"AquaBounty Technologies, Inc. - Common Stock",NASDAQ,United States
+AQMS,"Aqua Metals, Inc. - Common Stock",NASDAQ,United States
+AQST,"Aquestive Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ARAI,Arrive AI Inc. - Common Stock,NASDAQ,United States
+ARAY,Accuray Incorporated - Common Stock,NASDAQ,United States
+ARBB,ARB IOT Group Limited - Ordinary Shares,NASDAQ,United States
+ARBE,Arbe Robotics Ltd. - Ordinary Shares,NASDAQ,United States
+ARCB,ArcBest Corporation - Common Stock,NASDAQ,United States
+ARCI,Archimedes Tech SPAC Partners III Co. - Ordinary Share,NASDAQ,United States
+ARCIU,Archimedes Tech SPAC Partners III Co. - Unit,NASDAQ,United States
+ARCL,ARC Group Acquisition I Corp - Class A Ordinary Shares,NASDAQ,United States
+ARCLU,ARC Group Acquisition I Corp - Unit,NASDAQ,United States
+ARCT,Arcturus Therapeutics Holdings Inc. - Common Stock,NASDAQ,United States
+ARDX,"Ardelyx, Inc. - Common Stock",NASDAQ,United States
+AREC,American Resources Corporation - Class A Common Stock,NASDAQ,United States
+ARHS,"Arhaus, Inc. - Class A Common Stock",NASDAQ,United States
+ARKO,ARKO Corp. - Common Stock,NASDAQ,United States
+ARKR,Ark Restaurants Corp. - Common Stock,NASDAQ,United States
+AROW,Arrow Financial Corporation - Common Stock,NASDAQ,United States
+ARQ,"Arq, Inc. - Common Stock",NASDAQ,United States
+ARQQ,Arqit Quantum Inc. - Ordinary Shares,NASDAQ,United States
+ARQT,"Arcutis Biotherapeutics, Inc. - Common stock",NASDAQ,United States
+ARRY,"Array Technologies, Inc. - Common Stock",NASDAQ,United States
+ARTC,Art Technology Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+ARTL,"Artelo Biosciences, Inc. - Common Stock",NASDAQ,United States
+ARTNA,Artesian Resources Corporation - Class A Non-Voting Common Stock,NASDAQ,United States
+ARTV,"Artiva Biotherapeutics, Inc. - Common Stock",NASDAQ,United States
+ARTW,"Art's-Way Manufacturing Co., Inc. - Common Stock",NASDAQ,United States
+ARVN,"Arvinas, Inc. - Common Stock",NASDAQ,United States
+ARWR,"Arrowhead Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+ARXS,"Arxis, Inc. - Class A Common Stock",NASDAQ,United States
+ASBP,"Aspire-Lakewood Holdings, Inc. - Common Stock",NASDAQ,United States
+ASLE,AerSale Corporation - Common Stock,NASDAQ,United States
+ASMB,"Assembly Biosciences, Inc. - Common Stock",NASDAQ,United States
+ASML,ASML Holding N.V. - New York Registry Shares,NASDAQ,United States
+ASND,Ascendis Pharma A/S - Ordinary Share,NASDAQ,United States
+ASO,"Academy Sports and Outdoors, Inc. - Common Stock",NASDAQ,United States
+ASPC,A SPAC III Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+ASPCU,A SPAC III Acquisition Corp. - Unit,NASDAQ,United States
+ASPI,ASP Isotopes Inc. - Common Stock,NASDAQ,United States
+ASPS,Altisource Portfolio Solutions S.A. - Common Stock,NASDAQ,United States
+ASRV,AmeriServ Financial Inc. - Common Stock,NASDAQ,United States
+ASST,"Strive, Inc. - Class A Common Stock",NASDAQ,United States
+ASTC,Astrotech Corporation - Common Stock,NASDAQ,United States
+ASTE,"Astec Industries, Inc. - Common Stock",NASDAQ,United States
+ASTH,Astrana Health Inc. - Common Stock,NASDAQ,United States
+ASTI,"Ascent Solar Technologies, Inc - Common Stock",NASDAQ,United States
+ASTL,Algoma Steel Group Inc. - Common Shares,NASDAQ,United States
+ASTS,"AST SpaceMobile, Inc. - Class A Common Stock",NASDAQ,United States
+ASUR,Asure Software Inc - Common Stock,NASDAQ,United States
+ASYS,"Amtech Systems, Inc. - Common Stock",NASDAQ,United States
+ATCX,Atlas Critical Minerals Corporation - Common Stock,NASDAQ,United States
+ATEC,"Alphatec Holdings, Inc. - Common Stock",NASDAQ,United States
+ATER,"Aterian, Inc. - Common Stock",NASDAQ,United States
+ATEX,Anterix Inc. - Common Stock,NASDAQ,United States
+ATGL,Alpha Technology Group Limited - Class A Ordinary Shares,NASDAQ,United States
+ATHR,"Aether Holdings, Inc. - Common Stock",NASDAQ,United States
+ATLC,Atlanticus Holdings Corporation - Common Stock,NASDAQ,United States
+ATLO,Ames National Corporation - Common Stock,NASDAQ,United States
+ATLQ,JAB Acquisition Corp I - Class A Ordinary Shares,NASDAQ,United States
+ATLX,Atlas Lithium Corporation - Common Stock,NASDAQ,United States
+ATNI,"ATN International, Inc. - Common Stock",NASDAQ,United States
+ATOM,Atomera Incorporated - Common Stock,NASDAQ,United States
+ATOS,"Atossa Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ATPC,Agape ATP Corporation - Common Stock,NASDAQ,United States
+ATRA,"Atara Biotherapeutics, Inc. - Common Stock",NASDAQ,United States
+ATRC,"AtriCure, Inc. - Common Stock",NASDAQ,United States
+ATRO,Astronics Corporation - Common Stock,NASDAQ,United States
+ATTO,"Attovia Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ATTT,Atlas Trinity Tech Limited - Ordinary Shares,NASDAQ,United States
+ATXG,Addentax Group Corp. - Common Stock,NASDAQ,United States
+ATYR,"aTyr Pharma, Inc. - Common Stock",NASDAQ,United States
+AUBN,"Auburn National Bancorporation, Inc. - Common Stock",NASDAQ,United States
+AUC,ATIF Holdings Limited - Ordinary Shares,NASDAQ,United States
+AUDC,AudioCodes Ltd. - Ordinary Shares,NASDAQ,United States
+AUGO,Aura Minerals Inc. - Common Shares,NASDAQ,United States
+AUID,authID Inc. - Common Stock,NASDAQ,United States
+AUPH,Aurinia Pharmaceuticals Inc - Common Shares,NASDAQ,United States
+AUR,"Aurora Innovation, Inc.  - Class A Common Stock",NASDAQ,United States
+AURA,"Aura Biosciences, Inc. - Common Stock",NASDAQ,United States
+AURE,Aurelion Inc.  - Class A Ordinary Shares,NASDAQ,United States
+AUUD,Auddia Inc. - Common Stock,NASDAQ,United States
+AVAH,Aveanna Healthcare Holdings Inc. - Common Stock,NASDAQ,United States
+AVAT,Avalanche Treasury Corporation - Class A Common Stock,NASDAQ,United States
+AVAV,"AeroVironment, Inc. - Common Stock",NASDAQ,United States
+AVBH,"Avidbank Holdings, Inc. - Common Stock",NASDAQ,United States
+AVBP,"ArriVent BioPharma, Inc. - Common Stock",NASDAQ,United States
+AVGO,Broadcom Inc. - Common Stock,NASDAQ,United States
+AVIR,"Atea Pharmaceuticals, Inc. - common stock",NASDAQ,United States
+AVLN,Avalyn Pharma Inc. - common stock,NASDAQ,United States
+AVNW,"Aviat Networks, Inc. - Common Stock",NASDAQ,United States
+AVO,"Mission Produce, Inc. - Common Stock",NASDAQ,United States
+AVPT,"AvePoint, Inc. - Class A Common Stock",NASDAQ,United States
+AVR,Anteris Technologies Global Corp. - Common Stock,NASDAQ,United States
+AVT,"Avnet, Inc. - Common Stock",NASDAQ,United States
+AVTX,"Avalo Therapeutics, Inc. - Common Stock",NASDAQ,United States
+AVX,Avax One Technology Ltd. - Common Shares,NASDAQ,United States
+AVXL,Anavex Life Sciences Corp. - Common Stock,NASDAQ,United States
+AWRE,"Aware, Inc. - Common Stock",NASDAQ,United States
+AXG,Solowin Holdings - Class A Ordinary Share,NASDAQ,United States
+AXGN,"Axogen, Inc. - Common Stock",NASDAQ,United States
+AXIN,Axiom Intelligence Acquisition Corp 1 - Class A Ordinary Shares,NASDAQ,United States
+AXNX,Axonex AI Group Limited - Class A Ordinary Shares,NASDAQ,United States
+AXON,"Axon Enterprise, Inc. - Common Stock",NASDAQ,United States
+AXSM,"Axsome Therapeutics, Inc. - Common Stock",NASDAQ,United States
+AXTI,AXT Inc - Common Stock,NASDAQ,United States
+AYA,Aya Gold & Silver Inc. - Common Shares,NASDAQ,United States
+AYTU,"Aytu BioPharma, Inc.  - Common Stock",NASDAQ,United States
+AZ,A2Z Cust2Mate Solutions Corp. - Common Shares,NASDAQ,United States
+AZI,Autozi Internet Technology (Global) Ltd. - Class A Ordinary Shares,NASDAQ,United States
+AZIO,"Azio AI Holdings, Inc. - Common stock",NASDAQ,United States
+AZTA,"Azenta, Inc. - Common Stock",NASDAQ,United States
+BACC,Blue Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+BACCU,Blue Acquisition Corp. - Unit,NASDAQ,United States
+BAER,"Bridger Aerospace Group Holdings, Inc. - Common Stock",NASDAQ,United States
+BAFN,BayFirst Financial Corp. - Common Stock,NASDAQ,United States
+BAND,Bandwidth Inc. - Class A Common Stock,NASDAQ,United States
+BANF,BancFirst Corporation - Common Stock,NASDAQ,United States
+BANL,CBL International Limited - Class B Ordinary Shares,NASDAQ,United States
+BANR,Banner Corporation - Common Stock,NASDAQ,United States
+BAOS,Baosheng Media Group Holdings Limited - Ordinary shares,NASDAQ,United States
+BATRA,"Atlanta Braves Holdings, Inc. - Series A Common Stock",NASDAQ,United States
+BATRK,"Atlanta Braves Holdings, Inc. - Series C Common Stock",NASDAQ,United States
+BBCI,Bradbury Capital Inc. - Ordinary Shares,NASDAQ,United States
+BBCP,"Concrete Pumping Holdings, Inc.  - Common Stock",NASDAQ,United States
+BBGI,"Beasley Broadcast Group, Inc. - Class A Common Stock",NASDAQ,United States
+BBIO,"BridgeBio Pharma, Inc. - Common Stock",NASDAQ,United States
+BBLG,Bone Biologics Corp - Common Stock,NASDAQ,United States
+BBNX,"Beta Bionics, Inc. - Common Stock",NASDAQ,United States
+BBOT,"BridgeBio Oncology Therapeutics, Inc. - Common Stock",NASDAQ,United States
+BBSI,"Barrett Business Services, Inc. - Common Stock",NASDAQ,United States
+BCAL,California BanCorp - Common Stock,NASDAQ,United States
+BCAX,Bicara Therapeutics Inc. - Common Stock,NASDAQ,United States
+BCBP,"BCB Bancorp, Inc. (NJ) - Common Stock",NASDAQ,United States
+BCCQ,Bleichroeder Acquisition Corp. III - Class A Ordinary Shares,NASDAQ,United States
+BCDA,"BioCardia, Inc. - Common Stock",NASDAQ,United States
+BCG,"Binah Capital Group, Inc. - Common Stock",NASDAQ,United States
+BCML,BayCom Corp - Common Stock,NASDAQ,United States
+BCPC,Balchem Corporation - Common Stock,NASDAQ,United States
+BCRX,"BioCryst Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+BCTX,BriaCell Therapeutics Corp. - Common Shares,NASDAQ,United States
+BDAI,"Biddance AI Systems, Inc. - Class A Ordinary Share",NASDAQ,United States
+BDCI,BTC Development Corp. - Class A Ordinary Shares,NASDAQ,United States
+BDCIU,BTC Development Corp. - Unit,NASDAQ,United States
+BDMD,Baird Medical Investment Holdings Ltd - Ordinary Share,NASDAQ,United States
+BDSX,"Biodesix, Inc. - Common Stock",NASDAQ,United States
+BDTX,"Black Diamond Therapeutics, Inc. - Common Stock",NASDAQ,United States
+BEAG,Bold Eagle Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+BEAM,Beam Therapeutics Inc. - Common Stock,NASDAQ,United States
+BEAT,"Heartbeam, Inc. - Common Stock",NASDAQ,United States
+BEEM,Beam Global - Common Stock,NASDAQ,United States
+BEEP,Mobile Infrastructure Corporation - Common Stock,NASDAQ,United States
+BELFA,Bel Fuse Inc. - Class A Common Stock,NASDAQ,United States
+BELFB,Bel Fuse Inc. - Class B Common Stock,NASDAQ,United States
+BENF,Beneficient - Class A Common Stock,NASDAQ,United States
+BETR,Better Home & Finance Holding Company - Class A Common Stock,NASDAQ,United States
+BFC,Bank First Corporation - Common Stock,NASDAQ,United States
+BFRG,"Bullfrog AI Holdings, Inc. - Common Stock",NASDAQ,United States
+BFRI,Biofrontera Inc. - Common Stock,NASDAQ,United States
+BFST,"Business First Bancshares, Inc. - Common Stock",NASDAQ,United States
+BGC,"BGC Group, Inc. - Class A Common Stock",NASDAQ,United States
+BGDE,"Big Digital Energy, Inc. - Common Stock",NASDAQ,United States
+BGIN,Bgin Blockchain Limited - Class A Ordinary Shares,NASDAQ,United States
+BGL,Blue Gold Limited - Class A ordinary shares,NASDAQ,United States
+BGLC,BioNexus Gene Lab Corp - Common stock,NASDAQ,United States
+BGM,BGM Group Ltd. - Class A Ordinary Shares,NASDAQ,United States
+BGMS,"Bio Green Med Solution, Inc. - Common Stock",NASDAQ,United States
+BHAV,BHAV Acquisition Corp - Class A Ordinary Shares,NASDAQ,United States
+BHF,"Brighthouse Financial, Inc. - Common Stock",NASDAQ,United States
+BHRB,Burke & Herbert Financial Services Corp. - Common Stock,NASDAQ,United States
+BHST,BioHarvest Sciences Inc. - Common Stock,NASDAQ,United States
+BIAF,"bioAffinity Technologies, Inc. - Common Stock",NASDAQ,United States
+BID,Tribeca Strategic Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+BIDWU,Tribeca Strategic Acquisition Corp. - Unit,NASDAQ,United States
+BIIB,Biogen Inc. - Common Stock,NASDAQ,United States
+BIOA,"BioAge Labs, Inc. - Common Stock",NASDAQ,United States
+BIOT,Instinct Bio Technical Company Holdings Inc. - Common stock,NASDAQ,United States
+BIOX,Bioceres Crop Solutions Corp. - Ordinary Shares,NASDAQ,United States
+BIRD,"Smartbird, Inc. - Class A Common Stock",NASDAQ,United States
+BIVI,BioVie Inc. - Common stock,NASDAQ,United States
+BIXI,Bitcoin Infrastructure Acquisition Corp Ltd. - Class A Ordinary Shares,NASDAQ,United States
+BIYA,Baiya International Group Inc.  - Ordinary Shares,NASDAQ,United States
+BJDX,"Bluejay Diagnostics, Inc. - Common Stock",NASDAQ,United States
+BJRI,"BJ's Restaurants, Inc. - Common Stock",NASDAQ,United States
+BKHA,Black Hawk Acquisition Corporation - Class A Ordinary Shares,NASDAQ,United States
+BKNG,Booking Holdings Inc. - Common Stock,NASDAQ,United States
+BKR,Baker Hughes Company - Common Stock,NASDAQ,United States
+BKYI,"BIO-key International, Inc. - Common Stock",NASDAQ,United States
+BL,"BlackLine, Inc. - Common Stock",NASDAQ,United States
+BLBD,Blue Bird Corporation - Common Stock,NASDAQ,United States
+BLDP,"Ballard Power Systems, Inc. - Common Shares",NASDAQ,United States
+BLIN,"Bridgeline Digital, Inc. - Common Stock",NASDAQ,United States
+BLIV,BeLive Holdings - ordinary shares,NASDAQ,United States
+BLKB,"Blackbaud, Inc. - Common Stock",NASDAQ,United States
+BLLN,"BillionToOne, Inc. - Class A common stock",NASDAQ,United States
+BLMN,"Bloomin' Brands, Inc. - Common Stock",NASDAQ,United States
+BLNE,"Beeline Holdings, Inc. - Common Stock",NASDAQ,United States
+BLNK,Blink Charging Co. - Common Stock,NASDAQ,United States
+BLRK,Bluerock Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+BLSM,"BlossomHill Therapeutics, Inc. - Common Stock",NASDAQ,United States
+BLUW,Blue Water Acquisition Corp. III - Class A Ordinary Shares,NASDAQ,United States
+BLUWU,Blue Water Acquisition Corp. III - Unit.,NASDAQ,United States
+BLZE,"Backblaze, Inc. - Common Stock",NASDAQ,United States
+BLZR,Trailblazer Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+BLZRU,Trailblazer Acquisition Corp. - Unit,NASDAQ,United States
+BMBL,Bumble Inc. - common stock,NASDAQ,United States
+BMEA,"Biomea Fusion, Inc. - Common Stock",NASDAQ,United States
+BMGL,Basel Medical Group Ltd - ordinary shares,NASDAQ,United States
+BMHL,Bluemount Holdings Limited - Class B Ordinary Shares,NASDAQ,United States
+BMM,Blue Moon Metals Inc. - Common Shares,NASDAQ,United States
+BMMX,Black Mammoth Metals Corporation - Common Shares,NASDAQ,United States
+BMR,Beamr Imaging Ltd. - Ordinary Share,NASDAQ,United States
+BMRA,"Biomerica, Inc. - Common Stock",NASDAQ,United States
+BMRC,Bank of Marin Bancorp - Common Stock,NASDAQ,United States
+BMRN,BioMarin Pharmaceutical Inc. - Common Stock,NASDAQ,United States
+BNAI,Brand Engagement Network Inc. - Common Stock,NASDAQ,United States
+BNC,BNB Standard Corporation - Common Stock,NASDAQ,United States
+BNGO,"Bionano Genomics, Inc. - Common Stock",NASDAQ,United States
+BNKK,"Bonk, Inc. - Common Stock",NASDAQ,United States
+BNTC,Benitec Biopharma Inc. - Common Stock,NASDAQ,United States
+BODI,"The Beachbody Company, Inc. - Class A Common Stock",NASDAQ,United States
+BOF,BranchOut Food Inc. - Common Stock,NASDAQ,United States
+BOKF,BOK Financial Corporation - Common Stock,NASDAQ,United States
+BOLD,"Boundless Bio, Inc. - Common Stock",NASDAQ,United States
+BOLT,"Bolt Biotherapeutics, Inc. - Common Stock",NASDAQ,United States
+BON,Bon Natural Life Limited - Class A Ordinary Shares,NASDAQ,United States
+BOOM,DMC Global Inc. - Common Stock,NASDAQ,United States
+BOSC,B.O.S. Better Online Solutions - Ordinary Shares,NASDAQ,United States
+BOT,"RoboStrategy, Inc. - Common Stock",NASDAQ,United States
+BOTJ,"Bank of the James Financial Group, Inc. - Common Stock",NASDAQ,United States
+BOXL,Boxlight Corporation - Class A Common Stock,NASDAQ,United States
+BPAC,Blueport Acquisition Ltd - Class A Ordinary Shares,NASDAQ,United States
+BPOP,"Popular, Inc. - Common Stock",NASDAQ,United States
+BPRN,"Princeton Bancorp, Inc. - Common Stock",NASDAQ,United States
+BRAG,Bragg Gaming Group Inc. - Common Shares,NASDAQ,United States
+BRAI,Braiin Limited - Common Stock,NASDAQ,United States
+BRBI,BRBI BR Partners S.A. - ADSs,NASDAQ,United States
+BRCB,"Black Rock Coffee Bar, Inc. - Class A Common Stock",NASDAQ,United States
+BREZ,Breeze Acquisition Corp. II - Ordinary Shares,NASDAQ,United States
+BRFH,Barfresh Food Group Inc. - Common Stock,NASDAQ,United States
+BRID,Bridgford Foods Corporation - Common Stock,NASDAQ,United States
+BRKH,Burtech Acquisition Corp II - Class A Ordinary Shares,NASDAQ,United States
+BRKR,Bruker Corporation - Common Stock,NASDAQ,United States
+BRLS,Borealis Foods Inc. - Class A Common Shares,NASDAQ,United States
+BRLT,"Brilliant Earth Group, Inc. - Class A Common Stock",NASDAQ,United States
+BRNX,BrenX Ltd. - Ordinary Shares,NASDAQ,United States
+BRTM,B&R Technology Merger Corp. - Class A Ordinary Shares,NASDAQ,United States
+BRTX,"BioRestorative Therapies, Inc. - Common Stock",NASDAQ,United States
+BRUN,Boost Run Inc. - Class A Common Stock,NASDAQ,United States
+BRVE,"Braveheart Bio, Inc. - Common Stock",NASDAQ,United States
+BRZE,"Braze, Inc. - Class A Common Stock",NASDAQ,United States
+BSAA,BEST SPAC I Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+BSAAU,BEST SPAC I Acquisition Corp. - Unit,NASDAQ,United States
+BSBK,Bogota Financial Corp. - Common Stock,NASDAQ,United States
+BSEM,"BioStem Technologies, Inc. - Common Stock",NASDAQ,United States
+BSET,"Bassett Furniture Industries, Incorporated - Common Stock",NASDAQ,United States
+BSIN,Big Sky Industrial Inc. - Common Stock,NASDAQ,United States
+BSP,Bending Spoons S.p.A. - Ordinary Shares,NASDAQ,United States
+BSRR,Sierra Bancorp - Common Stock,NASDAQ,United States
+BSVN,Bank7 Corp. - Common stock,NASDAQ,United States
+BSY,"Bentley Systems, Incorporated - Class B Common Stock",NASDAQ,United States
+BTBD,"BT Brands, Inc. - Common Stock",NASDAQ,United States
+BTBT,"Bit Digital, Inc. - Ordinary Share",NASDAQ,United States
+BTCS,BTCS Inc. - Common Stock,NASDAQ,United States
+BTCT,BTC Digital Ltd. - Ordinary Shares,NASDAQ,United States
+BTDR,Bitdeer Technologies Group - Ordinary Shares,NASDAQ,United States
+BTLN,"Brightline Interactive, Inc. - Common Stock",NASDAQ,United States
+BTMD,Biote Corp. - Class A common stock,NASDAQ,United States
+BTOC,Armlogi Holding Corp. - common stock,NASDAQ,United States
+BTQ,BTQ Technologies Corp. - Common Stock,NASDAQ,United States
+BTSG,"BrightSpring Health Services, Inc. - Common Stock",NASDAQ,United States
+BTSGU,"BrightSpring Health Services, Inc. - Tangible Equity Unit",NASDAQ,United States
+BTTC,Black Titan Corp - Ordinary Shares,NASDAQ,United States
+BULL,Webull Corporation - Class A Ordinary Shares,NASDAQ,United States
+BUSE,First Busey Corporation - Common Stock,NASDAQ,United States
+BUUU,BUUU Group Limited - Class A Ordinary Share,NASDAQ,United States
+BVC,BitVentures Limited - Ordinary Share,NASDAQ,United States
+BVFL,"BV Financial, Inc. - Common Stock",NASDAQ,United States
+BVS,Bioventus Inc. - Class A Common Stock,NASDAQ,United States
+BWB,"Bridgewater Bancshares, Inc. - Common Stock",NASDAQ,United States
+BWEN,"Broadwind, Inc. - Common Stock",NASDAQ,United States
+BWFG,"Bankwell Financial Group, Inc. - Common Stock",NASDAQ,United States
+BWIN,"The Baldwin Insurance Group, Inc. - Class A Common Stock",NASDAQ,United States
+BWMN,Bowman Consulting Group Ltd. - Common Stock,NASDAQ,United States
+BXBL,"BOXABL, Inc.  - Common stock",NASDAQ,United States
+BYAH,"Park Ha Biological Technology Co., Ltd. - Class A Ordinary Shares",NASDAQ,United States
+BYFC,Broadway Financial Corporation - Class A Common Stock,NASDAQ,United States
+BYND,"Beyond Meat, Inc. - Common stock",NASDAQ,United States
+BYRN,"Byrna Technologies, Inc. - Common Stock",NASDAQ,United States
+BYSI,"BeyondSpring, Inc. - Ordinary Shares",NASDAQ,United States
+BZ,KANZHUN LIMITED - American Depository Shares,NASDAQ,United States
+BZAI,"Blaize Holdings, Inc. - Common Stock",NASDAQ,United States
+BZFD,"BuzzFeed, Inc. - Class A Common Stock",NASDAQ,United States
+CAAS,"China Automotive Systems, Inc. - Ordinary Share",NASDAQ,United States
+CABA,"Cabaletta Bio, Inc. - Common Stock",NASDAQ,United States
+CABR,"Caring Brands, Inc. - Common Stock",NASDAQ,United States
+CAC,Camden National Corporation - Common Stock,NASDAQ,United States
+CACC,Credit Acceptance Corporation - Common Stock,NASDAQ,United States
+CADL,"Candel Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CAE,CAE Inc - Common Shares,NASDAQ,United States
+CAES,"Cantor Equity Partners VII, Inc. - Class A Ordinary Shares",NASDAQ,United States
+CAI,"Caris Life Sciences, Inc. - Common Stock",NASDAQ,United States
+CAII,Collective Acquisition Corp. II - Class A Ordinary Shares,NASDAQ,United States
+CAKE,The Cheesecake Factory Incorporated - Common Stock,NASDAQ,United States
+CALC,"CalciMedica, Inc. - Common Stock",NASDAQ,United States
+CALM,"Cal-Maine Foods, Inc. - Common Stock",NASDAQ,United States
+CAMP,CAMP4 Therapeutics Corporation - Common Stock,NASDAQ,United States
+CAMT,Camtek Ltd. - Ordinary Shares,NASDAQ,United States
+CAPN,Cayson Acquisition Corp - Ordinary Shares,NASDAQ,United States
+CAPR,"Capricor Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CAPS,Capstone Holding Corp. - Common Stock,NASDAQ,United States
+CAQ,Cambridge Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+CAQUU,Cambridge Acquisition Corp. - Unit,NASDAQ,United States
+CAR,"Avis Budget Group, Inc. - Common Stock",NASDAQ,United States
+CARE,"Carter Bankshares, Inc. - Common Stock",NASDAQ,United States
+CARG,"CarGurus, Inc. - Class A Common Stock",NASDAQ,United States
+CARL,"Carlsmed, Inc. - Common Stock",NASDAQ,United States
+CART,Maplebear Inc. - Common Stock,NASDAQ,United States
+CASH,"Pathward Financial, Inc. - Common Stock",NASDAQ,United States
+CASS,"Cass Information Systems, Inc - Common Stock",NASDAQ,United States
+CAST,"FreeCast, Inc. - Class A common stock",NASDAQ,United States
+CASY,"Caseys General Stores, Inc. - Common Stock",NASDAQ,United States
+CATL,Catalyst Acquisition Corp. - Class A Ordinary Share,NASDAQ,United States
+CATY,Cathay General Bancorp - Common Stock,NASDAQ,United States
+CBAT,CBAK Energy Technology Limited - Ordinary Shares,NASDAQ,United States
+CBC,"Central Bancompany, Inc. - Class A Common Stock",NASDAQ,United States
+CBFV,"CB Financial Services, Inc. - Common Stock",NASDAQ,United States
+CBIO,"Crescent Biopharma, Inc. - Common Stock",NASDAQ,United States
+CBK,"Commercial Bancgroup, Inc. - Common Stock",NASDAQ,United States
+CBLL,"CeriBell, Inc. - Common Stock",NASDAQ,United States
+CBNK,"Capital Bancorp, Inc. - Common Stock",NASDAQ,United States
+CBRL,"Cracker Barrel Old Country Store, Inc. - Common Stock",NASDAQ,United States
+CBRS,Cerebras Systems Inc. - Class A Common Stock,NASDAQ,United States
+CBSH,"Commerce Bancshares, Inc. - Common Stock",NASDAQ,United States
+CBUS,"Cibus, Inc. - Class A Common Stock",NASDAQ,United States
+CCAP,"Crescent Capital BDC, Inc. - Common Stock",NASDAQ,United States
+CCAQ,Collective Acquisition Corp. - Class A ordinary shares,NASDAQ,United States
+CCB,Coastal Financial Corporation - Common Stock,NASDAQ,United States
+CCBG,Capital City Bank Group - Common Stock,NASDAQ,United States
+CCC,CCC Intelligent Solutions Holdings Inc. - Common Stock,NASDAQ,United States
+CCCC,"C4 Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CCCT,Columbus Circle Capital Corp III - Class A Ordinary Shares,NASDAQ,United States
+CCEC,Capital Clean Energy Carriers Corp. - Common Share,NASDAQ,United States
+CCEP,Coca-Cola Europacific Partners plc - Ordinary Shares,NASDAQ,United States
+CCG,Cheche Group Inc. - Class A Ordinary Shares,NASDAQ,United States
+CCHH,CCH Holdings Ltd - Class A Ordinary Shares,NASDAQ,United States
+CCII,Cohen Circle Acquisition Corp. II - Class A Ordinary Shares,NASDAQ,United States
+CCIIU,Cohen Circle Acquisition Corp. II - Unit,NASDAQ,United States
+CCLD,"CareCloud, Inc. - Common Stock",NASDAQ,United States
+CCNE,CNB Financial Corporation - Common Stock,NASDAQ,United States
+CCOI,"Cogent Communications Holdings, Inc. - Common Stock",NASDAQ,United States
+CCSI,"Consensus Cloud Solutions, Inc. - Common Stock",NASDAQ,United States
+CCTG,CCSC Technology International Holdings Limited - Class A Ordinary Shares,NASDAQ,United States
+CCXI,Churchill Capital Corp XI - Class A Ordinary Shares,NASDAQ,United States
+CD,Chaince Digital Holdings Inc. - American Ordinary Shares,NASDAQ,United States
+CDIO,Cardio Diagnostics Holdings Inc. - Common stock,NASDAQ,United States
+CDLX,"Cardlytics, Inc. - Common Stock",NASDAQ,United States
+CDNA,"CareDx, Inc. - Common Stock",NASDAQ,United States
+CDNL,Cardinal Infrastructure Group Inc. - Class A Common Stock,NASDAQ,United States
+CDNS,"Cadence Design Systems, Inc. - Common Stock",NASDAQ,United States
+CDRO,"Codere Online Luxembourg, S.A. - Ordinary Shares",NASDAQ,United States
+CDT,CDT Equity Inc. - Common Stock,NASDAQ,United States
+CDTG,CDT Environmental Technology Investment Holdings Limited - ordinary shares,NASDAQ,United States
+CDW,CDW Corporation - Common Stock,NASDAQ,United States
+CDXS,"Codexis, Inc. - Common Stock",NASDAQ,United States
+CDZI,"Cadiz, Inc. - Common Stock",NASDAQ,United States
+CEG,Constellation Energy Corporation - Common Stock When-Issued,NASDAQ,United States
+CELC,Celcuity Inc. - Common Stock,NASDAQ,United States
+CELH,"Celsius Holdings, Inc. - Common Stock",NASDAQ,United States
+CELU,Celularity Inc. - Class A Common Stock,NASDAQ,United States
+CELZ,"Creative Medical Technology Holdings, Inc. - Common Stock",NASDAQ,United States
+CENN,Cenntro Inc. - Common Stock,NASDAQ,United States
+CENT,Central Garden & Pet Company - Common Stock,NASDAQ,United States
+CENTA,Central Garden & Pet Company - Class A Common Stock Nonvoting,NASDAQ,United States
+CENX,Century Aluminum Company - Common Stock,NASDAQ,United States
+CEPF,"Cantor Equity Partners IV, Inc. - Class A Ordinary Shares",NASDAQ,United States
+CEPL,"Capstone Energy Plus, Inc. - Common Stock",NASDAQ,United States
+CEPO,"Cantor Equity Partners I, Inc. - Class A Ordinary Shares",NASDAQ,United States
+CEPS,"Cantor Equity Partners VI, Inc. - Class A Ordinary Shares",NASDAQ,United States
+CEPV,"Cantor Equity Partners V, Inc. - Class A Ordinary Shares",NASDAQ,United States
+CERS,Cerus Corporation - Common Stock,NASDAQ,United States
+CERT,"Certara, Inc. - Common Stock",NASDAQ,United States
+CETX,Cemtrex Inc. - Common Stock,NASDAQ,United States
+CETY,"Clean Energy Technologies, Inc. - Common Stock",NASDAQ,United States
+CEVA,"CEVA, Inc. - Common Stock",NASDAQ,United States
+CFBK,CF Bankshares Inc. - Common Stock,NASDAQ,United States
+CFFI,C&F Financial Corporation - Common Stock,NASDAQ,United States
+CFFN,"Capitol Federal Financial, Inc. - Common Stock",NASDAQ,United States
+CG,The Carlyle Group Inc. - Common Stock,NASDAQ,United States
+CGC,Canopy Growth Corporation - Common Shares,NASDAQ,United States
+CGCF,Cartesian Growth Corporation IV - Class A Ordinary Shares,NASDAQ,United States
+CGEM,"Cullinan Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CGEN,Compugen Ltd. - Ordinary Shares,NASDAQ,United States
+CGNT,Cognyte Software Ltd. - Ordinary Shares,NASDAQ,United States
+CGNX,Cognex Corporation - Common Stock,NASDAQ,United States
+CGON,"CG Oncology, Inc. - Common stock",NASDAQ,United States
+CGTL,Creative Global Technology Holdings Limited - Class A Ordinary Shares,NASDAQ,United States
+CGTX,"Cognition Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CHAI,"Core AI Holdings, Inc. - Common Shares",NASDAQ,United States
+CHAR,Charlton Aria Acquisition Corporation - Class A Ordinary Shares,NASDAQ,United States
+CHCI,"Comstock Holding Companies, Inc. - Class A Common Stock",NASDAQ,United States
+CHCO,City Holding Company - Common Stock,NASDAQ,United States
+CHDN,"Churchill Downs, Incorporated - Common Stock",NASDAQ,United States
+CHEC,Chenghe Acquisition III Co. - Class A Ordinary Shares,NASDAQ,United States
+CHEF,"The Chefs' Warehouse, Inc. - Common Stock",NASDAQ,United States
+CHGA,Change Agents Corporation  - Common Stock,NASDAQ,United States
+CHKP,Check Point Software Technologies Ltd. - Ordinary Shares,NASDAQ,United States
+CHMG,Chemung Financial Corp  - Common Stock,NASDAQ,United States
+CHNR,"China Natural Resources, Inc. - Common Shares",NASDAQ,United States
+CHPG,ChampionsGate Acquisition Corporation - Class A Ordinary Share,NASDAQ,United States
+CHPGU,ChampionsGate Acquisition Corporation - Unit,NASDAQ,United States
+CHR,"Cheer Holding, Inc.  - Class A Ordinary Share",NASDAQ,United States
+CHRD,Chord Energy Corporation - Common Stock,NASDAQ,United States
+CHRN,ChronoScale Holdings Corporation - Common Stock,NASDAQ,United States
+CHRS,"Coherus Oncology, Inc. - Common Stock",NASDAQ,United States
+CHRW,"C.H. Robinson Worldwide, Inc. - Common Stock",NASDAQ,United States
+CHSN,Chanson International Holding - Class A Ordinary Shares,NASDAQ,United States
+CHTR,"Charter Communications, Inc. - Class A Common Stock",NASDAQ,United States
+CHWM,Chilwa Minerals Limited - American Depository Shares,NASDAQ,United States
+CHYM,"Chime Financial, Inc. - Class A Common Stock",NASDAQ,United States
+CIFR,Cipher Digital Inc. - Common Stock,NASDAQ,United States
+CIGI,Colliers International Group Inc.  - Subordinate Voting Shares,NASDAQ,United States
+CIGL,Concorde International Group Ltd - Class A Ordinary Shares,NASDAQ,United States
+CIIT,"Tianci International, Inc. - Common Stock",NASDAQ,United States
+CINF,Cincinnati Financial Corporation - Common Stock,NASDAQ,United States
+CING,Cingulate Inc. - Common Stock,NASDAQ,United States
+CIRC,"Circle8 Group, Inc. - Common Stock",NASDAQ,United States
+CISO,"CISO Global, Inc. - Common Stock",NASDAQ,United States
+CISS,C3is Inc. - Common Stock,NASDAQ,United States
+CIVB,"Civista Bancshares, Inc.  - Common Stock",NASDAQ,United States
+CJMB,Callan JMB Inc. - Common Stock,NASDAQ,United States
+CLAR,Clarus Corporation - Common Stock,NASDAQ,United States
+CLBK,"Columbia Financial, Inc. - Common Stock",NASDAQ,United States
+CLBT,Cellebrite DI Ltd. - Ordinary Shares,NASDAQ,United States
+CLDX,"Celldex Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CLFD,"Clearfield, Inc. - Common Stock",NASDAQ,United States
+CLGN,CollPlant Biotechnologies Ltd. - Ordinary Shares,NASDAQ,United States
+CLIK,Click Holdings Limited - Ordinary Share,NASDAQ,United States
+CLIR,ClearSign Technologies Corporation - Common Stock,NASDAQ,United States
+CLMB,"Climb Global Solutions, Inc. - Common Stock",NASDAQ,United States
+CLMT,"Calumet, Inc - Common Stock",NASDAQ,United States
+CLNE,Clean Energy Fuels Corp. - Common Stock,NASDAQ,United States
+CLNN,Clene Inc. - Common Stock,NASDAQ,United States
+CLOV,"Clover Health Investments, Corp.  - Class A Common stock",NASDAQ,United States
+CLPS,CLPS Incorporation - Common Stock,NASDAQ,United States
+CLPT,ClearPoint Neuro Inc. - Common Stock,NASDAQ,United States
+CLRB,"Cellectar Biosciences, Inc. - Common Stock",NASDAQ,United States
+CLRO,"ClearOne, Inc. - Common Stock",NASDAQ,United States
+CLSK,"CleanSpark, Inc. - Common Stock",NASDAQ,United States
+CLST,"Catalyst Bancorp, Inc. - common stock",NASDAQ,United States
+CLWT,Euro Tech Holdings Company Limited - Ordinary Shares,NASDAQ,United States
+CLYM,"Climb Bio, Inc. - Common Stock",NASDAQ,United States
+CMCO,Columbus McKinnon Corporation - Common Stock,NASDAQ,United States
+CMCSA,Comcast Corporation - Class A Common Stock,NASDAQ,United States
+CMCT,Creative Media  - Common Stock,NASDAQ,United States
+CME,CME Group Inc. - Class A Common Stock,NASDAQ,United States
+CMND,Clearmind Medicine Inc. - Common Shares,NASDAQ,United States
+CMPR,Cimpress plc - Ordinary Shares,NASDAQ,United States
+CMPS,COMPASS Pathways Plc - American Depository Shares,NASDAQ,United States
+CMPX,"Compass Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CMRC,"Commerce.com, Inc. - Series 1 Common Stock",NASDAQ,United States
+CMTL,Comtech Telecommunications Corp. - Common Stock,NASDAQ,United States
+CMTV,Community Bancorp.  - Common stock,NASDAQ,United States
+CNCK,Coincheck Group N.V. - Ordinary Shares,NASDAQ,United States
+CNDT,Conduent Incorporated - Common Stock,NASDAQ,United States
+CNET,ZW Data Action Technologies Inc. - Common Stock,NASDAQ,United States
+CNEY,CN Energy Group Inc. - Class A Ordinary Shares,NASDAQ,United States
+CNL,Collective Mining Ltd. - Common Stock,NASDAQ,United States
+CNOB,"ConnectOne Bancorp, Inc. - Common Stock",NASDAQ,United States
+CNSP,"CNS Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+CNSY,"Cerenome, Inc. - Common Stock",NASDAQ,United States
+CNTB,Connect Biopharma Holdings Limited - Ordinary Shares,NASDAQ,United States
+CNTN,"Canton Strategic Holdings, Inc. - Common Stock",NASDAQ,United States
+CNTX,Context Therapeutics Inc. - Common Stock,NASDAQ,United States
+CNTY,"Century Casinos, Inc. - Common Stock",NASDAQ,United States
+CNVS,Cineverse Corp. - Class A Common Stock,NASDAQ,United States
+CNXC,Concentrix Corporation - Common Stock,NASDAQ,United States
+CNXN,"PC Connection, Inc. - Common Stock",NASDAQ,United States
+CNXU,Conexeu Sciences Inc. - Common Stock,NASDAQ,United States
+COAG,"Hemab Therapeutics Holdings, Inc. - Common Stock",NASDAQ,United States
+COCH,"Envoy Medical, Inc. - Class A Common Stock",NASDAQ,United States
+COCO,"The Vita Coco Company, Inc. - Common Stock",NASDAQ,United States
+COCP,"Cocrystal Pharma, Inc. - Common Stock",NASDAQ,United States
+CODA,"Coda Octopus Group, Inc. - Common stock",NASDAQ,United States
+CODX,"Co-Diagnostics, Inc. - Common Stock",NASDAQ,United States
+COFS,"ChoiceOne Financial Services, Inc. - Common Stock",NASDAQ,United States
+COGT,"Cogent Biosciences, Inc. - Common Stock",NASDAQ,United States
+COHU,"Cohu, Inc. - Common Stock",NASDAQ,United States
+COIN,"Coinbase Global, Inc. - Class A Common Stock",NASDAQ,United States
+COKE,"Coca-Cola Consolidated, Inc. - Common Stock",NASDAQ,United States
+COLB,"Columbia Banking System, Inc. - Common Stock",NASDAQ,United States
+COLL,"Collegium Pharmaceutical, Inc. - Common Stock",NASDAQ,United States
+COLM,Columbia Sportswear Company - Common Stock,NASDAQ,United States
+COO,"The Cooper Companies, Inc.  - Common Stock",NASDAQ,United States
+COOT,Australian Oilseeds Holdings Limited - Ordinary Shares,NASDAQ,United States
+CORT,Corcept Therapeutics Incorporated - Common Stock,NASDAQ,United States
+CORZ,"Core Scientific, Inc. - Common Stock",NASDAQ,United States
+COSM,Cosmos Health Inc. - Common Stock,NASDAQ,United States
+COST,Costco Wholesale Corporation - Common Stock,NASDAQ,United States
+COYA,"Coya Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CPB,The Campbell's Company - Common Stock,NASDAQ,United States
+CPBI,"Central Plains Bancshares, Inc. - Common Stock",NASDAQ,United States
+CPHC,Canterbury Park Holding Corporation - Common Stock,NASDAQ,United States
+CPIX,Cumberland Pharmaceuticals Inc. - Common Stock,NASDAQ,United States
+CPOP,"Pop Culture Group Co., Ltd - Class A Ordinary Shares",NASDAQ,United States
+CPRT,"Copart, Inc. - Common Stock",NASDAQ,United States
+CPSH,CPS Technologies Corp. - Common Stock,NASDAQ,United States
+CPSS,"Consumer Portfolio Services, Inc. - Common Stock",NASDAQ,United States
+CRAC,Crown Reserve Acquisition Corp. I - Class A Ordinary Shares,NASDAQ,United States
+CRACU,Crown Reserve Acquisition Corp. I - Unit,NASDAQ,United States
+CRAI,"CRA International,Inc. - Common Stock",NASDAQ,United States
+CRAN,Crane Harbor Acquisition Corp. II - Class A Ordinary Shares,NASDAQ,United States
+CRAQ,Cal Redwood Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+CRBP,"Corbus Pharmaceuticals Holdings, Inc. - Common Stock",NASDAQ,United States
+CRBU,"Caribou Biosciences, Inc. - Common Stock",NASDAQ,United States
+CRCT,"Cricut, Inc. - Class A common stock",NASDAQ,United States
+CRDF,"Cardiff Oncology, Inc. - Common Stock",NASDAQ,United States
+CRDL,Cardiol Therapeutics Inc. - Class A Common Shares,NASDAQ,United States
+CRDO,Credo Technology Group Holding Ltd - Ordinary Shares,NASDAQ,United States
+CRE,Cre8 Enterprise Limited - Class A Ordinary Shares,NASDAQ,United States
+CREX,"Creative Realities, Inc. - Common Stock",NASDAQ,United States
+CRGO,Freightos Limited - Ordinary shares,NASDAQ,United States
+CRIS,"Curis, Inc. - Common Stock",NASDAQ,United States
+CRMD,CorMedix Inc. - Common Stock,NASDAQ,United States
+CRML,Critical Metals Corp. - Ordinary Shares,NASDAQ,United States
+CRMT,"America's Car-Mart, Inc. - Common Stock",NASDAQ,United States
+CRNC,Cerence Inc. - Common Stock,NASDAQ,United States
+CRNT,Ceragon Networks Ltd. - Ordinary Shares,NASDAQ,United States
+CRON,Cronos Group Inc. - Common Share,NASDAQ,United States
+CROX,"Crocs, Inc. - Common Stock",NASDAQ,United States
+CRSP,CRISPR Therapeutics AG - Common Shares,NASDAQ,United States
+CRSR,"Corsair Gaming, Inc. - Common Stock",NASDAQ,United States
+CRTO,Criteo S.A. - Ordinary Shares,NASDAQ,United States
+CRUS,"Cirrus Logic, Inc. - Common Stock",NASDAQ,United States
+CRVL,CorVel Corp. - Common Stock,NASDAQ,United States
+CRVO,CervoMed Inc. - Common Stock,NASDAQ,United States
+CRVS,"Corvus Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+CRWD,"CrowdStrike Holdings, Inc. - Class A Common Stock",NASDAQ,United States
+CRWS,"Crown Crafts, Inc. - Common Stock",NASDAQ,United States
+CRWV,"CoreWeave, Inc. - Class A Common Stock",NASDAQ,United States
+CSAI,"Cloudastructure, Inc. - Class A Common Stock",NASDAQ,United States
+CSBR,"Champions Oncology, Inc. - Common Stock",NASDAQ,United States
+CSCO,"Cisco Systems, Inc. - Common Stock",NASDAQ,United States
+CSGP,"CoStar Group, Inc. - Common Stock",NASDAQ,United States
+CSHR,CoinShares PLC - Ordinary Shares,NASDAQ,United States
+CSIQ,Canadian Solar Inc. - Common Shares,NASDAQ,United States
+CSPI,CSP Inc. - Common Stock,NASDAQ,United States
+CSTE,Caesarstone Ltd. - Ordinary Shares,NASDAQ,United States
+CSTL,"Castle Biosciences, Inc. - Common stock",NASDAQ,United States
+CSWC,Capital Southwest Corporation - Common Stock,NASDAQ,United States
+CSX,CSX Corporation - Common Stock,NASDAQ,United States
+CTAA,ClearThink 1 Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+CTAS,Cintas Corporation - Common Stock,NASDAQ,United States
+CTBI,"Community Trust Bancorp, Inc. - Common Stock",NASDAQ,United States
+CTKB,"Cytek Biosciences, Inc. - Common Stock",NASDAQ,United States
+CTMX,"CytomX Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CTNM,"Contineum Therapeutics, Inc. - Common stock",NASDAQ,United States
+CTNT,Cheetah Net Supply Chain Service Inc. - Class A Common Stock,NASDAQ,United States
+CTOR,"Citius Oncology, Inc.  - Common Stock",NASDAQ,United States
+CTRM,Castor Maritime Inc. - Common Shares,NASDAQ,United States
+CTRN,"Citi Trends, Inc. - Common Stock",NASDAQ,United States
+CTSH,Cognizant Technology Solutions Corporation - Class A Common Stock,NASDAQ,United States
+CTSO,Cytosorbents Corporation - Common Stock,NASDAQ,United States
+CTW,CTW - Class A Ordinary Shares,NASDAQ,United States
+CTXR,"Citius Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+CTY,"City Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CUB,Lionheart Holdings - Class A Ordinary Shares,NASDAQ,United States
+CUBWU,Lionheart Holdings - Unit,NASDAQ,United States
+CUE,"Cue Biopharma, Inc. - Common Stock",NASDAQ,United States
+CULP,"Culp, Inc. - Common Shares",NASDAQ,United States
+CUPR,Cuprina Holdings (Cayman) Limited - Class A Ordinary shares,NASDAQ,United States
+CURI,CuriosityStream Inc.  - Class A Common Stock,NASDAQ,United States
+CURR,Currenc Group Inc. - Ordinary Shares,NASDAQ,United States
+CURX,Curanex Pharmaceuticals Inc - Common Stock,NASDAQ,United States
+CV,"CapsoVision, Inc. - Common Stock",NASDAQ,United States
+CVBF,CVB Financial Corporation - Common Stock,NASDAQ,United States
+CVCO,"Cavco Industries, Inc. - Common Stock",NASDAQ,United States
+CVGI,"Commercial Vehicle Group, Inc. - Common Stock",NASDAQ,United States
+CVKD,"Cadrenal Therapeutics, Inc. - Common Stock",NASDAQ,United States
+CVLT,"Commvault Systems, Inc. - Common Stock",NASDAQ,United States
+CVRX,"CVRx, Inc. - Common Stock",NASDAQ,United States
+CVV,CVD Equipment Corporation - Common Stock,NASDAQ,United States
+CWBC,Community West Bancshares - Common Stock,NASDAQ,United States
+CWCO,Consolidated Water Co. Ltd. - Ordinary Shares,NASDAQ,United States
+CWD,CaliberCos Inc. - Class A Common Stock,NASDAQ,United States
+CWST,"Casella Waste Systems, Inc. - Class A Common Stock",NASDAQ,United States
+CXAI,CXApp Inc. - Class A Common Stock,NASDAQ,United States
+CXDO,"Crexendo, Inc. - Common Stock",NASDAQ,United States
+CXII,Churchill Capital Corp XII - Class A Ordinary Shares,NASDAQ,United States
+CYAB,"Cyabra, Inc. - Common Stock",NASDAQ,United States
+CYCU,"Cycurion, Inc. - Common Stock",NASDAQ,United States
+CYN,Cyngn Inc. - Common stock,NASDAQ,United States
+CYPH,Cypherpunk Technologies Inc. - Common Stock,NASDAQ,United States
+CYRX,"CryoPort, Inc. - Common Stock",NASDAQ,United States
+CYTK,"Cytokinetics, Incorporated - Common Stock",NASDAQ,United States
+CZFS,"Citizens Financial Services, Inc. - Common Stock",NASDAQ,United States
+CZNC,Citizens & Northern Corp - Common Stock,NASDAQ,United States
+CZR,"Caesars Entertainment, Inc. - Common Stock",NASDAQ,United States
+CZWI,"Citizens Community Bancorp, Inc. - Common Stock",NASDAQ,United States
+DAAQ,Digital Asset Acquisition Corp. - Class A Ordinary shares,NASDAQ,United States
+DAIC,"CID HoldCo, Inc. - Common Stock",NASDAQ,United States
+DAIO,Data I/O Corporation - Common Stock,NASDAQ,United States
+DAKT,"Daktronics, Inc. - Common Stock",NASDAQ,United States
+DARE,"Dare Bioscience, Inc. - Common Stock",NASDAQ,United States
+DASH,"DoorDash, Inc. - Common Stock",NASDAQ,United States
+DAVE,Dave Inc.  - Class A Common Stock,NASDAQ,United States
+DAVI,Davion Healthcare Plc - Ordinary Shares,NASDAQ,United States
+DBCA,D. Boral Acquisition I Corp. - Class A Ordinary Shares,NASDAQ,United States
+DBCAU,D. Boral Acquisition I Corp. - Unit,NASDAQ,United States
+DBGI,"Digital Brands Group, Inc. - Common Stock",NASDAQ,United States
+DBX,"Dropbox, Inc. - Class A Common Stock",NASDAQ,United States
+DCBO,Docebo Inc. - Common Shares,NASDAQ,United States
+DCGO,DocGo Inc. - Common Stock,NASDAQ,United States
+DCOY,Decoy Therapeutics Inc. - Common Stock,NASDAQ,United States
+DCTH,"Delcath Systems, Inc. - Common Stock",NASDAQ,United States
+DCX,Digital Currency X Technology Inc. - Class A Ordinary Shares,NASDAQ,United States
+DDI,"DoubleDown Interactive Co., Ltd. - American Depository Shares",NASDAQ,United States
+DDOG,"Datadog, Inc. - Class A Common Stock",NASDAQ,United States
+DEFT,"Defi Technologies, Inc. - Common Stock",NASDAQ,United States
+DERM,Journey Medical Corporation - Common Stock,NASDAQ,United States
+DETX,"Liberty Defense Holdings, Ltd. - Common Shares",NASDAQ,United States
+DFDV,DeFi Development Corp. - Common Stock,NASDAQ,United States
+DFLI,Dragonfly Energy Holdings Corp - Common Stock,NASDAQ,United States
+DFNS,T3 Defense Inc. - Common Stock,NASDAQ,United States
+DFSC,"DEFSEC Technologies Inc. - common stock, no R/S concurrent with offering",NASDAQ,United States
+DFTX,"Definium Therapeutics, Inc.  - Common Shares",NASDAQ,United States
+DGICA,"Donegal Group, Inc. - Class A Common Stock",NASDAQ,United States
+DGICB,"Donegal Group, Inc. - Class B Common Stock",NASDAQ,United States
+DGII,Digi International Inc. - Common Stock,NASDAQ,United States
+DGNX,Diginex Limited - Ordinary Shares,NASDAQ,United States
+DGXX,Digi Power X Inc. - Common Subordinate Voting Shares,NASDAQ,United States
+DH,Definitive Healthcare Corp. - Class A Common Stock,NASDAQ,United States
+DHC,Diversified Healthcare Trust  - Common Shares of Beneficial Interest,NASDAQ,United States
+DIBS,"1stdibs.com, Inc. - Common Stock",NASDAQ,United States
+DIOD,Diodes Incorporated - Common Stock,NASDAQ,United States
+DJCO,Daily Journal Corp. (S.C.) - Common Stock,NASDAQ,United States
+DJT,Trump Media & Technology Group Corp. - Common Stock,NASDAQ,United States
+DKI,DarkIris Inc. - Class A Ordinary Shares,NASDAQ,United States
+DKNG,DraftKings Inc. - Class A Common Stock,NASDAQ,United States
+DLHC,DLH Holdings Corp. - Common Stock,NASDAQ,United States
+DLO,DLocal Limited - Class A Common Shares,NASDAQ,United States
+DLPN,"Dolphin Entertainment, Inc. - Common Stock",NASDAQ,United States
+DLTH,Duluth Holdings Inc. - Class B Common Stock,NASDAQ,United States
+DLTR,"Dollar Tree, Inc. - Common Stock",NASDAQ,United States
+DLXY,Delixy Holdings Limited - Class A Ordinary Shares,NASDAQ,United States
+DMAA,Drugs Made In America Acquisition Corp. - Ordinary Shares,NASDAQ,United States
+DMAC,DiaMedica Therapeutics Inc. - Common Stock,NASDAQ,United States
+DMII,Drugs Made In America Acquisition II Corp. - Ordinary Shares,NASDAQ,United States
+DMIIU,Drugs Made In America Acquisition II Corp. - Unit,NASDAQ,United States
+DMRA,"Damora Therapeutics, Inc. - Ordinary Shares",NASDAQ,United States
+DMRC,Digimarc Corporation - Common Stock,NASDAQ,United States
+DNLI,Denali Therapeutics Inc. - Common Stock,NASDAQ,United States
+DNMX,Dynamix Corporation III - Class A Ordinary Shares,NASDAQ,United States
+DNMXU,Dynamix Corporation III - Unit,NASDAQ,United States
+DNTH,"Dianthus Therapeutics, Inc. - Common Stock",NASDAQ,United States
+DNUT,"Krispy Kreme, Inc. - Common Stock",NASDAQ,United States
+DOCU,"DocuSign, Inc. - Common Stock",NASDAQ,United States
+DOGZ,Dogness (International) Corporation - Class A Common Stock,NASDAQ,United States
+DOMH,Dominari Holdings Inc. - Common Stock,NASDAQ,United States
+DOO,BRP Inc. - Common Subordinate Voting Shares,NASDAQ,United States
+DORM,"Dorman Products, Inc. - Common Stock",NASDAQ,United States
+DOX,Amdocs Limited - Ordinary Shares,NASDAQ,United States
+DPRO,Draganfly Inc. - Common Shares,NASDAQ,United States
+DPU,Nexpu Ltd. - Class A Ordinary Shares,NASDAQ,United States
+DPZ,Domino's Pizza Inc - Common Stock,NASDAQ,United States
+DRDB,Roman DBDR Acquisition Corp. II - Ordinary shares,NASDAQ,United States
+DRDBU,Roman DBDR Acquisition Corp. II - Unit,NASDAQ,United States
+DRH,Diamondrock Hospitality Company - Common Stock,NASDAQ,United States
+DRIO,DarioHealth Corp. - Common Stock,NASDAQ,United States
+DRK,DarkHorse Technologies Inc. - Common Shares,NASDAQ,United States
+DRMA,"Dermata Therapeutics, Inc. - Common Stock",NASDAQ,United States
+DRS,"Leonardo DRS, Inc. - Common Stock",NASDAQ,United States
+DRTS,Alpha Tau Medical Ltd. - Ordinary Shares,NASDAQ,United States
+DRUG,Bright Minds Biosciences Inc. - common stock,NASDAQ,United States
+DRVN,Driven Brands Holdings Inc. - Common Stock,NASDAQ,United States
+DSAC,Daedalus Special Acquisition Corp. - Class A Ordinary Shares,NASDAQ,United States
+DSACU,Daedalus Special Acquisition Corp. - Unit,NASDAQ,United States
+DSGN,"Design Therapeutics, Inc. - Common Stock",NASDAQ,United States
+DSGR,"Distribution Solutions Group, Inc. - Common Stock",NASDAQ,United States
+DSGX,The Descartes Systems Group Inc. - Common Stock,NASDAQ,United States
+DSP,Viant Technology Inc. - common stock,NASDAQ,United States
+DSWL,"Deswell Industries, Inc. - Common Shares",NASDAQ,United States
+DSY,Big Tree Cloud Holdings Limited - Class A Ordinary Shares,NASDAQ,United States
+DTCX,"Datacentrex, Inc. - Common Stock",NASDAQ,United States
+DTI,Drilling Tools International Corporation  - Common Stock,NASDAQ,United States
+DTIL,"Precision BioSciences, Inc. - Common Stock",NASDAQ,United States
+DTSQ,DT Cloud Star Acquisition Corporation - Ordinary Shares,NASDAQ,United States
+DTSS,Datasea Intelligent Technology Ltd. - Class A Ordinary Shares,NASDAQ,United States
+DTST,Data Storage Corporation - Common Stock,NASDAQ,United States
+DUKR,DUKE Robotics Corp. - Common Stock,NASDAQ,United States
+DUO,Fangdd Network Group Ltd. - Class A Ordinary Shares,NASDAQ,United States
+DUOL,"Duolingo, Inc. - Class A Common Stock",NASDAQ,United States
+DUOT,"Duos Technologies Group, Inc. - Common Stock",NASDAQ,United States
+DVLT,Datavault AI Inc. - Common Stock,NASDAQ,United States
+DWSN,Dawson Geophysical Company - Common Stock,NASDAQ,United States
+DWTX,"Dogwood Therapeutics, Inc.  - Common Stock",NASDAQ,United States
+DXCM,"DexCom, Inc. - Common Stock",NASDAQ,United States
+DXLG,"Destination XL Group, Inc. - Common Stock",NASDAQ,United States
+DXPE,"DXP Enterprises, Inc. - Common Stock",NASDAQ,United States
+DXST,Decent Holding Inc. - Class A Ordinary Shares,NASDAQ,United States
+DYAI,"Dyadic International, Inc. - Common Stock",NASDAQ,United States
+DYN,"Dyne Therapeutics, Inc. - Common Stock",NASDAQ,United States
+DYNC,Dynamix Corporation - Class A Ordinary Share,NASDAQ,United States
+DYNCU,Dynamix Corporation - Unit,NASDAQ,United States
+DYOR,Insight Digital Partners II - Class A Ordinary Shares,NASDAQ,United States
+EBAY,eBay Inc. - Common Stock,NASDAQ,United States
+EBC,"Eastern Bankshares, Inc. - Common Stock",NASDAQ,United States
+EBMT,"Eagle Bancorp Montana, Inc. - Common Stock",NASDAQ,United States
+EBON,Ebang International Holdings Inc. - Class A Ordinary Shares,NASDAQ,United States
+ECBK,"ECB Bancorp, Inc. - Common Stock",NASDAQ,United States
+ECHO,EchoStar Corporation - Common stock,NASDAQ,United States
+ECOR,"electroCore, Inc. - Common Stock",NASDAQ,United States
+ECPG,Encore Capital Group Inc - Common Stock,NASDAQ,United States
+ECX,ECARX Holdings Inc. - Class A Ordinary shares,NASDAQ,United States
+EDBL,Edible Garden AG Incorporated - Common Stock,NASDAQ,United States
+EDHL,Everbright Digital Holding Limited - Ordinary Shares,NASDAQ,United States
+EDIT,"Editas Medicine, Inc. - Common Stock",NASDAQ,United States
+EDRY,EuroDry Ltd. - Common Shares,NASDAQ,United States
+EDSA,"Edesa Biotech, Inc. - Common Shares",NASDAQ,United States
+EDTK,Skillful Craftsman Education Technology Limited - Ordinary Share,NASDAQ,United States
+EDUC,Educational Development Corporation - Common Stock,NASDAQ,United States
+EEFT,"Euronet Worldwide, Inc. - Common Stock",NASDAQ,United States
+EEIQ,EpicQuest Education Group International Limited - Common Stock,NASDAQ,United States
+EFOI,"Energy Focus, Inc. - Common Stock",NASDAQ,United States
+EFSC,Enterprise Financial Services Corporation - Common Stock,NASDAQ,United States
+EFSI,Eagle Financial Services Inc - Common Stock,NASDAQ,United States
+EFTY,"Etoiles Capital Group Co., Ltd. - Common Stock",NASDAQ,United States
+EGAN,eGain Corporation - Common Stock,NASDAQ,United States
+EGBN,"Eagle Bancorp, Inc. - Common Stock",NASDAQ,United States
+EGHA,EGH Acquisition Corp. - Class A ordinary shares,NASDAQ,United States
+EGHAU,EGH Acquisition Corp. - Unit,NASDAQ,United States
+EGHT,8x8 Inc - Common stock,NASDAQ,United States
+EH,EHang Holdings Limited - ADS,NASDAQ,United States
+EHGO,Eshallgo Inc. - Class A Ordinary Shares,NASDAQ,United States
+EHLD,Euroholdings Ltd. - Common Stock,NASDAQ,United States
+EHTH,"eHealth, Inc. - Common Stock",NASDAQ,United States
+EIKN,"Eikon Therapeutics, Inc. - Common Stock",NASDAQ,United States
+EJH,E-Home Household Service Holdings Limited - Ordinary shares,NASDAQ,United States
+ELAB,PMGC Holdings Inc. - Common Stock,NASDAQ,United States
+ELBM,Electra Battery Materials Corporation - Common Stock,NASDAQ,United States
+ELDN,"Eledon Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+ELE,Elemental Royalty Corporation - Common Stock,NASDAQ,United States
+ELMT,The Elmet Group Co. - Common Stock,NASDAQ,United States
+ELOG,Eastern International Ltd. - Ordinary Shares,NASDAQ,United States
+ELOX,"Eloxx Pharmaceuticals, Inc. - Common Stock",NASDAQ,United States
+ELPW,Elong Power Holding Limited - Class A Ordinary Shares,NASDAQ,United States
+ELTK,Eltek Ltd. - Ordinary Shares,NASDAQ,United States
+ELTX,"Elicio Therapeutics, Inc. - Common Stock",NASDAQ,United States
+ELUT,"Elutia, Inc. - Class A Common Stock",NASDAQ,United States
+ELVA,Electrovaya Inc. - Common Shares,NASDAQ,United States
+ELVN,"Enliven Therapeutics, Inc.  - Common Stock",NASDAQ,United States
+ELVR,Elevra Lithium Limited - American Depository Shares,NASDAQ,United States
+ELWT,"Elauwit Connection, Inc. - Common Stock",NASDAQ,United States
+EMAT,Evolution Metals & Technologies Corp. - Common Stock,NASDAQ,United States
+EMBC,Embecta Corp. - Common Stock,NASDAQ,United States
+EMIS,Emmis Acquisition Corp. - Class A Ordinary Share,NASDAQ,United States
+EML,Eastern Company (The) - Common Stock,NASDAQ,United States
+EMPD,Empery Digital Inc. - Common stock,NASDAQ,United States
+ENGN,enGene Therapeutics Inc. - Common Stock,NASDAQ,United States
+ENGS,Energys Group Limited - Ordinary Shares,NASDAQ,United States
+ENLT,Enlight Renewable Energy Ltd. - Ordinary Shares,NASDAQ,United States
