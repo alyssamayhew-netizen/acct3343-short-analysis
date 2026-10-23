@@ -12,25 +12,17 @@ from financial_analysis import (
     calculate_altman_z,
 )
 
+
 # --- Companies used throughout the app ---
 
-COMPANY_TICKERS = [
-    "SHOP.TO",
-    "CTC-A.TO",
-    "CNR.TO",
-    "ENB.TO",
-    "FTS.TO",
-    "CP.TO",
-    "CNQ.TO",
-    "SU.TO",
-    "ATD.TO",
-    "DOL.TO",
-    "MG.TO",
-    "TRI.TO",
-    "WCN.TO",
-    "BCE.TO",
-    "CU.TO",
-]
+@st.cache_data(ttl=86400)
+def load_company_universe():
+    companies = pd.read_csv("company_universe.csv")
+    companies = companies.dropna(subset=["ticker"])
+    return companies
+
+company_universe = load_company_universe()
+COMPANY_TICKERS = company_universe["ticker"].astype(str).tolist()
 st.set_page_config(
     page_title="Short-Term Stock Analysis",
     page_icon="📈",
