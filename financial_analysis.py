@@ -34,7 +34,7 @@ def _sec_fallback_data(ticker_symbol):
     """Return Yahoo-shaped annual statements from SEC company facts for US tickers."""
     global _SEC_TICKER_MAP
     ticker = str(ticker_symbol).strip().upper()
-    if ticker.endswith(".TO") or "-" in ticker or "." in ticker:
+    if ticker.endswith(".TO") or "." in ticker:
         return None
     try:
         if _SEC_TICKER_MAP is None:
@@ -56,7 +56,7 @@ def _sec_fallback_data(ticker_symbol):
         # Candidate SEC tags for each field used by the app.
         candidates = {
             "income_statement": {
-                "EBIT": ["OperatingIncomeLoss", "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"],
+                "EBIT": ["OperatingIncomeLoss"],
                 "Total Revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet"],
                 "Cost Of Revenue": ["CostOfRevenue", "CostOfGoodsAndServicesSold"],
             },
@@ -126,7 +126,7 @@ def _sec_fallback_data(ticker_symbol):
         cash = statements["cash_flow"]
         if not cash.empty and "Operating Cash Flow" in cash.index and "Capital Expenditure" in cash.index:
             # SEC capital expenditure is usually reported as a negative cash flow.
-            cash.loc["Free Cash Flow"] = cash.loc["Operating Cash Flow"] + cash.loc["Capital Expenditure"]
+            cash.loc["Free Cash Flow"] = cash.loc["Operating Cash Flow"] - cash.loc["Capital Expenditure"].abs()
 
         return {
             "ticker": ticker_symbol,
