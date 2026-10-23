@@ -273,11 +273,17 @@ if st.button("Analyze Company"):
                 )
 
                 if not company_name:
-                    st.error(
-                        "Company information wasn't available. "
-                        "Check the ticker and try again."
+                    # Company profile data can fail even when financial
+                    # statements are available. Fall back to the local universe.
+                    matches = company_universe.loc[
+                        company_universe["ticker"].astype(str) == ticker_symbol,
+                        "company_name",
+                    ]
+                    company_name = (
+                        str(matches.iloc[0])
+                        if not matches.empty
+                        else ticker_symbol
                     )
-                    st.stop()
 
                 st.subheader(company_name)
                 st.caption(f"Ticker: {ticker_symbol}")
@@ -417,7 +423,10 @@ st.title("🏆 Stock Rankings")
 
 # Keep Company Lookup and Stock Comparison available across the full universe,
 # but calculate rankings on a smaller initial universe to reduce Yahoo requests.
-RANKING_COMPANY_LIMIT = 500
+# Start with a small set while Yahoo Finance access is unreliable.
+# This makes the app usable for demonstrations without waiting on hundreds
+# of companies; expand the list after data retrieval is stable.
+RANKING_COMPANY_LIMIT = 10
 tickers = COMPANY_TICKERS[:RANKING_COMPANY_LIMIT]
 
 ranking_metrics = [
@@ -441,17 +450,17 @@ if "rankings_requested" not in st.session_state:
 
 if not st.session_state["rankings_requested"]:
     st.info(
-        "The rankings cover the first 500 companies in the universe and can take several minutes "
+        "The rankings cover the first 10 companies in the universe and can take several minutes "
         "to calculate the first time. Company Lookup and Stock Comparison are "
         "available above while you decide when to start."
     )
-    if st.button("Calculate rankings for 500 companies", type="primary"):
+    if st.button("Calculate rankings for 10 companies", type="primary"):
         st.session_state["rankings_requested"] = True
         st.rerun()
     st.stop()
 
 
-@st.cache_data(ttl=21600, show_spinner="Calculating company metrics for the full stock universe...")
+@st.cache_data(ttl=21600, show_spinner="Calculating company metrics for the selected ranking sample...")
 def calculate_ranking_results(ticker_list, cache_version):
     """Calculate rankings once, then reuse them during filter and layout reruns.
 
@@ -481,7 +490,7 @@ def calculate_ranking_results(ticker_list, cache_version):
     return calculated_results
 
 
-results = calculate_ranking_results(tuple(tickers), "shared-data-cache-v1")
+results = calculate_ranking_results(tuple(tickers), "small-sample-v2")
 
 # Make calculation coverage visible instead of silently hiding failed metrics.
 companies_with_metrics = sum(bool(results.get(ticker)) for ticker in tickers)
