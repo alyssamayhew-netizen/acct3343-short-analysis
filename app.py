@@ -251,11 +251,12 @@ st.write(
 
 # --- Company Financial Analysis ---
 
-ticker_symbol = st.text_input(
-    "Stock ticker",
-    value="RY.TO",
-    help="Examples: RY.TO, TD.TO, ENB.TO, CNR.TO, SHOP.TO"
-).strip().upper()
+ticker_symbol = st.selectbox(
+    "Search for a company by ticker",
+    options=COMPANY_TICKERS,
+    index=COMPANY_TICKERS.index("RY.TO") if "RY.TO" in COMPANY_TICKERS else 0,
+    help="Start typing a ticker to find it in the 1,000-company universe."
+)
 
 if st.button("Analyze Company"):
     if not ticker_symbol:
