@@ -493,8 +493,9 @@ def calculate_snoa(ticker_symbol):
     long_term_debt = latest_value(
         "Long Term Debt And Capital Lease Obligation"
     )
-    minority_interest = latest_value("Minority Interest")
-    preferred_stock = latest_value("Preferred Stock Equity")
+    equity_inputs = get_snoa_equity_inputs(ticker_symbol)
+    minority_interest = equity_inputs["minority_interest"]
+    preferred_stock = equity_inputs["preferred_stock"]
     common_equity = latest_value("Common Stock Equity")
 
     # The professor says to use zero if preferred stock is absent.
