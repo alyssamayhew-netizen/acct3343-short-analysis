@@ -1,6 +1,5 @@
 import yfinance as yf
 import pandas as pd
-from functools import lru_cache
 
 
 # Companies for our initial data test
@@ -13,13 +12,18 @@ TEST_COMPANIES = {
 }
 
 
-@lru_cache(maxsize=1200)
+_COMPANY_DATA_CACHE = {}
+
+
 def get_company_data(ticker_symbol):
     """
     Retrieve and cache a best-effort snapshot for one company.
     Each ticker's Yahoo Finance data is fetched once per app process and
     shared by all seven formulas, reducing duplicate requests.
     """
+    if ticker_symbol in _COMPANY_DATA_CACHE:
+        return _COMPANY_DATA_CACHE[ticker_symbol]
+
     company = yf.Ticker(ticker_symbol)
     data = {
         "ticker": ticker_symbol,
@@ -73,7 +77,33 @@ def get_company_data(ticker_symbol):
     ):
         data["error"] = "; ".join(errors) or "Yahoo Finance returned no data"
 
+    # Cache only responses containing usable data. Do not permanently cache
+    # total Yahoo failures (401/429, network errors, etc.).
+    has_usable_data = (
+        bool(data["info"])
+        or not data["income_statement"].empty
+        or not data["balance_sheet"].empty
+        or not data["cash_flow"].empty
+        or bool(data["fast_info"])
+    )
+    if has_usable_data:
+        _COMPANY_DATA_CACHE[ticker_symbol] = data
+
     return data
+
+
+def get_market_cap(data):
+    """Get market capitalization from the available Yahoo fields."""
+    info = data.get("info", {}) or {}
+    market_cap = info.get("marketCap")
+    if market_cap is None or market_cap <= 0:
+        fast_info = data.get("fast_info", {}) or {}
+        market_cap = fast_info.get("market_cap")
+    try:
+        market_cap = float(market_cap)
+    except (TypeError, ValueError):
+        return None
+    return market_cap if market_cap > 0 else None
 
 
 def check_company_data(ticker_symbol):
@@ -319,11 +349,14 @@ def get_snoa_equity_inputs(ticker_symbol):
 
         return float(values.iloc[0])
 
-        equity_inputs = get_snoa_equity_inputs(ticker_symbol)
-        minority_interest = equity_inputs["minority_interest"]
+    minority = latest_value("Minority Interest")
     preferred = latest_value("Preferred Stock Equity")
 
-    minority_source = "Yahoo Finance: Minority Interest"
+    minority_source = (
+        "Yahoo Finance: Minority Interest"
+        if minority is not None
+        else "Minority interest field unavailable"
+    )
     preferred_source = "Yahoo Finance: Preferred Stock Equity"
 
     # If preferred stock is genuinely absent, use zero.
@@ -531,7 +564,6 @@ def calculate_book_to_market(ticker_symbol):
 
     try:
         data = get_company_data(ticker_symbol)
-        info = data.get("info", {})
         balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
         # Get the latest reported common stock equity.
@@ -559,7 +591,7 @@ def calculate_book_to_market(ticker_symbol):
         book_value = float(equity_values.iloc[0])
 
         # Get the company's market capitalization.
-        market_cap = info.get("marketCap")
+        market_cap = get_market_cap(data)
 
         if market_cap is None:
             return {
@@ -889,7 +921,6 @@ def calculate_ey(ticker_symbol):
 
     try:
         data = get_company_data(ticker_symbol)
-        info = data.get("info", {})
         income_statement = data.get("income_statement", pd.DataFrame())
         balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
@@ -913,9 +944,9 @@ def calculate_ey(ticker_symbol):
         ebit = float(ebit_values.iloc[0])
 
         # Get market capitalization.
-        market_cap = info.get("marketCap")
+        market_cap = get_market_cap(data)
 
-        if market_cap is None or market_cap <= 0:
+        if market_cap is None:
             return {
                 "ticker": ticker_symbol,
                 "status": "Missing market cap",
@@ -1147,15 +1178,9 @@ def calculate_altman_z(ticker_symbol):
 
 
         # Market value of equity is represented by market capitalization.
-        market_cap = info.get("marketCap")
+        market_cap = get_market_cap(data)
 
-        if market_cap is None or market_cap <= 0:
-            try:
-                market_cap = data.get("fast_info", {}).get("market_cap")
-            except Exception:
-                market_cap = None
-
-        if market_cap is None or market_cap <= 0:
+        if market_cap is None:
             return {
                 "ticker": ticker_symbol,
                 "status": "Missing market cap",
