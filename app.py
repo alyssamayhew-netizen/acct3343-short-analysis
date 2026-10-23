@@ -453,9 +453,9 @@ if "rankings_requested" not in st.session_state:
 
 if not st.session_state["rankings_requested"]:
     st.info(
-        "The rankings cover the first 500 companies in the universe and can take several minutes "
-        "to calculate the first time. Company Lookup and Stock Comparison are "
-        "available above while you decide when to start."
+        "The stock rankings may take a few minutes to calculate the first time. "
+        "Sorry for the wait, and thank you for your patience! "
+        "Company Lookup and Stock Comparison are available above in the meantime."
     )
     if st.button("Calculate rankings for 500 companies", type="primary"):
         st.session_state["rankings_requested"] = True
