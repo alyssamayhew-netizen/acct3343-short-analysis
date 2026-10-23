@@ -415,7 +415,10 @@ st.write(
 
 st.title("🏆 Stock Rankings")
 
-tickers = COMPANY_TICKERS
+# Keep Company Lookup and Stock Comparison available across the full universe,
+# but calculate rankings on a smaller initial universe to reduce Yahoo requests.
+RANKING_COMPANY_LIMIT = 500
+tickers = COMPANY_TICKERS[:RANKING_COMPANY_LIMIT]
 
 ranking_metrics = [
     ("ROC", calculate_roc, "roc", False),
@@ -438,11 +441,11 @@ if "rankings_requested" not in st.session_state:
 
 if not st.session_state["rankings_requested"]:
     st.info(
-        "The full rankings cover all 1,000 companies and can take several minutes "
+        "The rankings cover the first 500 companies in the universe and can take several minutes "
         "to calculate the first time. Company Lookup and Stock Comparison are "
         "available above while you decide when to start."
     )
-    if st.button("Calculate rankings for all 1,000 companies", type="primary"):
+    if st.button("Calculate rankings for 500 companies", type="primary"):
         st.session_state["rankings_requested"] = True
         st.rerun()
     st.stop()
@@ -580,7 +583,7 @@ for ticker in tickers:
         eligible_tickers.append(ticker)
 
 st.caption(
-    f"{len(eligible_tickers)} of {len(tickers)} companies "
+    f"{len(eligible_tickers)} of {len(tickers)} ranking-universe companies "
     "currently meet the selected metric ranges."
 )
 
