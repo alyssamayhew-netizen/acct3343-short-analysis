@@ -220,6 +220,10 @@ def get_company_data(ticker_symbol):
             or not fallback["balance_sheet"].empty
             or not fallback["cash_flow"].empty
         ):
+            # Preserve any Yahoo metadata/market-cap data that did work.
+            fallback["info"] = data.get("info", {}) or {}
+            fallback["fast_info"] = data.get("fast_info", {}) or {}
+            fallback["data_source"] = "SEC EDGAR statements + Yahoo metadata where available"
             data = fallback
 
     # Cache only responses containing usable data. Do not permanently cache
