@@ -1,0 +1,33 @@
+
+name: Build Company Universe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository files
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pandas
+
+      - name: Build company CSV
+        run: python build_company_universe.py
+
+      - name: Save generated CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: company-universe
+          path: company_universe.csv
