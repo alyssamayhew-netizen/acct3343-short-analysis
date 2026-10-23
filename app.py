@@ -449,8 +449,12 @@ if not st.session_state["rankings_requested"]:
 
 
 @st.cache_data(ttl=21600, show_spinner="Calculating company metrics for the full stock universe...")
-def calculate_ranking_results(ticker_list):
-    """Calculate rankings once, then reuse them during filter and layout reruns."""
+def calculate_ranking_results(ticker_list, cache_version):
+    """Calculate rankings once, then reuse them during filter and layout reruns.
+
+    cache_version deliberately invalidates results from the older,
+    request-heavy calculation pipeline.
+    """
     calculated_results = {}
 
     for ticker in ticker_list:
@@ -474,7 +478,7 @@ def calculate_ranking_results(ticker_list):
     return calculated_results
 
 
-results = calculate_ranking_results(tuple(tickers))
+results = calculate_ranking_results(tuple(tickers), "shared-data-cache-v1")
 
 # --- Financial Metric Filters ---
 
