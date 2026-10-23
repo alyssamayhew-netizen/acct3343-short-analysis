@@ -433,6 +433,21 @@ ranking_metrics = [
 ]
 
 
+if "rankings_requested" not in st.session_state:
+    st.session_state["rankings_requested"] = False
+
+if not st.session_state["rankings_requested"]:
+    st.info(
+        "The full rankings cover all 1,000 companies and can take several minutes "
+        "to calculate the first time. Company Lookup and Stock Comparison are "
+        "available above while you decide when to start."
+    )
+    if st.button("Calculate rankings for all 1,000 companies", type="primary"):
+        st.session_state["rankings_requested"] = True
+        st.rerun()
+    st.stop()
+
+
 @st.cache_data(ttl=21600, show_spinner="Calculating company metrics for the full stock universe...")
 def calculate_ranking_results(ticker_list):
     """Calculate rankings once, then reuse them during filter and layout reruns."""
