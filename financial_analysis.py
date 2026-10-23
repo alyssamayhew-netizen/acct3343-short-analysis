@@ -1,5 +1,6 @@
 import yfinance as yf
 import pandas as pd
+from functools import lru_cache
 
 
 # Companies for our initial data test
@@ -12,27 +13,67 @@ TEST_COMPANIES = {
 }
 
 
+@lru_cache(maxsize=1200)
 def get_company_data(ticker_symbol):
     """
-    Retrieve financial statements and company information
-    from Yahoo Finance for one company.
+    Retrieve and cache a best-effort snapshot for one company.
+    Each ticker's Yahoo Finance data is fetched once per app process and
+    shared by all seven formulas, reducing duplicate requests.
     """
+    company = yf.Ticker(ticker_symbol)
+    data = {
+        "ticker": ticker_symbol,
+        "info": {},
+        "income_statement": pd.DataFrame(),
+        "balance_sheet": pd.DataFrame(),
+        "cash_flow": pd.DataFrame(),
+        "fast_info": {},
+    }
+    errors = []
+
+    # Fetch each data category independently so one failed endpoint does not
+    # prevent the other available financial statements from being used.
     try:
-        company = yf.Ticker(ticker_symbol)
-
-        return {
-            "ticker": ticker_symbol,
-            "info": company.get_info(),
-            "income_statement": company.income_stmt,
-            "balance_sheet": company.balance_sheet,
-            "cash_flow": company.cashflow,
-        }
-
+        data["info"] = company.get_info() or {}
     except Exception as error:
-        return {
-            "ticker": ticker_symbol,
-            "error": str(error),
-        }
+        errors.append(f"company info: {error}")
+
+    try:
+        statement = company.income_stmt
+        if statement is not None:
+            data["income_statement"] = statement
+    except Exception as error:
+        errors.append(f"income statement: {error}")
+
+    try:
+        statement = company.balance_sheet
+        if statement is not None:
+            data["balance_sheet"] = statement
+    except Exception as error:
+        errors.append(f"balance sheet: {error}")
+
+    try:
+        statement = company.cashflow
+        if statement is not None:
+            data["cash_flow"] = statement
+    except Exception as error:
+        errors.append(f"cash flow: {error}")
+
+    try:
+        fast_info = company.fast_info
+        data["fast_info"] = dict(fast_info) if fast_info is not None else {}
+    except Exception as error:
+        errors.append(f"fast info: {error}")
+
+    if (
+        data["info"] == {}
+        and data["income_statement"].empty
+        and data["balance_sheet"].empty
+        and data["cash_flow"].empty
+    ):
+        data["error"] = "; ".join(errors) or "Yahoo Finance returned no data"
+
+    return data
 
 
 def check_company_data(ticker_symbol):
@@ -489,9 +530,9 @@ def calculate_book_to_market(ticker_symbol):
     """Calculate book-to-market using common equity / market cap."""
 
     try:
-        company = yf.Ticker(ticker_symbol)
-        info = company.get_info()
-        balance_sheet = company.balance_sheet
+        data = get_company_data(ticker_symbol)
+        info = data.get("info", {})
+        balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
         # Get the latest reported common stock equity.
         if (
@@ -562,9 +603,9 @@ def calculate_gross_profitability(ticker_symbol):
     """Calculate gross profitability using gross profit / total assets."""
 
     try:
-        company = yf.Ticker(ticker_symbol)
-        income_statement = company.income_stmt
-        balance_sheet = company.balance_sheet
+        data = get_company_data(ticker_symbol)
+        income_statement = data.get("income_statement", pd.DataFrame())
+        balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
         # Get revenue.
         if income_statement.empty or "Total Revenue" not in income_statement.index:
@@ -654,9 +695,9 @@ def calculate_cfoa(ticker_symbol):
     """Calculate CFOA using four years of FCF / latest total assets."""
 
     try:
-        company = yf.Ticker(ticker_symbol)
-        cash_flow = company.cashflow
-        balance_sheet = company.balance_sheet
+        data = get_company_data(ticker_symbol)
+        cash_flow = data.get("cash_flow", pd.DataFrame())
+        balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
         # Get annual free cash flow for four years.
         if cash_flow.empty:
@@ -742,9 +783,9 @@ def calculate_roc(ticker_symbol):
     """Calculate ROC using EBIT / (Net PPE + Net Working Capital)."""
 
     try:
-        company = yf.Ticker(ticker_symbol)
-        income_statement = company.income_stmt
-        balance_sheet = company.balance_sheet
+        data = get_company_data(ticker_symbol)
+        income_statement = data.get("income_statement", pd.DataFrame())
+        balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
         # Get the latest annual EBIT.
         if income_statement.empty or "EBIT" not in income_statement.index:
@@ -847,10 +888,10 @@ def calculate_ey(ticker_symbol):
     """Calculate Earnings Yield using EBIT / Total Enterprise Value."""
 
     try:
-        company = yf.Ticker(ticker_symbol)
-        info = company.get_info()
-        income_statement = company.income_stmt
-        balance_sheet = company.balance_sheet
+        data = get_company_data(ticker_symbol)
+        info = data.get("info", {})
+        income_statement = data.get("income_statement", pd.DataFrame())
+        balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
         # Get the latest annual EBIT.
         if income_statement.empty or "EBIT" not in income_statement.index:
@@ -1005,10 +1046,10 @@ def calculate_altman_z(ticker_symbol):
     """Calculate Altman Z-score using the professor's specified formula."""
 
     try:
-        company = yf.Ticker(ticker_symbol)
-        info = company.get_info()
-        income_statement = company.income_stmt
-        balance_sheet = company.balance_sheet
+        data = get_company_data(ticker_symbol)
+        info = data.get("info", {})
+        income_statement = data.get("income_statement", pd.DataFrame())
+        balance_sheet = data.get("balance_sheet", pd.DataFrame())
 
         # Required annual income statement and balance sheet fields.
         required_balance_rows = [
@@ -1110,7 +1151,7 @@ def calculate_altman_z(ticker_symbol):
 
         if market_cap is None or market_cap <= 0:
             try:
-                market_cap = company.fast_info.get("market_cap")
+                market_cap = data.get("fast_info", {}).get("market_cap")
             except Exception:
                 market_cap = None
 
