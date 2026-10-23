@@ -211,20 +211,25 @@ def get_company_data(ticker_symbol):
     # filings API for US-listed tickers. Canadian listings stay on Yahoo.
     if (
         data["income_statement"].empty
-        and data["balance_sheet"].empty
-        and data["cash_flow"].empty
+        or data["balance_sheet"].empty
+        or data["cash_flow"].empty
     ):
         fallback = _sec_fallback_data(ticker_symbol)
-        if fallback and (
-            not fallback["income_statement"].empty
-            or not fallback["balance_sheet"].empty
-            or not fallback["cash_flow"].empty
-        ):
-            # Preserve any Yahoo metadata/market-cap data that did work.
-            fallback["info"] = data.get("info", {}) or {}
-            fallback["fast_info"] = data.get("fast_info", {}) or {}
-            fallback["data_source"] = "SEC EDGAR statements + Yahoo metadata where available"
-            data = fallback
+        if fallback:
+            # Use SEC statements to fill gaps while retaining any Yahoo data
+            # that did work. This avoids throwing away useful partial results.
+            for statement_key in ("income_statement", "balance_sheet", "cash_flow"):
+                if data[statement_key].empty and not fallback[statement_key].empty:
+                    data[statement_key] = fallback[statement_key]
+            data["info"] = data.get("info", {}) or fallback.get("info", {})
+            data["fast_info"] = data.get("fast_info", {}) or fallback.get("fast_info", {})
+            if (
+                not data["income_statement"].empty
+                or not data["balance_sheet"].empty
+                or not data["cash_flow"].empty
+            ):
+                data.pop("error", None)
+                data["data_source"] = "Yahoo Finance + SEC EDGAR fallback where available"
 
     # Cache only responses containing usable data. Do not permanently cache
     # total provider failures.
